@@ -122,7 +122,6 @@ Axis'
 Maps
 \\	
 	<table name="Inverse Filter Constant Shifts" storageaddress="0x8C40"/> 
-	<table name="TTEPTD Torque Compensation Map" storageaddress="0xAE8C"/> 
 	<table name="Torque Converter Load Compensation Coefficient" storageaddress="0xBEF8"/> 
 	<table name="Ignition Timing Change Rate Limiter" storageaddress="0x7B37"/> 
 	<table name="Retard Side Maximum Change Width (Initial)" storageaddress="0x7B38"/> 
@@ -675,7 +674,6 @@ Maps
 	<table name="MGTGK Compensation Coefficient" storageaddress="0x7FD7"/>
 	<table name="At the Time of Delay, Retard Rate Judgement Constant High Octane" storageaddress="0x7FD8"/> 
 	<table name="At the Time of Delay, Retard Rate Judgement Constant Regular" storageaddress="0x7FD9"/>  
-	<table name="A Full Increase Stage Delay" storageaddress="0x7FDB"/>
 	<table name="At the Time of KMR Stage Switchover, Delay" storageaddress="0x7FDC"/> 
 	<table name="At the Time of the Delay, Retard Rate 1 High Octane" storageaddress="0x7FDD"/> 
 	<table name="At the Time of the Delay, Retard Rate 1 Regular" storageaddress="0x7FDE"/> 
@@ -2024,7 +2022,7 @@ Maps
 	<table name="So Far, PS SW On Equivalent Judgement Voltage" storageaddress="0x81AC"/> 
 	<table name="A Basic Purge Quantity Unit Conversion Coefficient" storageaddress="0x81AD"/> 
 	<table name="Number of MVRO2 Anti-Turns for Catalyst Diagnosis Parameter Operation" storageaddress="0x81AE"/> 
-	
+
 	
 	
 	
@@ -2097,6 +2095,7 @@ Maps
 	<table name="SRLTBL Distinction Flag 01H-20H" storageaddress="0xB5AF"/> (mSSRLID0 A2L)
 	<table name="WDLID Distinction Flag 01H-20H" storageaddress="0xB5B3"/> (mSWDLID0 A2L)
 	<table name="SWMONT Distinction Flag" storageaddress="0xB5B7"/> (mSWID A2L)	
+	<table name="Torque IAT Compensation Coefficient Map that Engine Output is Possible" storageaddress="0xD066"/> (mTTANFAC A2l)
 	
 
 	ASCD Max set speed 0x8B84 int32 for all. Cant find ASCD Min set speed?
@@ -2201,6 +2200,7 @@ DDCF mFMF6NG
 	
 	
 \\ Convert to Tables UNKNOWN MAPS //
+860D int8 1x1 Gives value of -7 POTENTIAL IGNITION TIMING RETARD LIMITER
 C766 5x1 uint16 Maybe a curve? Also high probability of an axis
 C756 8x1 uint16 Most likely an axis
 C2B8 8x1 Potentially axis or curve
@@ -2251,7 +2251,10 @@ FAE6 Ehhh maybeee uint16. Could be regular code
 same for 8674^
 DE10 is an axis or something
 
-
+	<table name="TTEPTD Torque Compensation Map" storageaddress="0xAE8C">
+		<table type="X Axis" storageaddress="0xCCB0"/>
+		<table type="Y Axis" storageaddress="0xCCB0"/>
+	</table>
 
 	<table name="Cold Ignition Trim" storageaddress="0x8DD1">
 		<table type="X Axis" storageaddress="0xB624"/>
@@ -2378,8 +2381,10 @@ DE10 is an axis or something
 
 	<table name="Individual Cylinder Fuel Trims" storageaddress="0xBE86" sizey="6"/>
 
-	<table name="Master Fueling Transition Delay" storageaddress="0x7FDA"/>
-
+	<table name="Master Fueling Transition Delay" storageaddress="0x7FDA"/> 
+	
+	<table name="A Full Increase Stage Delay" storageaddress="0x7FDB"/>
+	
 	<table name="Fuel correction limits, % (MALPRV)" storageaddress="0x829F"/>
 
 	<table name="Injector Latency at 14V" storageaddress="0x8446"/>
