@@ -125,13 +125,11 @@ Maps
 	<table name="Torque Converter Load Compensation Coefficient" storageaddress="0xBEF8"/> 
 	<table name="Ignition Timing Change Rate Limiter" storageaddress="0x7B37"/> 
 	<table name="Retard Side Maximum Change Width (Initial)" storageaddress="0x7B38"/> 
-	<table name="KLMRT Rotation Lattice Low" storageaddress="0x7B39"/> 
-	<table name="KLMRT Rotation Lattice High" storageaddress="0x7B3A"/> 
+	<table name="KLMRT Rotation Lattice Limits" storageaddress="0x7B39"/> 
 	<table name="ADV F/B Start Bias Speed (Upper Limit)" storageaddress="0x7B3B"/> 
 	<table name="ADV F/B Start Bias Speed" storageaddress="0x7B3C"/> 
 	<table name="ADV F/B Start Delay" storageaddress="0x7B3D"/> 
-	<table name="Basic Pulse Width Lattice Low" storageaddress="0x7B3E"/>
-	<table name="Basic Pulse Width Lattice High" storageaddress="0x7B3F"/> 
+	<table name="Basic Pulse Width Lattice Limits" storageaddress="0x7B3E"/>
 	<table name="Judgement Vehicle Speed (Upside of Hysteresis)" storageaddress="0x7B40"/> 
 	<table name="Judgement Vehicle Speed (Under Hysteresis)" storageaddress="0x7B41"/> 
 	<table name="BETAA Weight Coefficient" storageaddress="0x7B42"/> 
@@ -178,8 +176,7 @@ Maps
 	<table name="War Way Speed Weight Constant" storageaddress="0x804C"/>
 	<table name="Target WOT Duty Ratio 1" storageaddress="0x7EF4"/>
 	<table name="Target WOT Duty Ratio 2" storageaddress="0x7EF5"/>
-	<table name="Ignition Adjustment Upper Limit (Filling Up Efficiency)" storageaddress="0x7F8F"/>
-	<table name="Ignition Adjustment Lower Limit (Filling Up Efficiency)" storageaddress="0x7F90"/>
+	<table name="Ignition Adjustment Limits (Filling Up Efficiency)" storageaddress="0x7F8F"/>
 	<table name="Torque Going Down Rate Decrease Rate (DownShift)" storageaddress="0x9CD1"/> 
 	<table name="Torque Going Down Rate Choice Parameter (DownShift)" storageaddress="0x9CE1"/>
 	<table name="Catalyst Temperature (Before Activated Judgement)" storageaddress="0x98D1"/> 
@@ -208,8 +205,7 @@ Maps
 	<table name="Vehicle Speed Condition Lower Limit" storageaddress="0x81C9"/> 
 	<table name="Vehicle Speed Condition Lower Limit 2" storageaddress="0x81CA"/> 
 	<table name="PS Lean Fixed Permission Vehicle Speed" storageaddress="0x81CC"/> 
-	<table name="C-VTC Activation Coolant Temp Upper Limit" storageaddress="0x81CD"/> 
-	<table name="C-VTC Activation Coolant Temp Lower Limit" storageaddress="0x81CE"/> 
+	<table name="C-VTC Activation Coolant Temp Limits" storageaddress="0x81CD"/> 
 	<table name="Cut In Delay (Low Rotation)" storageaddress="0x835A"/> 
 	<table name="Cut In Delay (Low Rotation, Half Cylinder)" storageaddress="0x835B"/> 
 	<table name="Cut In Delay (Low Coolant Temp)" storageaddress="0x835C"/> 
@@ -322,8 +318,7 @@ Maps
 	<table name="Actual Lockup Release Delay Time Threshold" storageaddress="0x84D6"/>
 	<table name="Ignition Timing During Torque Control" storageaddress="0x843D"/>
 	<table name="Coolant Temp Retard Addition Judgement TVO" storageaddress="0x7B00"/>
-	<table name="Final Ignition Timing Adjustment Value Upper Limit" storageaddress="0x7AD0"/>
-	<table name="Final Ignition Timing Adjustment Value Lower Limit" storageaddress="0x7AD1"/>
+	<table name="Final Ignition Timing Adjustment Value Limits" storageaddress="0x7AD0"/>
 	<table name="Advance Side Limiter" storageaddress="0x7AD2"/> 
 	<table name="Addition Drive Power Subtraction Value" storageaddress="0x87A6"/> 
 	<table name="Addition Drive Power Addition Value" storageaddress="0x87A8"/> 
@@ -356,8 +351,7 @@ Maps
 	<table name="TDM Table" storageaddress="0xBEC8"/>
 	<table name="Target AFR For LSOSQ Release" storageaddress="0xCE18"/>
 	<table name="Knock Trouble BETA" storageaddress="0x7AD3"/>
-	<table name="AFR Amplitude (Lean Side)" storageaddress="0x86A2"/>
-	<table name="AFR Amplitude (Rich Side)" storageaddress="0x86A4"/>
+	<table name="AFR Amplitude Limits" storageaddress="0x86A2"/>
 	<table name="Stoichiometric Value" storageaddress="0x86A6"/>
 	<table name="AFR Weighted Average Value" storageaddress="0x7B02"/>
 	<table name="AFR Deviation Upper Limit" storageaddress="0x86AA"/>
@@ -367,8 +361,7 @@ Maps
 	<table name="High Octane Judgement BETAD" storageaddress="0x865E"/>
 	<table name="Reguar Judgement BETAD" storageaddress="0x8660"/>
 	<table name="WOT Filling Up Efficiency IAT Compensation Coefficient Table" storageaddress="0xBF48"/>
-	<table name="AFR Sensor Operation Upper Limit" storageaddress="0x86BC"/>
-	<table name="AFR Sensor Operation Lower Limit" storageaddress="0x86BE"/>
+	<table name="AFR Sensor Operation Limits" storageaddress="0x86BC"/>
 	<table name="Diagnosis Permission AFR Upper Limit" storageaddress="0x86C0"/>
 	<table name="Diagnosis Permission AFR Lower Limit" storageaddress="0x86C2"/>
 	<table name="Diagnosis Completion AFR Convergent Range" storageaddress="0x86C4"/> 
@@ -383,13 +376,11 @@ Maps
 	<table name="Lean Side Second Slice Reset (Shift Addition)" storageaddress="0x85F4"/>
 	<table name="Rich Slices 2x Cross Shift Learning Value" storageaddress="0x86E8"/>
 	<table name="AFSHDM Change Quantity S/L" storageaddress="0x86EA"/>
-	<table name="AFSHOS Minimum Value" storageaddress="0x85F6"/>
-	<table name="AFSHOS Maximum Value" storageaddress="0x85F8"/>
+	<table name="AFSHOS Limits" storageaddress="0x85F6"/>
 	<table name="Monitor Clamp Learning Lean Side Hysteresis" storageaddress="0x86EC"/>
 	<table name="Monitor Clamp Learning Rich Side Hysteresis" storageaddress="0x86EE"/>
 	<table name="Urgent Slowdown Torque Compensation Setup Value" storageaddress="0x7B30"/>
-	<table name="AFR Compensation Upper Limit" storageaddress="0x8704"/>
-	<table name="AFR Compensation Lower Limit" storageaddress="0x8706"/>
+	<table name="AFR Compensation Limits" storageaddress="0x8704"/>
 	<table name="Throttle Failure TVO" storageaddress="0x7EB6"/>
 	<table name="Pull Down Start TVO Upper Limit" storageaddress="0x7DE1"/>
 	<table name="Pull Down Start TVO Lower Limit" storageaddress="0x7DE2"/>
@@ -480,8 +471,7 @@ Maps
 	<table name="AC Cut Speed 3" storageaddress="0x808A"/> (mNACCUT A2L)
 	<table name="AC Cut Speed 2" storageaddress="0x8089"/> (make sure it's proper map)
 	<table name="AC Recover Speed (Idle)" storageaddress="0x808C"/>
-	<table name="Ignition Adjustment Upper Limit (Speed)" storageaddress="0x808E"/>
-	<table name="Ignition Adjustment Lower Limit (Speed)" storageaddress="0x808F"/>
+	<table name="Ignition Adjustment Limits (Speed)" storageaddress="0x808E"/>
 	<table name="Region A/B Judgement Speed" storageaddress="0x8098"/>
 	<table name="Estimated Learning Region Judgement Speed" storageaddress="0x8099"/>
 	<table name="MNRPM Condition Lower Limit" storageaddress="0x809B"/>
@@ -708,7 +698,7 @@ Maps
 	<table name="Slowdown Loss in Weight Compensation Rate Load Clause" storageaddress="0xB86C"/> 
 	<table name="GOV Table" storageaddress="0xB884"/>
 	<table name="GOV3 Table" storageaddress="0xB88C"/> 
-	<table name="GOV Table (At Time of Lean)" storageaddress="0xB894"/> 
+	<table name="GOVL Table" storageaddress="0xB894"/> 
 	<table name="Right After Start, Idle Rise Rate Table" storageaddress="0xB87C"/> 
 	<table name="At Time of CHOSn Temperature Non-Balance, Compensation Rate" storageaddress="0xB89C"/> 
 	<table name="Interrupt Injection Time Compensation Rate (Mild Acceleration) By the Cylinder" storageaddress="0xB8A4"/>
@@ -762,7 +752,7 @@ Maps
 	<table name="Throttle Map 10" storageaddress="0xE0CC"/> 
 	<table name="Throttle Map 11" storageaddress="0xE0EC"/>
 	<table name="Throttle Map 12" storageaddress="0xE10C"/> 
-	<table name="Rotation Compensation Value Upper Limit Table" storageaddress="0xCD70"/> 
+	<table name="Rotation Compensation Limit Table" storageaddress="0xCD70"/> 
 	<table name="Time of Start, Ignition Timing Rotation Compensation Value Table" storageaddress="0xCD80"/> 
 	<table name="O2 Adsorption Rate Table" storageaddress="0xCDA0"/> 
 	<table name="O2 Release Rate Table" storageaddress="0xCDB0"/> 
@@ -2004,12 +1994,10 @@ Maps
 	<table name="N/L High Rotation Judgement Engine Speed" storageaddress="0x80CF"/> 
 	<table name="At Time of Acceleration, Judgement Speed Lower Limit" storageaddress="0x80D0"/> 
 	<table name="Vehicle Speed 0Km/h Cut Judgement Speed" storageaddress="0x80D2"/> 
-	<table name="Misfire Diagnosis Permission Condition Nprm Lower Limit" storageaddress="0x80D3"/> 
-	<table name="Misfire Diagnosis Permission Condition Nprm Upper Limit" storageaddress="0x80D4"/> 
+	<table name="Misfire Diagnosis Permission Condition Nprm Limits" storageaddress="0x80D3"/> 
 	<table name="TINT Compensation Operation Condition Engine Rotation Condition Upper Limit" storageaddress="0x80D5"/> 
 	<table name="Over-Advance Prevention Combustion Number of Times" storageaddress="0x8168"/>
-	<table name="AFS Response Deterioration Diagnosis Atomospheric Pressure Upper Limit Value" storageaddress="0x816F"/> 
-	<table name="AFS Response Deterioration Diagnosis Atomospheric Pressure Lower Limit Value" storageaddress="0x8170"/> 
+	<table name="AFS Response Deterioration Diagnosis Atomospheric Pressure Limits" storageaddress="0x816F"/> 
 	<table name="Atomospheric Pressure Renewal Permission Dead-Zone" storageaddress="0x8171"/> 
 	<table name="An Atomospheric Pressure is returned, rate" storageaddress="0x8173"/> 
 	<table name="Atomospheric Pressure Compensation Coefficient" storageaddress="0x8174"/> 
@@ -2025,10 +2013,12 @@ Maps
 
 	
 	
+	\\NEW//
 	
-	
-	
-	
+	<table name="Limiter Vehicle Speed 2 (Vehicle Speed Decline Judgement Value)" storageaddress="0x8A4E"/> (mSLVSP2 A2l)
+	<table name="AT Output Shaft Speed Lower Limit" storageaddress="0x8A46"/> (mSLPNOUT A2L)
+	<table name="Pull-Down Time Upper Limit Value" storageaddress="0x8AEC"/> (mTPLMX2 A2L)
+	<table name="In KMR Delay, Torque Compensation Table" storageaddress="0xBAE8"/> (mTKMRTQ A2L APART OF LINE PRESSURE FUNCTION. but all 0'd out lol)
 
 	
 	
@@ -2200,6 +2190,7 @@ DDCF mFMF6NG
 	
 	
 \\ Convert to Tables UNKNOWN MAPS //
+B1AE is an axis of some sort. uint16
 860D int8 1x1 Gives value of -7 POTENTIAL IGNITION TIMING RETARD LIMITER
 C766 5x1 uint16 Maybe a curve? Also high probability of an axis
 C756 8x1 uint16 Most likely an axis

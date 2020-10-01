@@ -39080,7 +39080,7 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
 					</conversions>
 				</ecuparam>								
 
-				<ecuparam id="Z24" name="vQH0" desc="Z24- TVO-N Flow Quantity" target="1">
+				<ecuparam id="Z24" name="vQH0" desc="Z24- TVO-N Flow Quantity" target="1"> //NEEDS ADJUSTING. READING 0 THE WHOLE TIME.
 					<ecu id="CF48D">
 						<address>0xFF85A2</address>
 					</ecu>
