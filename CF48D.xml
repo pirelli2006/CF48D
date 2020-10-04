@@ -143,8 +143,8 @@ Maps
 	<table name="Battery Voltage Upper Limit for VTC Drive Permission" storageaddress="0x858C"/> 
 	<table name="Battery Voltage Lower Limit for VTC Drive Permission" storageaddress="0x858F"/> 
 	<table name="Change in Target AFR" storageaddress="0x8046"/> 
-	<table name="N*TP Shift Map" storageaddress="0xA08C"/> (Fix SCALING) 
-	<table name="N*TP Shift Map (Bank 2)" storageaddress="0xA10C"/> (Fix SCALING)
+	<table name="N*TP Shift Map" storageaddress="0xA08C"/> 
+	<table name="N*TP Shift Map (Bank 2)" storageaddress="0xA10C"/> 
 	<table name="Engine Displacement" storageaddress="0x851D"/> 
 	<table name="Engine Displacement 2" storageaddress="0xD4F3"/> 
 	<table name="QH0 Upper Limit Judgement Hysteresis" storageaddress="0x87C6"/> 
@@ -342,7 +342,7 @@ Maps
 	<table name="Top Judgement Gear Constant for ADV Phase Control" storageaddress="0x7FB7"/> 
 	<table name="MAF Conversion Coefficient" storageaddress="0x89DE"/>
 	<table name="Space Capacity Conversion Table" storageaddress="0xCD50"/>
-	<table name="Vehicle Speed Compensation Coefficent Table" storageaddress="0xBA70"/> 
+	<table name="Vehicle Speed Compensation Coefficient Table" storageaddress="0xBA70"/> 
 	<table name="MFPCA1 Reference" storageaddress="0xBC18"/>
 	<table name="MFPCA2 Reference" storageaddress="0xBC28"/>
 	<table name="MFPCA3 Reference" storageaddress="0xBC38"/>
@@ -2010,7 +2010,10 @@ Maps
 	<table name="So Far, PS SW On Equivalent Judgement Voltage" storageaddress="0x81AC"/> 
 	<table name="A Basic Purge Quantity Unit Conversion Coefficient" storageaddress="0x81AD"/> 
 	<table name="Number of MVRO2 Anti-Turns for Catalyst Diagnosis Parameter Operation" storageaddress="0x81AE"/> 
-
+	<table name="Injection End Timing Map" storageaddress="0x91F1">
+		<table type="X Axis" storageaddress="0xB2CD"/>
+		<table type="Y Axis" storageaddress="0xB2C5"/>
+	</table>
 	
 	
 	\\NEW//
