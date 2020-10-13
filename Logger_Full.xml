@@ -39170,12 +39170,23 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
 					</conversions>
 				</ecuparam>								
 							
-				
-				
-				
-				
-				
-				
+LOGGER ADD FOR CF48D;;;
+
+X = X_X#1 in the event that there's an X_X#2 (not confirmed)
+
+
+vCATSLSFT - 0xFF2840
+vCATSLSFT_R#2 - 0xFF2842	
+vQAE - 0xFF2E9C		
+vAACTVO - 0xFF2630
+vBASTFS - 0xFF1A0 //Base Throttle Open-Degree (APOFS SHaft Conversion)
+vBASOFSE - 0xFF10B3
+vBASOFSE_R#2 - 0xFF10B4 
+vSTSTFS - 0xFF1782 //Control Control TVO (APOFS Shaft Conversion)
+vCNTRLVSP - 0xFF11E2 //In control character, a vehicle speed for the control
+wvAPOFS - 0xFF980E // Accelerator Open Degree for TVO Operation
+vAPOSTFS - 0xFF1162 // After it deals wiht APOFS Shaft Conversion, Accelerator Open Degree				
+vATAPOST - 0xFF2335 // APOST For the ATCU Transmission		
 				
 				
 				
