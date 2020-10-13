@@ -6,7 +6,6 @@
 	</romid>
 	\\X// is for Map Placement in RR
 
-
 	\\Ignition Timing//
 
 	<table type="3D" name="Cold Ignition Trim" category="Ignition Timing" storagetype="uint8" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z33">
@@ -186,24 +185,6 @@
 			<data>2800</data>
 	</table>
 	<description>mTGOVL- GOV table (at time of lean)</description>
-	</table>
-	
-	<table type="3D" name="CRADV Table" category="Ignition Timing" storagetype="uint8" sizey="8" endian="big" userlevel="1" >
-		<scaling units="Degrees" expression="x" to_byte="x" format="0"/>
-	<table type="X Axis" name="Ignition" sizex="1">
-			<data>Deg</data>
-	</table> 
-	<table type="Y Axis" name="Z" sizey="8">
-			<data>-40</data>
-			<data>-20</data>
-			<data>0</data>
-			<data>20</data>
-			<data>40</data>
-			<data>60</data>
-			<data>80</data>
-			<data>100</data>
-	</table>
-	<description>mTCRADV- CRADV table// Function: Calculation of ADV at Engine Start</description>
 	</table>
 	
 	<table type="3D" name="Initial Retard Quantity 1" category="Ignition Timing" storagetype="uint8" sizex="4" endian="big" userlevel="2" >
@@ -999,7 +980,7 @@
 		<description>mMFLML Layer way flame speed basic map</description>
 	</table>
 	
-	<table type="3D" name="Fresh air rate" category="Ignition (Advanced)" storagetype="uint8" endian="big" sizex="4" sizey="4" userlevel="1" logparam="?">
+	<table type="3D" name="Fresh Air Rate" category="Ignition (Advanced)" storagetype="uint8" endian="big" sizex="4" sizey="4" userlevel="1" logparam="?">
 		<scaling units="%" expression="x*0.78125" to_byte="x/0.78125" format="0.00" fineincrement=".78125" coarseincrement="4" />
 		<table type="X Axis" name="Cylinder intake filling up efficiency" storagetype="uint8" endian="big" logparam="E3000">
 			<scaling units="%" expression="x*0.78125" to_byte="x/0.78125" format="0.0" fineincrement=".78125" coarseincrement="4" />
@@ -1152,24 +1133,6 @@
 	</table>
 	
 	\\Ignition Timing (Limiters)//
-
-	<table type="3D" name="Rotation Compensation Limit Table" category="Ignition Timing (Limiters)" storagetype="uint16" sizey="8" endian="big" userlevel="4" >
-		<scaling units="-" expression="x*0.00390625" to_byte="x/0.00390625" format="0.00"/>
-	<table type="X Axis" name="Ignition" sizex="1">
-			<data>-</data>
-	</table>
-	<table type="Y Axis" name="Z" sizey="8">
-			<data>-40</data>
-			<data>-20</data>
-			<data>0</data>
-			<data>20</data>
-			<data>40</data>
-			<data>60</data>
-			<data>80</data>
-			<data>100</data>
-	</table>
-	<description>mTFNALMT- Rotation compensation value upper limit table// Function: Calculation of ADV at Engine Start</description>
-	</table>
 	
 	<table type="2D" name="Dwell Calculation Speed Limits" category="Ignition Timing (Limiters)" storagetype="uint8" sizey="2" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*50" to_byte="x/50" format="0"/>
@@ -1678,32 +1641,6 @@
 	</table>
 	<description>Target A/F P-gain table (bank2)</description>
 	</table>
-	
-	<table type="3D" name="Full Increase Judgement VAPO Table" category="AFR" storagetype="uint8" sizey="16" endian="big" userlevel="4" >
-		<scaling units="Degrees" expression="x*.35" to_byte="x/.35" format="0"/>
-	<table type="X Axis" name="-" sizex="1">
-		<data>Deg</data>
-	</table>
-	<table type="Y Axis" name="Degrees" sizey="16">
-			<data>0</data>
-			<data>1</data>
-			<data>2</data>
-			<data>3</data>
-			<data>4</data>
-			<data>5</data>
-			<data>6</data>
-			<data>7</data>
-			<data>8</data>
-			<data>9</data>
-			<data>10</data>
-			<data>11</data>
-			<data>12</data>
-			<data>13</data>
-			<data>14</data>
-			<data>15</data>
-	</table>
-	<description>mTFVAPO- A full increase judgement VAPO table</description>
-	</table>
 
 	<table type="3D" name="AFR Conversion Table" category="AFR" storagetype="uint16" sizex="1" sizey="16" endian="big" userlevel="5">
 		<scaling units="AFR (Gasoline Scale)" expression="x*0.002" to_byte="x/0.002" format="0.00"/> 
@@ -1715,11 +1652,6 @@
 		</table>
 	<description>(AXIS IS VEHICLE DEPENDANT) A/F conversion table. Change if you want to use aftermarket widebands.</description>
 	</table>
-
-
-
-
-
 
 	
 	<table type="3D" name="AFR Compensation Table" category="AFR" storagetype="uint8" sizey="8" endian="big" userlevel="4" >
@@ -3467,7 +3399,44 @@
 	</table>	
 	
 	\\Fuel Delivery//
+	
+	<table type="3D" name="N~TP Compensation Table Bank 1" category="Fuel Delivery" storagetype="uint8" sizex="1" sizey="16" endian="big" userlevel="1" >
+		<scaling units="-" expression="x*.0078125" to_byte="x/.0078125" format="0.000"/>
+	<table type="X Axis" name="-" storagetype="uint8" endian="big">
+		<scaling units="-" expression="x" to_byte="x" format="0"/>
+	</table>
+	<table type="Y Axis" name="RPM*ms" storagetype="uint16" endian="big">
+		<scaling units="RPM*ms" expression="x*0.1953125" to_byte="x/0.1953125" format="0"/>
+	</table>
+	<description>mTHOSNTP- N~TP compensation table// "Compensation Map Bank 1" </description>
+	</table>
 
+	<table type="3D" name="N~TP Compensation Table Bank 2" category="Fuel Delivery" storagetype="uint8" sizex="1" sizey="16" endian="big" userlevel="1" >
+		<scaling units="-" expression="x*.0078125" to_byte="x/.0078125" format="0.000"/>
+	<table type="X Axis" name="-" storagetype="uint8" endian="big">
+		<scaling units="-" expression="x" to_byte="x" format="0"/>
+	</table>
+	<table type="Y Axis" name="RPM*ms" storagetype="uint16" endian="big">
+		<scaling units="RPM*ms" expression="x*0.1953125" to_byte="x/0.1953125" format="0"/>
+	</table>
+	<description>mTHOSRCV- N~TP compensation table 2// "Compensation Map Bank 2"</description>
+	</table>
+	
+	<table type="2D" name="Speed Sensor Trouble Engine Speed Table" category="Unknown" storagetype="uint8" sizey="8" endian="big" userlevel="1" >
+		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0"/>
+	<table type="Y Axis" name="ms" sizey="8">
+			<data>0</data>
+			<data>2</data>
+			<data>4</data>
+			<data>6</data>
+			<data>8</data>
+			<data>10</data>
+			<data>12</data>
+			<data>14</data>
+	</table>
+	<description>Vehicle speed sensor trouble judgement engine speed table// "Speed Sensor Determine Trouble With Engine Speed Table"</description>
+	</table>
+	
 	<table type="3D" name="Injection End Timing Map" category="Fuel Delivery" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="1" logparam="?">
 		<scaling units="Degrees" expression="x*4" to_byte="x/4" format="0.00" fineincrement="1" coarseincrement="2" />
 		<table type="X Axis" name="%" storagetype="uint8" endian="big" logparam="E3000">
@@ -3802,32 +3771,6 @@
 			<data>l</data>
 	</table>
 	<description>mTHSTF2- Fuel temperature compensation coefficient table</description>
-	</table>
-	
-	<table type="3D" name="Rotation Compensation Table" category="Fuel Delivery" storagetype="uint8" sizey="16" endian="big" userlevel="4" >
-		<scaling units="l" expression="x*.00390625" to_byte="x/.00390625" format="0.00"/>
-	<table type="X Axis" name="-" sizex="1">
-			<data>l</data>
-	</table>
-	<table type="Y Axis" name="RPM" sizey="16">
-			<data>0</data>
-			<data>100</data>
-			<data>200</data>
-			<data>300</data>
-			<data>400</data>
-			<data>500</data>
-			<data>600</data>
-			<data>700</data>
-			<data>800</data>
-			<data>900</data>
-			<data>1000</data>
-			<data>1100</data>
-			<data>1200</data>
-			<data>1300</data>
-			<data>1400</data>
-			<data>1500</data>
-	</table>
-	<description>mTKNST- Rotation compensation table//Function: Fuel injection pulse width characteristics formula </description>
 	</table>
 	
 	<table type="3D" name="High Coolant Temperature Increase Compensation Table" category="Fuel Delivery" storagetype="uint8" sizex="8" endian="big" userlevel="4" >
@@ -4190,58 +4133,6 @@
 	<description>mTMFHNK- Adhesion magnification rotation compensation rate// Function: Transient correction (for MPI)</description>
 	</table>
 	
-	<table type="3D" name="N~TP Compensation Table" category="Fuel Delivery" storagetype="uint8" sizey="16" endian="big" userlevel="4" >
-		<scaling units="-" expression="x*.0078125" to_byte="x/.0078125" format="0.000"/>
-	<table type="X Axis" name="-" sizex="1">
-			<data>-</data>
-	</table>
-	<table type="Y Axis" name="RPM*ms" sizey="16">
-			<data>2100</data>
-			<data>2200</data>
-			<data>2400</data>
-			<data>2800</data>
-			<data>3000</data>
-			<data>3200</data>
-			<data>3400</data>
-			<data>3600</data>
-			<data>3800</data>
-			<data>4000</data>
-			<data>4100</data>
-			<data>4200</data>
-			<data>4400</data>
-			<data>4500</data>
-			<data>4600</data>
-			<data>4800</data>
-	</table>
-	<description>mTHOSNTP- N~TP compensation table// Function: Front A/F sensor response deterioration </description>
-	</table>
-
-	<table type="3D" name="N~TP Compensation Table 2" category="Fuel Delivery" storagetype="uint8" sizey="16" endian="big" userlevel="4" >
-		<scaling units="-" expression="x*.0078125" to_byte="x/.0078125" format="0.000"/>
-	<table type="X Axis" name="-" sizex="1">
-			<data>-</data>
-	</table>
-	<table type="Y Axis" name="RPM*ms" sizey="16">
-			<data>0</data>
-			<data>1600</data>
-			<data>2000</data>
-			<data>2400</data>
-			<data>2500</data>
-			<data>2600</data>
-			<data>2700</data>
-			<data>2800</data>
-			<data>2900</data>
-			<data>3000</data>
-			<data>3400</data>
-			<data>3800</data>
-			<data>4200</data>
-			<data>4400</data>
-			<data>4600</data>
-			<data>10000</data>
-	</table>
-	<description>mTHOSRCV- N~TP compensation table 2</description>
-	</table>
-	
 	<table type="3D" name="IDLHOS Gain Coolant Temperature Table" category="Fuel Delivery" storagetype="uint8" sizex="8" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*.015625" to_byte="x/.015625" format="0.000"/>
 	<table type="X Axis" name="Z" sizex="8">
@@ -4260,7 +4151,7 @@
 	<description>mTZIDL- IDLHOS gain coolant temperature table// Function: Fuel injection pulse width characteristics formula (for MPI - deltaTP interruption injection control type)</description>
 	</table>
 	
-	<table type="3D" name="Atomospheric Pressure Compensation Coefficient Table" category="Fuel Delivery" storagetype="uint8" sizex="16" endian="big" userlevel="4" >
+	<table type="3D" name="Atmospheric Pressure Compensation Coefficient Table" category="Fuel Delivery" storagetype="uint8" sizex="16" endian="big" userlevel="1" >
 		<scaling units="l" expression="x*.0078125" to_byte="x/.0078125" format="0.000"/>
 	<table type="X Axis" name="mV" sizex="16">
 			<data>0</data>
@@ -4283,7 +4174,7 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>l</data>
 	</table>
-	<description>mTBLATM2- Atomospheric pressure compensation coefficient table// Function: Fuel injection timing (for MPI)</description>
+	<description>mTBLATM2- Atomospheric pressure compensation coefficient table// "Atmospheric Pressure Injector Compensation"</description>
 	</table>
 	
 	<table type="3D" name="Individual Cylinder Fuel Trims" category="Fuel Delivery" storagetype="uint8" endian="big" sizex="1" sizey="6" userlevel="1">
@@ -4310,7 +4201,7 @@
 		<table type="Y Axis" name="RPM" storagetype="uint16" endian="big">
 			<scaling units="RPM" expression="x*12.5" to_byte="x/12.5" format="0"/>
 		</table>
-		<description>mMABFSFT- N*TP Shift Map</description>
+		<description>mMABFSFT- N*TP Shift Map// FIGURE OUT HOW TO GET IT SCALED TO 100%</description>
 	</table>
 
 	<table type="3D" name="N*TP Shift Map (Bank 2)" category="Fuel Delivery" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="5" logparam="?">
@@ -5282,7 +5173,7 @@
 	<description>mCORAMBMN-Atomospheric pressure ratio minimum value// Function: Fuel injection pulse width characteristics formula (for MPI - deltaTP interruption injection control type)</description>
 	</table>
 
-	<table type="2D" name="Fuel correction limits, % (MALPRV)" category="Fuel Delivery" storagetype="uint8" endian="big" sizey="2" userlevel="5">
+	<table type="2D" name="Fuel correction limits, % (MALPRV)" category="Fuel Delivery" storagetype="uint8" endian="big" sizey="2" userlevel="1">
 		<scaling units="LTFT %" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="5" />
 		<table type="Static Y Axis" name="LTFT limits" sizey="2">
 			<data>Lower</data>
@@ -5299,7 +5190,7 @@
 		<description>Global Fuel injection Multiplier. This can be used to compensate for larger or smaller injectors, or a larger or smaller maf housing. This can also be used for alternate fuels such as e85.</description>
 	</table>
 
-	<table type="2D" name="Minimum Injector Pulse Width" category="Fuel Delivery" storagetype="uint16" endian="big" sizey="1" userlevel="5">
+	<table type="2D" name="Minimum Injector Pulse Width" category="Fuel Delivery" storagetype="uint16" endian="big" sizey="1" userlevel="1">
 		<scaling units="Milliseconds" expression="x/256" to_byte="x*256" format="0.00" fineincrement=".1" coarseincrement="1" />
 		<table type="Static Y Axis" name=" Minimum Pulse Width " sizey="1">
 			<data></data>
@@ -5315,7 +5206,7 @@
 		<description> mKMRCT1  "All the delay stage delays" This value represents a maximum delay between the time the car goes from closed to open loop fuel target values. There are several other potential delays but setting this to 0 should override them. For performance applications to ensure that the ecu transitions to the fuel target as fast as possible upon wide open throttle, set to 0.</description>
 	</table>
 
-	<table type="2D" name="Injector Latency at 14V" category="Fuel Delivery" storagetype="uint8" endian="big" sizey="1" userlevel="5">
+	<table type="2D" name="Injector Latency at 14V" category="Fuel Delivery" storagetype="uint8" endian="big" sizey="1" userlevel="1">
 		<scaling units="Microseconds" expression="x*10" to_byte="x/10" format="0μs" fineincrement="1" coarseincrement="10" />
 		<table type="Static Y Axis" name=" Latency @ 14V " sizey="1">
 			<data></data>
@@ -5323,7 +5214,7 @@
 		<description>mTS14VZ Injector Open Time in Microseconds</description>
 	</table>
 
-	<table type="2D" name="Fuel Injector Latency Adder" category="Fuel Delivery" storagetype="uint8" endian="big" sizey="1" userlevel="5">
+	<table type="2D" name="Fuel Injector Latency Adder" category="Fuel Delivery" storagetype="uint8" endian="big" sizey="1" userlevel="1">
 		<scaling units="Milliseconds Per Volt" expression="x/1024" to_byte="x*1024" format="0.000ms" fineincrement=".002" coarseincrement=".01" />
 		<table type="Static Y Axis" name=" Injector Latency Adder " sizey="1">
 			<data></data>
@@ -5395,6 +5286,24 @@
 		<description>These are the engine speeds at which the rev limiter is engaged and disengaged. When engine speed is equal to or exceeds the 'On' value, fuel cut is active, after which, if engine speed drops below the 'Off' value, fueling is resumed.</description>
 	</table>
 	
+	<table type="3D" name="Table for Catalyst Protection Fuel Cut Region Judgement" category="Fuel Cut" storagetype="uint8" sizex="8" endian="big" userlevel="1" >
+		<scaling units="ms" expression="x*0.125" to_byte="x/0.125" format="0.00"/>
+	<table type="X Axis" name="rpm" sizex="8">
+			<data>0</data>
+			<data>0</data>
+			<data>0</data>
+			<data>0</data>
+			<data>0</data>
+			<data>0</data>
+			<data>0</data>
+			<data>0</data>
+	</table>
+	<table type="Y Axis" name="-" sizey="1">
+			<data>ms</data>
+	</table>
+	<description>mTFCSOKTP- A table for the catalyst protection fuel cut region judgement// "Catalyst Protection Fuel Cut Table</description>
+	</table>
+	
 	<table type="3D" name="At Time of KT Low Oil Temperature, High Rotation Fuel Cut Condition Oil Temperature Table" category="Fuel Cut" storagetype="uint8" sizex="8" endian="big" userlevel="4" >
 		<scaling units="Z" expression="x-30" to_byte="x+30" format="0.00"/>
 	<table type="X Axis" name="Z" sizex="8">
@@ -5413,7 +5322,7 @@
 	<description>mTOFOIL- At the time of KT low oil temperature, a high rotation fuel cut condition oil temperature table</description>
 	</table>
 	
-	<table type="3D" name="Fuel Cut Retard Delay Time Table" category="Fuel Cut" storagetype="uint8" sizex="16" endian="big" userlevel="4" >
+	<table type="3D" name="Fuel Cut Retard Delay Time Table" category="Fuel Cut" storagetype="uint8" sizex="16" endian="big" userlevel="3" >
 		<scaling units="ms" expression="x*100" to_byte="x/100" format="0"/>
 	<table type="X Axis" name="Z" sizex="16">
 			<data>-40</data>
@@ -5439,7 +5348,7 @@
 	<description>mTFCRD- Fuel cut retard delay time table</description>
 	</table>
 	
-	<table type="3D" name="Continuous NO. Load KML Table" category="Fuel Cut" storagetype="uint8" sizex="16" endian="big" userlevel="4" >
+	<table type="3D" name="Continuous NO. Load KML Table" category="Fuel Cut" storagetype="uint8" sizex="16" endian="big" userlevel="1" >
 		<scaling units="Count" expression="x" to_byte="x" format="0"/>
 	<table type="X Axis" name="RPM" sizex="16">
 			<data>2000</data>
@@ -5462,10 +5371,10 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Count</data>
 	</table>
-	<description>mTKNL- Continuous NO. Load KML table// Function: Fuel Cut</description>
+	<description>mTKNL- Continuous NO. Load KML table// "Fuel Cut KML Table"</description>
 	</table>
 	
-	<table type="3D" name="Torque Compensation Fuel Cut Pattern" category="Fuel Cut" storagetype="uint8" sizex="6" endian="big" userlevel="4" >
+	<table type="3D" name="Torque Compensation Fuel Cut Pattern" category="Fuel Cut" storagetype="uint8" sizex="6" endian="big" userlevel="1" >
 		<scaling units="-" expression="x" to_byte="x" format="0"/>
 	<table type="X Axis" name="Cylinder" sizex="6">
 			<data>1</data>
@@ -5478,7 +5387,7 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
-	<description>Torque compensation requirement composition fuel cut pattern</description>
+	<description>Torque compensation requirement composition fuel cut pattern// "Torque Compensation Fuel Cut Table"</description>
 	</table>
 	
 	<table type="3D" name="Engine Speed Limiter Table" category="Fuel Cut" storagetype="uint8" sizex="1" sizey="8" endian="big" userlevel="4">
@@ -5522,7 +5431,7 @@
 			<data>212</data>
 			<data>230</data>   
 		</table>
-		<description>mTTXNEL Fuel cut prohibition speed table for FAST Injection Cutoff (not used in fuel cut routine)</description>
+		<description>mTTXNEL Fuel cut prohibition speed table for FAST Injection Cutoff (not used in fuel cut routine)// "Fuel Cut Prohibited Table"</description>
 	</table>
 
 	<table type="3D" name="Fuel Cut Bosch" category="Fuel Cut" storagetype="uint8" endian="big" sizex="1" sizey="16" userlevel="1" logparam="P8">
@@ -5665,18 +5574,15 @@
 	<description>mTNDRCL- At the time of KT low oil temperature, at the time of the ND select, fuel recover rotation table</description>
 	</table>
 	
-	<table type="3D" name="FNE Recover Speed Table" category="Fuel Cut" storagetype="uint8" sizey="4" endian="big" userlevel="4" >
+	<table type="3D" name="FNE Recover Speed Table" category="Fuel Cut" storagetype="uint8" sizex="1" sizey="4" endian="big" userlevel="1" >
 		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0"/>
-	<table type="X Axis" name="-" sizex="1">
-			<data>RPM</data>
+	<table type="X Axis" name="-" storagetype="uint8" endian="big">
+		<scaling units="-" expression="x" to_byte="x" format="0"/>
 	</table>
-	<table type="Y Axis" name="RPM" sizey="4">
-			<data>75</data>
-			<data>100</data>
-			<data>150</data>
-			<data>200</data>
+	<table type="Y Axis" name="RPM" storagetype="uint8" endian="big">
+		<scaling units="RPM" expression="x*12.5" to_byte="x/12.5" format="0"/>
 	</table>
-	<description>mTRECNE- ƒ¢Ne recover speed table</description>
+	<description>mTRECNE- ƒ¢Ne recover speed table// "Delta Ne Speed Fuel Cut Restore Table"</description>
 	</table>
 	
 	<table type="3D" name="Number of TMFR Cut Cylinders" category="Fuel Cut" storagetype="uint8" sizey="3" endian="big" userlevel="4" >
@@ -5953,12 +5859,12 @@
 	<description>mTMDVDG- Vehicle speed sensor trouble judgement delay//Function: Fuel cut</description>
 	</table>
 
-	<table type="2D" name="TMFR Permission Speed" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="TMFR Permission Speed" category="Transmission (Potential)" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="rpm" expression="x*25" to_byte="x/25" format="0"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mTMFRNEH- TMFR permission speed//Function: Fuel cut</description>
+	<description>mTMFRNEH- TMFR permission speed// "Manual Transmission Gear Position Determination"</description>
 	</table>
 	
 	<table type="2D" name="High Air Quantity Fuel Cut Delay" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
@@ -6281,24 +6187,6 @@
 			<data>10600</data>
 	</table>
 	<description>mTKWCT1- Filter time constant table///Function: FTP catalyst diagnosis</description>
-	</table>
-	
-	<table type="3D" name="Table for Catalyst Protection Fuel Cut Region Judgement" category="Catalyst" storagetype="uint8" sizex="8" endian="big" userlevel="4" >
-		<scaling units="ms" expression="x*0.125" to_byte="x/0.125" format="0.00"/>
-	<table type="X Axis" name="rpm" sizex="8">
-			<data>0</data>
-			<data>0</data>
-			<data>0</data>
-			<data>0</data>
-			<data>0</data>
-			<data>0</data>
-			<data>0</data>
-			<data>0</data>
-	</table>
-	<table type="Y Axis" name="-" sizey="1">
-			<data>ms</data>
-	</table>
-	<description>mTFCSOKTP- A table for the catalyst protection fuel cut region judgement</description>
 	</table>
 	
 	<table type="3D" name="LSOSQ Catalyst Temperature O2 Adsorption Rate Table" category="Catalyst" storagetype="uint8" sizex="8" endian="big" userlevel="4" >
@@ -6811,7 +6699,7 @@
 		<description>Advance of the intake camshaft in degrees.</description>
 	</table>
 
-	<table type="3D" name="Exhaust Cam Timing" category="Variable Cam Timing" storagetype="uint8" endian="big" sizex="16" sizey="16" userlevel="5" logparam="P4410">
+	<table type="3D" name="Exhaust Cam Timing" category="Variable Cam Timing" storagetype="uint8" endian="big" sizex="16" sizey="16" userlevel="1" logparam="P4410">
 		<scaling units="Degrees Advance" expression="(x-128)*.5" to_byte="(x*2)+128" format="0.0" fineincrement=".5" coarseincrement="2" />
 		<table type="X Axis" name="Cylinder intake filling up efficiency" storagetype="uint8" endian="big" logparam="E3000">
 			<scaling units="%" expression="x*0.78125" to_byte="x/0.78125" format="0.0" fineincrement=".5" coarseincrement="4" />
@@ -7766,14 +7654,6 @@
 	<description>mAFCLT1- Condition A Judgement Delay</description>
 	</table>
 	
-	<table type="2D" name="AFM Start, Surge Judgement Throttle Open-Degree" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="ms" expression="x*.35" to_byte="x/.35" format="0.0"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>-</data>
-	</table>
-	<description>mAFCLTV- At the time of the AFM start, surge judgement throttle open-degree</description>
-	</table>
-	
 	<table type="2D" name="Low Frequency Acceleration Compensation Rate" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="l" expression="x*0.015625" to_byte="x/0.015625" format="0.0000"/>
 	<table type="Y Axis" name="Above" sizey="1">
@@ -7886,7 +7766,7 @@
 	<description>TINT compensation operation condition engine rotation slowdown condition upper limit// a patent says TINT is "Intake Air Temperature" </description>
 	</table>
 	
-	<table type="2D" name="MAF idle voltage limits (USRV)" category="Airflow" storagetype="uint16" endian="big" sizey="2" userlevel="5">
+	<table type="2D" name="MAF idle voltage limits (USRV)" category="Airflow" storagetype="uint16" endian="big" sizey="2" userlevel="1">
 		<scaling units="MAF Voltage (V)" expression="x*0.005" to_byte="x/0.005" format="0.000" fineincrement=".005" coarseincrement=".100" />
 		<table type="Static Y Axis" name="MAF Idle Voltage limits" sizey="2">
 			<data>Lower</data>
@@ -7920,36 +7800,44 @@
 	<description>mAFCLVB- VB decline judgement voltage// Function: Intake air quantity</description>
 	</table>
 	
-	<table type="2D" name="AFM Start, Surge Judgement Voltage" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFM Start, Surge Judgement Voltage" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="1" >
 		<scaling units="mV" expression="x*5" to_byte="x/5" format="0"/>
 	<table type="Y Axis" name="mV" sizey="1">
 			<data>mV</data>
 	</table>
-	<description>At the time of the AFM start, surge judgement voltage</description>
+	<description>At the time of the AFM start, surge judgement voltage// "MAF Limits A"</description>
 	</table>
 
-	<table type="2D" name="AFM Start, Surge Judgement Voltage 2" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFM Start, Surge Judgement Voltage 2" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="1" >
 		<scaling units="mV" expression="x*5" to_byte="x/5" format="0"/>
 	<table type="Y Axis" name="mV" sizey="1">
 			<data>mV</data>
 	</table>
-	<description>At the time of the AFM start, surge judgement voltage 2</description>
+	<description>At the time of the AFM start, surge judgement voltage 2// "MAF Limits B"</description>
 	</table>
 
-	<table type="2D" name="AFM Power Supply NG Judgement Upper Limit Value" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFM Power Supply NG Judgement Upper Limit Value" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="1" >
 		<scaling units="mV" expression="x*5" to_byte="x/5" format="0"/>
 	<table type="Y Axis" name="mV" sizey="1">
 			<data>mV</data>
 	</table>
-	<description>AFM power supply NG judgement upper limit value</description>
+	<description>AFM power supply NG judgement upper limit value// "MAF Limits C"</description>
 	</table>
 
-	<table type="2D" name="AFM Power Supply NG Judgement Lower Limit Value" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFM Power Supply NG Judgement Lower Limit Value" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="1" >
 		<scaling units="mV" expression="x*5" to_byte="x/5" format="0"/>
 	<table type="Y Axis" name="mV" sizey="1">
 			<data>mV</data>
 	</table>
-	<description>AFM power supply NG judgement lower limit value</description>
+	<description>AFM power supply NG judgement lower limit value// "MAF Limits P0102" </description>
+	</table>
+	
+	<table type="2D" name="AFM Start, Surge Judgement Throttle Open-Degree" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="1" >
+		<scaling units="ms" expression="x*.35" to_byte="x/.35" format="0.0"/>
+	<table type="Y Axis" name="Above" sizey="1">
+			<data>-</data>
+	</table>
+	<description>mAFCLTV- At the time of the AFM start, surge judgement throttle open-degree// "MAF Limits Throttle"</description>
 	</table>
 	
 	<table type="2D" name="MAF low voltage range_w" category="Airflow" storagetype="uint16" endian="big" sizey="2" userlevel="5">
@@ -7986,7 +7874,7 @@
 		<description>Some ECUs subtract this value from the MAF lookup result before using it to calculate airflow.</description>
 	</table>
 
-	<table type="2D" name="MAF factor" category="Airflow" storagetype="uint8" endian="big" sizey="1" userlevel="5"> 
+	<table type="2D" name="MAF factor" category="Airflow" storagetype="uint8" endian="big" sizey="1" userlevel="1"> 
 		<scaling units="" expression="x" to_byte="x" format="#" fineincrement="1" coarseincrement="10" />
 		<table type="Static Y Axis" name="Multiplier" sizey="2">
 			<data>Multiplier</data>
@@ -8080,7 +7968,7 @@
 	<description>The left bank neutral position DUTY ratio computed table</description>
 	</table>
 	
-	<table type="3D" name="Gear Ratio Table" category="Transmission" storagetype="uint16" sizey="5" endian="big" userlevel="4" >
+	<table type="3D" name="Gear Ratio Table" category="Transmission" storagetype="uint16" sizey="5" endian="big" userlevel="1" >
 		<scaling units="-" expression="x*.000976563" to_byte="x/.000976563" format="0.000"/>
 	<table type="X Axis" name="-" sizex="1">
 			<data>-</data>
@@ -8095,7 +7983,7 @@
 	<description>Gear ratio table</description>
 	</table>
 
-	<table type="3D" name="Gear Ratio Table 2" category="Transmission" storagetype="uint16" sizey="5" endian="big" userlevel="4" >
+	<table type="3D" name="Gear Ratio Table 2" category="Transmission" storagetype="uint16" sizey="5" endian="big" userlevel="1" >
 		<scaling units="-" expression="x*.000976563" to_byte="x/.000976563" format="0.000"/>
 	<table type="X Axis" name="-" sizex="1">
 			<data>-</data>
@@ -9077,17 +8965,6 @@
 		<description>mMPTXRT- Suspension time/operation time ratio map// Function:FAST torque injection cut off</description>
 	</table>
 
-	<table type="3D" name="TTEPTD Torque Compensation Map" category="Torque Management" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="3" logparam="?">
-		<scaling units="%" expression="x*.003051758" to_byte="x/.003051758" format="0" fineincrement="1" coarseincrement="10" />
-		<table type="X Axis" name="-" storagetype="uint16" endian="big" logparam="-">
-			<scaling units="-" expression="x*0.000976563" to_byte="x/0.000976563" format="0.000" fineincrement=".2" coarseincrement="1" />
-		</table>
-		<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
-			<scaling units="RPM" expression="x*3.125" to_byte="x/3.125" format="0" fineincrement="50" coarseincrement="250" />
-		</table>
-		<description>mTEHOSMAP- TTEPTD torque compensation map</description>
-	</table>
-
 	<table type="3D" name="QH0/ Torque Conversion Map" category="Torque Management" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z26">
 		<scaling units="Nm" expression="x/10-3276.8" to_byte="x*10+32768" format="0" fineincrement="1" coarseincrement="10" />
 		<table type="X Axis" name="QH0 flow quantity ratio" storagetype="uint16" endian="big" logparam="Z24">
@@ -9793,7 +9670,44 @@
 	</table>
 	
 	\\Electronic Throttle//
-
+	
+	<table type="3D" name="TTEPTD Torque Compensation Map" category="Electronic Throttle" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1" logparam="?">
+		<scaling units="%" expression="x*.003051758" to_byte="x/.003051758" format="0" fineincrement="1" coarseincrement="10" />
+		<table type="X Axis" name="-" storagetype="uint16" endian="big" logparam="-">
+			<scaling units="-" expression="x*0.000976563" to_byte="x/0.000976563" format="0.000" fineincrement=".2" coarseincrement="1" />
+		</table>
+		<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big" logparam="P8">
+			<scaling units="RPM" expression="x*3.125" to_byte="x/3.125" format="0" fineincrement="50" coarseincrement="250" />
+		</table>
+		<description>mTEHOSMAP- TTEPTD torque compensation map// "Throttle Enhance"</description>
+	</table>
+	
+	<table type="3D" name="Full Increase Judgement VAPO Table" category="Electronic Throttle" storagetype="uint8" sizey="16" endian="big" userlevel="1" >
+		<scaling units="Degrees" expression="x*.35" to_byte="x/.35" format="0"/>
+	<table type="X Axis" name="-" sizex="1">
+		<data>Deg</data>
+	</table>
+	<table type="Y Axis" name="Degrees" sizey="16">
+			<data>0</data>
+			<data>1</data>
+			<data>2</data>
+			<data>3</data>
+			<data>4</data>
+			<data>5</data>
+			<data>6</data>
+			<data>7</data>
+			<data>8</data>
+			<data>9</data>
+			<data>10</data>
+			<data>11</data>
+			<data>12</data>
+			<data>13</data>
+			<data>14</data>
+			<data>15</data>
+	</table>
+	<description>mTFVAPO- A full increase judgement VAPO table// "Throttle Peg Table"</description>
+	</table>
+	
 	<table type="3D" name="Full Close Position Coolant Temperature Compensation Table" category="Electronic Throttle" storagetype="uint8" sizex="16" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*5" to_byte="x/5" format="0"/>
 	<table type="X Axis" name="Z" sizex="16">
@@ -10131,27 +10045,6 @@
 	<description>A table for THVSPR</description>
 	</table>
 	
-	<table type="3D" name="mMWTOY" category="Electronic Throttle" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1" logparam="?">
-		<scaling units="-" expression="x*.000015259" to_byte="x/.000015259" format="0.000" fineincrement="1" coarseincrement="10" />
-		<table type="X Axis" name="-" storagetype="uint16">
-			<scaling units="-" expression="x*.01" to_byte="x/.01" format="0.000" fineincrement="1" coarseincrement="4" />
-		</table>
-		<table type="Y Axis" name="-" storagetype="uint16">
-			<scaling units="-" expression="x*.000015259" to_byte="x/.000015259" format="0.000" fineincrement="1" coarseincrement="4" />
-		</table>
-		<description>A map for the calibration</description>
-	</table>
-
-	<table type="3D" name="mMYTOW" category="Electronic Throttle" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1" logparam="?">
-		<scaling units="-" expression="x*.000007629" to_byte="x/.000007629" format="0.000" fineincrement="1" coarseincrement="10" />
-		<table type="X Axis" name="-" storagetype="uint16">
-			<scaling units="-" expression="x*.000244141" to_byte="x/.000244141" format="0.000" fineincrement="1" coarseincrement="4" />
-		</table>
-		<table type="Y Axis" name="-" storagetype="uint16">
-			<scaling units="-" expression="x*.000015259" to_byte="x/.000015259" format="0.000" fineincrement="1" coarseincrement="4" />
-		</table>
-		<description>Desorption quantity equivalent quantity map</description>
-	</table>
 	////// No clue what these throttle maps are here for. The other two were APOFS shaft (base throttle opening) so I'm uncertain on these. An EcuTek guide for the 370z states that there are 2D throttle maps that go unused due to them being for vehicles that have multiple drive modes. So who knows. 
 	<table type="3D" name="Throttle Map 1" category="Electronic Throttle" storagetype="uint16" sizex="1" sizey="16" endian="big" userlevel="5">
 	<scaling units="Degrees" expression="x*0.11" to_byte="x/0.11" format="0.00"/> 
@@ -12031,7 +11924,69 @@
 	</table>
 	
 	\\Cranking and Startup//
+	
+	<table type="3D" name="Rotation Compensation Table" category="Cranking and Startup" storagetype="uint8" sizey="16" endian="big" userlevel="1" >
+		<scaling units="l" expression="x*.00390625" to_byte="x/.00390625" format="0.00"/>
+	<table type="X Axis" name="-" sizex="1">
+			<data>l</data>
+	</table>
+	<table type="Y Axis" name="RPM" sizey="16">
+			<data>0</data>
+			<data>100</data>
+			<data>200</data>
+			<data>300</data>
+			<data>400</data>
+			<data>500</data>
+			<data>600</data>
+			<data>700</data>
+			<data>800</data>
+			<data>900</data>
+			<data>1000</data>
+			<data>1100</data>
+			<data>1200</data>
+			<data>1300</data>
+			<data>1400</data>
+			<data>1500</data>
+	</table>
+	<description>mTKNST- Rotation compensation table// "Start Enrichment RPM" </description>
+	</table>
+	
+	<table type="3D" name="CRADV Table" category="Cranking and Startup" storagetype="uint8" sizey="8" endian="big" userlevel="1" >
+		<scaling units="Degrees" expression="x" to_byte="x" format="0"/>
+	<table type="X Axis" name="Ignition" sizex="1">
+			<data>Deg</data>
+	</table> 
+	<table type="Y Axis" name="Z" sizey="8">
+			<data>-40</data>
+			<data>-20</data>
+			<data>0</data>
+			<data>20</data>
+			<data>40</data>
+			<data>60</data>
+			<data>80</data>
+			<data>100</data>
+	</table>
+	<description>mTCRADV- CRADV table// Ignition Timing During Cranking A</description>
+	</table>
 
+	<table type="3D" name="Rotation Compensation Limit Table" category="Cranking and Startup" storagetype="uint16" sizey="8" endian="big" userlevel="4" >
+		<scaling units="-" expression="x*0.00390625" to_byte="x/0.00390625" format="0.00"/>
+	<table type="X Axis" name="Ignition" sizex="1">
+			<data>-</data>
+	</table>
+	<table type="Y Axis" name="Z" sizey="8">
+			<data>-40</data>
+			<data>-20</data>
+			<data>0</data>
+			<data>20</data>
+			<data>40</data>
+			<data>60</data>
+			<data>80</data>
+			<data>100</data>
+	</table>
+	<description>mTFNALMT- Rotation compensation value upper limit table// Cranking Timing B</description>
+	</table>
+	
 	<table type="3D" name="Time of Start, Ignition Timing Rotation Compensation Value Table" category="Cranking and Startup" storagetype="uint16" sizex="16" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*.00390625" to_byte="x/.00390625" format="0.00"/>
 	<table type="X Axis" name="RPM" sizex="16">
@@ -12055,7 +12010,7 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mTFNCRADV- At the time of the start, ignition timing rotation compensation value table</description>
+	<description>mTFNCRADV- At the time of the start, ignition timing rotation compensation value table// Cranking Timing C</description>
 	</table>
 
 	<table type="3D" name="Lead Initial Temperature Compensation" category="Cranking and Startup" storagetype="uint8" sizex="8" endian="big" userlevel="4">
@@ -12267,17 +12222,6 @@
 		</table>
 		<description>mMKLMRTR This table sets the limits of knock retard correction when regular fuel is determined.</description>
 	</table>
-
-	<table type="3D" name="Misfire Diagnosis Table" category="Knock and Misfire Detection" storagetype="uint8" endian="big" sizex="16" sizey="16" userlevel="1" logparam="?">
-		<scaling units="NA" expression="x" to_byte="x" format="0" fineincrement=".2" coarseincrement="1" />
-		<table type="X Axis" name="Cylinder intake quantity equivalent pulse width" storagetype="uint8" endian="big" logparam="Z12">
-			<scaling units="ms" expression="x*.1250" to_byte="x/.1250" format="0.00" fineincrement=".2" coarseincrement="1" />
-		</table>
-		<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
-			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
-		</table>
-		<description>MSATH Misfire Diagnosis table"</description>
-	</table>
 	
 	<table type="3D" name="Misfire Diagnosis Table A" category="Knock and Misfire Detection" storagetype="uint8" endian="big" sizex="16" sizey="16" userlevel="1" logparam="?">
 		<scaling units="NA" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="50" />
@@ -12300,8 +12244,19 @@
 		</table>
 		<description>MSATHB Misfire Diagnosis table B"</description>
 	</table>
+
+	<table type="3D" name="Misfire Diagnosis Table C" category="Knock and Misfire Detection" storagetype="uint8" endian="big" sizex="16" sizey="16" userlevel="1" logparam="?">
+		<scaling units="NA" expression="x" to_byte="x" format="0" fineincrement=".2" coarseincrement="1" />
+		<table type="X Axis" name="Cylinder intake quantity equivalent pulse width" storagetype="uint8" endian="big" logparam="Z12">
+			<scaling units="ms" expression="x*.1250" to_byte="x/.1250" format="0.00" fineincrement=".2" coarseincrement="1" />
+		</table>
+		<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
+		</table>
+		<description>MSATH Misfire Diagnosis table"</description>
+	</table>
 	
-	<table type="3D" name="Knock Slice Table" category="Verify" storagetype="uint16" endian="big" sizex="16" sizey="6" userlevel="5" logparam="?">
+	<table type="3D" name="Knock Slice Table" category="Knock and Misfire Detection" storagetype="uint16" endian="big" sizex="16" sizey="6" userlevel="1" logparam="?">
 		<scaling units="dB?" expression="x/256" to_byte="x*256" format="0" fineincrement="1" coarseincrement="4" />
 		<table type="Static X Axis" name="RPM" sizex="16" logparam="P8">
 			<data>400</data>
@@ -12329,7 +12284,7 @@
 			<data>5</data> 
 			<data>6</data>
 		</table>
-		<description>mTSL This table sets the thresholds for determining knock by cylinder.//Cylinders 2 and 3 should be in the red. Not 3 and 5.</description>
+		<description>mTSL This table sets the thresholds for determining knock by cylinder.// "Knock Threshold 6 NO. Index"</description>
 	</table>
 	
 	<table type="3D" name="CRTIA Reference Table" category="Knock and Misfire Detection" storagetype="uint16" sizey="4" endian="big" userlevel="4" >
@@ -13556,7 +13511,7 @@
 	<description>mVdeg conversion coefficient</description>
 	</table>
 
-	<table type="2D" name="Final Drive" category="Conversions and Calculations" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+	<table type="2D" name="Final Drive" category="Conversions and Calculations" storagetype="uint16" sizey="1" endian="big" userlevel="1" >
 		<scaling units="m" expression="x*.000006104" to_byte="x/.000006104" format="0.000000"/>
 	<table type="Y Axis" name="m" sizey="1">
 			<data>Above</data>
@@ -13564,7 +13519,7 @@
 	<description>Effect radius/final gear ratio with the tire</description>
 	</table>
 
-	<table type="2D" name="Final Drive 2" category="Conversions and Calculations" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+	<table type="2D" name="Final Drive 2" category="Conversions and Calculations" storagetype="uint16" sizey="1" endian="big" userlevel="1" >
 		<scaling units="m" expression="x*.000006104" to_byte="x/.000006104" format="0.000000"/>
 	<table type="Y Axis" name="m" sizey="1">
 			<data>Above</data>
@@ -14251,6 +14206,28 @@
 	</table>
 	
 	\\EVAP//
+	
+	<table type="3D" name="mMWTOY" category="EVAP" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1" logparam="?">
+		<scaling units="-" expression="x*.000015259" to_byte="x/.000015259" format="0.000" fineincrement="1" coarseincrement="10" />
+		<table type="X Axis" name="-" storagetype="uint16">
+			<scaling units="-" expression="x*.01" to_byte="x/.01" format="0.000" fineincrement="1" coarseincrement="4" />
+		</table>
+		<table type="Y Axis" name="-" storagetype="uint16">
+			<scaling units="-" expression="x*.000015259" to_byte="x/.000015259" format="0.000" fineincrement="1" coarseincrement="4" />
+		</table>
+		<description>A map for the calibration</description>
+	</table>
+
+	<table type="3D" name="mMYTOW" category="EVAP" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1" logparam="?">
+		<scaling units="-" expression="x*.000007629" to_byte="x/.000007629" format="0.000" fineincrement="1" coarseincrement="10" />
+		<table type="X Axis" name="-" storagetype="uint16">
+			<scaling units="-" expression="x*.000244141" to_byte="x/.000244141" format="0.000" fineincrement="1" coarseincrement="4" />
+		</table>
+		<table type="Y Axis" name="-" storagetype="uint16">
+			<scaling units="-" expression="x*.000015259" to_byte="x/.000015259" format="0.000" fineincrement="1" coarseincrement="4" />
+		</table>
+		<description>Desorption quantity equivalent quantity map</description>
+	</table>
 	
 	<table type="3D" name="High Vehicle Speed Pull Down Permission QM Lower Limit Table" category="EVAP" storagetype="uint16" sizex="16" endian="big" userlevel="4" >
 		<scaling units="-" expression="x" to_byte="x" format="0"/>
@@ -15765,7 +15742,7 @@
 	<description>mTTRSLP- Torque converter load loss in weight compensation air quantity transient state compensation quantity table// Function: Air flow rate corrected for torque converter load reduction during deceleration</description>
 	</table>
 	
-	<table type="3D" name="Torque Converter Torque Ratio Table" category="Torque Converter" storagetype="uint16" sizex="16" endian="big" userlevel="4">
+	<table type="3D" name="Torque Converter Torque Ratio Table" category="Torque Converter" storagetype="uint16" sizex="16" endian="big" userlevel="1">
 	<scaling units="-" expression="x*0.000976563" to_byte="x/0.000976563" format="0.000"/> 
 	<table type="X Axis" name="-" sizex="16">
 			<data>0.00</data> 
@@ -15788,10 +15765,10 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
-	<description>Torque converter torque ratio table</description>
+	<description>Torque converter torque ratio table// "Torque Ratio Table 1"</description>
 	</table>
 
-	<table type="3D" name="Torque Converter Torque Ratio Table 2" category="Torque Converter" storagetype="uint16" sizex="16" endian="big" userlevel="4">
+	<table type="3D" name="Torque Converter Torque Ratio Table 2" category="Torque Converter" storagetype="uint16" sizex="16" endian="big" userlevel="1">
 	<scaling units="-" expression="x*0.000976563" to_byte="x/0.000976563" format="0.000"/> 
 	<table type="X Axis" name="-" sizex="16">
 			<data>0.00</data> 
@@ -15814,7 +15791,7 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
-	<description>Torque converter torque ratio table</description>
+	<description>Torque converter torque ratio table// "Torque Ratio Table 2"</description>
 	</table>
 	
 	<table type="3D" name="Torque Converter Load Compensation Coefficient" category="Torque Converter" storagetype="uint8" sizex="8" endian="big" userlevel="4">
@@ -16175,9 +16152,48 @@
 	<description>A delay for the A/C compensation timing adjustment</description>
 	</table>
 	
-	\\Radiator Fan//
-
-	<table type="2D" name="Radiator Fan Pd Pressure Upper Limit" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	\\Cooling//
+	
+	<table type="2D" name="Coolant Temperature Normalized Table" category="Cooling" storagetype="uint8" sizey="32" endian="big" userlevel="1" >
+		<scaling units="Z" expression="x-50" to_byte="x+50" format="0"/>
+	<table type="Y Axis" name="mV" sizey="32">
+			<data>0</data>
+			<data>160</data>
+			<data>320</data>
+			<data>480</data>
+			<data>640</data>
+			<data>800</data>
+			<data>960</data>
+			<data>1120</data>
+			<data>1280</data>
+			<data>1440</data>
+			<data>1600</data>
+			<data>1760</data>
+			<data>1920</data>
+			<data>2080</data>
+			<data>2240</data>
+			<data>2400</data>
+			<data>2560</data>
+			<data>2720</data>
+			<data>2880</data>
+			<data>3040</data>
+			<data>3200</data>
+			<data>3360</data>
+			<data>3520</data>
+			<data>3680</data>
+			<data>3840</data>
+			<data>4000</data>
+			<data>4160</data>
+			<data>4320</data>
+			<data>4480</data>
+			<data>4640</data>
+			<data>4800</data>
+			<data>4960</data>
+	</table>
+	<description>mTTWN- Coolant temperature normalized table// "Coolant Temperature Calibration"</description>
+	</table>
+	
+	<table type="2D" name="Radiator Fan Pd Pressure Upper Limit" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="MPa" expression="x*0.02" to_byte="x/0.02" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16185,7 +16201,7 @@
 	<description>mPDRFH- Radiator fan Pd pressure upper limit value</description>
 	</table>
 
-	<table type="2D" name="Radiator Fan Pd Pressure Lower Limit" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Radiator Fan Pd Pressure Lower Limit" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="MPa" expression="x*0.02" to_byte="x/0.02" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16193,7 +16209,7 @@
 	<description>mPDRFL- Radiator fan Pd pressure lower limit value</description>
 	</table>
 	
-	<table type="2D" name="Radiator Fan Vehicle Speed Lower Limit" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Radiator Fan Vehicle Speed Lower Limit" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Km/h" expression="x*2" to_byte="x/2" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16201,7 +16217,7 @@
 	<description>mRDVSPL- Radiator fan vehicle speed lower limit value</description>
 	</table>
 	
-	<table type="2D" name="PD Pressure Hysteresis" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="PD Pressure Hysteresis" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="MPa" expression="x*0.02" to_byte="x/0.02" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16209,7 +16225,7 @@
 	<description>mPDHIS- Pd pressure hysteresis// Function: Control of electric radiator fan</description>
 	</table>
 
-	<table type="2D" name="PD Pressure Hysteresis 2" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="PD Pressure Hysteresis 2" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="MPa" expression="x*0.02" to_byte="x/0.02" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16217,15 +16233,15 @@
 	<description>mPDHIS1- Pd pressure hysteresis</description>
 	</table>
 		
-	<table type="2D" name="Radiator Fan High Coolant" category="Radiator Fan" storagetype="uint8" endian="big" sizey="1" userlevel="5">
+	<table type="2D" name="Radiator Fan High Coolant" category="Cooling" storagetype="uint8" endian="big" sizey="1" userlevel="1">
 		<scaling units="Degrees Farenheight" expression="(x-50)*1.8+32" to_byte="(x-32)/1.8+50" format="#" fineincrement="1" coarseincrement="10" />
 		<table type="Static Y Axis" name="Coolant Temp" sizey="2">
 			<data>Coolant Temp</data>
 		</table>
-		<description>mRFTWHI  "Radiator fan High requirement coolant temperature"// MAIN</description>
+		<description>mRFTWHI  "Radiator fan High requirement coolant temperature"// MAIN "Fan Control Temperature"</description>
 	</table>
 	
-  	<table type="2D" name="Radiator Fan High Requirement PD Pressure" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan High Requirement PD Pressure" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="MPa" expression="x*0.02" to_byte="x/0.02" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16233,7 +16249,7 @@
 	<description>mRFPDHI- Radiator fan High requirement Pd pressure</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Coolant Temperature Hysteresis" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Coolant Temperature Hysteresis" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x" to_byte="x" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16241,7 +16257,7 @@
 	<description>mRFTWHYS- Radiator fan coolant temperature hysteresis</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 1" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 1" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16249,7 +16265,7 @@
 	<description>mRFTW1- Radiator fan switching coolant temperature 1</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 10" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 10" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16257,7 +16273,7 @@
 	<description>mRFTW10- Radiator fan switching coolant temperature 10</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 11" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 11" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16265,7 +16281,7 @@
 	<description>mRFTW11- Radiator fan switching coolant temperature 11</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 12" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 12" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16273,7 +16289,7 @@
 	<description>mRFTW12- Radiator fan switching coolant temperature 12</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 14" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 14" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16281,7 +16297,7 @@
 	<description>mRFTW14- Radiator fan switching coolant temperature 14</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 16" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 16" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16289,7 +16305,7 @@
 	<description>mRFTW16- Radiator fan switching coolant temperature 16</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 17" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 17" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16297,7 +16313,7 @@
 	<description>mRFTW17- Radiator fan switching coolant temperature 17</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 18" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 18" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16305,7 +16321,7 @@
 	<description>mRFTW18- Radiator fan switching coolant temperature 18</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 2" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 2" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16313,7 +16329,7 @@
 	<description>mRFTW2- Radiator fan switching coolant temperature 2</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 8" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 8" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16321,7 +16337,7 @@
 	<description>mRFTW8- Radiator fan switching coolant temperature 8</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 6" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 6" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16329,7 +16345,7 @@
 	<description>mRFTW6- Radiator fan switching coolant temperature 6</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 3" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 3" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16337,7 +16353,7 @@
 	<description>mRFTW3- Radiator fan switching coolant temperature 3</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 4" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 4" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -16345,7 +16361,7 @@
 	<description>mRFTW4- Radiator fan switching coolant temperature 4</description>
 	</table>
 
-  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 5" category="Radiator Fan" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Radiator Fan Switching Coolant Temperature 5" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -17041,20 +17057,20 @@
 	<description>mVHOSL- VO2 compensation start voltage (Lean side)</description>
 	</table>
 	
-	<table type="2D" name="The Rest O2/H Breakage Judgement Voltage" category="O2" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="The Rest O2/H Breakage Judgement Voltage" category="O2" storagetype="uint8" sizey="1" endian="big" userlevel="1" >
 		<scaling units="mV" expression="x*20" to_byte="x/20" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mROHCMN- The rest O2/H breakage judgement voltage</description>
+	<description>mROHCMN- The rest O2/H breakage judgement voltage// "Rear O2 Heater Low"</description>
 	</table>
 
-	<table type="2D" name="The Rest O2/H Short Judgement Voltage" category="O2" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="The Rest O2/H Short Judgement Voltage" category="O2" storagetype="uint8" sizey="1" endian="big" userlevel="1" >
 		<scaling units="mV" expression="x*20" to_byte="x/20" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mROHCMX- The rest O2/H short judgement voltage</description>
+	<description>mROHCMX- The rest O2/H short judgement voltage// "Rear O2 Heater High"</description>
 	</table>
 
 	<table type="2D" name="The Rest O2/H on Time Delay" category="O2" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
@@ -17447,21 +17463,6 @@
 	</table>	
 	
 \\Unknown//
-	
-	<table type="2D" name="Speed Sensor Trouble Engine Speed Table" category="Unknown" storagetype="uint8" sizey="8" endian="big" userlevel="5" >
-		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0"/>
-	<table type="Y Axis" name="ms" sizey="8">
-			<data>0</data>
-			<data>2</data>
-			<data>4</data>
-			<data>6</data>
-			<data>8</data>
-			<data>10</data>
-			<data>12</data>
-			<data>14</data>
-	</table>
-	<description>Vehicle speed sensor trouble judgement engine speed table</description>
-	</table>
 
 	<table type="2D" name="Engine Speed Table for Complete Combustion" category="Unknown" storagetype="uint8" sizey="8" endian="big" userlevel="5" >
 		<scaling units="RPM" expression="x*12.5" to_byte="x/12.5" format="0"/>
@@ -17685,45 +17686,6 @@
 			<data>110</data>
 	</table>
 	<description>Coolant temperature table</description>
-	</table>
-
-	<table type="2D" name="Coolant Temperature Normalized Table" category="Unknown" storagetype="uint8" sizey="32" endian="big" userlevel="5" >
-		<scaling units="Z" expression="x-50" to_byte="x+50" format="0"/>
-	<table type="Y Axis" name="mV" sizey="32">
-			<data>0</data>
-			<data>160</data>
-			<data>320</data>
-			<data>480</data>
-			<data>640</data>
-			<data>800</data>
-			<data>960</data>
-			<data>1120</data>
-			<data>1280</data>
-			<data>1440</data>
-			<data>1600</data>
-			<data>1760</data>
-			<data>1920</data>
-			<data>2080</data>
-			<data>2240</data>
-			<data>2400</data>
-			<data>2560</data>
-			<data>2720</data>
-			<data>2880</data>
-			<data>3040</data>
-			<data>3200</data>
-			<data>3360</data>
-			<data>3520</data>
-			<data>3680</data>
-			<data>3840</data>
-			<data>4000</data>
-			<data>4160</data>
-			<data>4320</data>
-			<data>4480</data>
-			<data>4640</data>
-			<data>4800</data>
-			<data>4960</data>
-	</table>
-	<description>mTTWN- Coolant temperature normalized table// Function: Coolant temperature sensor, Intake air temperature sensor, and Integrated type self-diagnosis regulation</description>
 	</table>
 
 	<table type="2D" name="Injection Quantity Upper Limit Table Vehicle Speed Sensor Diagnosis" category="Unknown" storagetype="uint8" sizey="16" endian="big" userlevel="5" >

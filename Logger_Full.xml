@@ -38898,7 +38898,7 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
 						<conversion units="count" storagetype="uint16" expr="x*.00390625" format="0" />
 					</conversions>
 				</ecuparam>
-
+<!--vITAC Fuel Target X Trace-->
 				<ecuparam id="Z4" name="vITAC" desc="Z4- Cylinder Filling Up Effiency" target="1">
 					<ecu id="CF48D">
 						<address>0xFF846E</address>
@@ -38974,10 +38974,10 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
 
 				<ecuparam id="Z12" name="wvTP" desc="Cylinder intake quantity equivalent pulse width" target="1">
 					<ecu id="CF48D">
-						<address>0</address>
+						<address length="2">0xFF8468</address>
 					</ecu>
 					<conversions>
-						<conversion units="ms" expr="x*.000488281" format="0" />
+						<conversion units="ms" storagetype="uint16" expr="x*.000488281" format="0.00" />
 					</conversions>
 				</ecuparam>
 
@@ -39079,8 +39079,8 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
 						<conversion units="Lambda" storagetype="uint8" expr="x/64" format="0.00" />
 					</conversions>
 				</ecuparam>								
-
-				<ecuparam id="Z24" name="vQH0" desc="Z24- TVO-N Flow Quantity" target="1"> //NEEDS ADJUSTING. READING 0 THE WHOLE TIME.
+<!--Fuel Compensation X Trace-->
+				<ecuparam id="Z24" name="vQH0" desc="Z24- TVO-N Flow Quantity" target="1"> //might need adjusted in terms of scaling.
 					<ecu id="CF48D">
 						<address>0xFF85A2</address>
 					</ecu>
@@ -39174,7 +39174,34 @@ LOGGER ADD FOR CF48D;;;
 
 X = X_X#1 in the event that there's an X_X#2 (not confirmed)
 
+    KnockWord = 0xFFFF11A6, 
+    KnockFlag = 0xFFFF23AC,
+    KnockFlagMask = 0x40,
 
+
+
+
+Big Injector Minimum 1 Y Trace - 0xFF94B8 // unknown a2l uint16
+Big Injector Minimum 2 Y Trace - 0xFF94BA // unknown a2l uint16
+Big Injector Minimum 3 Y Trace - 0xFF9514 // unknown a2l uint16
+Intake CAM Y Trace - 0xFF85E1 // Unknown a2l (RPM)
+Delta Ne Speed Fuel Cut Restore Table Y Trace - 0xFF84A2 // unknown a2l	
+Throttle Flow Y Trace - 0xFF261A // Unknown A2L
+Throttle Flow 2 Y Trace - 0xFF380C // Unknown A2L
+N~TP Compensation Bank 1 Table Y Trace - 0xFF2C9A // Unknown A2L
+N~TP Compensation Bank 2 Table Y Trace - 0xFF2ECE // Unknown A2L	
+TTEPTD Map Y Trace - 0xFF16DE // Unknown A2l
+Target Drive Power x Trace - 0xFF8506 // Unknown a2l
+Target Drive Power Y Trace - 0xFF1008 // Unknown A2L
+Torque Converter Ratio Y trace - 0xFF15BE // Unknown A2L
+Torque Converter Ratio Y Trace 2 - 0xFF1C06 // Unknown A2L
+Load BFS Axis Trace - 0xFF85E7 // Unknown a2l 
+QH0 X Trace - 0xFF195A // Unknown scaling, but confirmed
+QH0 Y Trace - 0xFF166A // Unknown Scaling, but confirmed
+Fuel Target X Trace Max Tst - 0x01 // Not sure
+Fuel Target X Trace Max Var - 0xFF23AE // Not sure
+Target AFR - 0xFF227A // Probably the target AFR Map value. Maybe check scalings for other target AFR and verify?
+FUEL TARGET Y TRACE (RPM) - 0xFF85F0 (Not sure what it actually is scaling wise or function wise. Maybe uint8 x*25? 
 vCATSLSFT - 0xFF2840
 vCATSLSFT_R#2 - 0xFF2842	
 vQAE - 0xFF2E9C		
@@ -39187,9 +39214,10 @@ vCNTRLVSP - 0xFF11E2 //In control character, a vehicle speed for the control
 wvAPOFS - 0xFF980E // Accelerator Open Degree for TVO Operation
 vAPOSTFS - 0xFF1162 // After it deals wiht APOFS Shaft Conversion, Accelerator Open Degree				
 vATAPOST - 0xFF2335 // APOST For the ATCU Transmission		
-				
-				
-				
+vTENG10 - 0xFF184E // Engine Torque Basic Value
+wvNE 0xFF85EA // Engine Speed			
+vITACTE 0xFF1492 // ITAC for torque operation
+Atmospheric Pressure Compensation Coefficient Table Y Axis Trace - 0xFF8520 // Unknown A2L	
 				
 				
 				
