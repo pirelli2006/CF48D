@@ -3,6 +3,8 @@ I will be updating this Github after making significant progress with my definit
 
 To view the maps, set the userlevel to "5" The maps in Debug mode (user level 5) are either unknown in terms of their function, I just haven't gotten to verifying it yet, or I'm still experimenting with it. The only maps you should take as guaranteed are between levels 1-3. 4-5 are going to be used as Debug/Not fully verified levels. 
 
+In total, there are about 2,036 maps defined for CF48D. 
+
 Important Notice;
 These definitions are NOT 100% ACCURATE! I am one guy locating and defining all these maps. I have spent countless hours on this so mistakes are likely to show up. I have tried to add notes by maps that are known to need work done, but it's possible that I will miss a few. 
 
