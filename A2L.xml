@@ -4,10 +4,10 @@
 		<make>Nissan</make>
 		<flashmethod>nisprog</flashmethod>
 	</romid>
-\\X// is for Map Placement in RR
+	\\X// is for Map Placement in RR
 
 
-\\Ignition Timing//
+	\\Ignition Timing//
 
 	<table type="3D" name="Cold Ignition Trim" category="Ignition Timing" storagetype="uint8" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z33">
 		<scaling units="Degrees Advance (positive increases advance)" expression="x-64" to_byte="x+64" format="0" fineincrement="1" coarseincrement="4" />
@@ -20571,6 +20571,18 @@
 		</table>
 	//////////////////////////////////////////////////	
 
+\\EXTRA AND NOT CF48D//
+
+	<table type="3D" name="Target AFR (16x16)" category="AFR" storagetype="uint8" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z22">
+		<scaling units="AFR(Gasoline Scale)" expression="14.7/(x/128)" to_byte="128*(14.7/x)" format="0.00" fineincrement=".2" coarseincrement="1" />
+		<table type="X Axis" name="Cylinder intake filling up efficiency" storagetype="uint8" endian="big" logparam="Z4">
+			<scaling units="%" expression="x*0.78125" to_byte="x/0.78125" format="0.0" fineincrement=".5" coarseincrement="4" />
+		</table>
+		<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
+		</table>
+		<description>Air fuel ratio that is targeted by the ECU. If this value doesn't match when logging other paramaters need to be adjusted, like fuel compensation, and/or maf scaling.</description>
+	</table>
 
 
 </rom>
