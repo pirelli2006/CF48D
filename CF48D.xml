@@ -153,8 +153,7 @@ Maps
 	<table name="Pull Down Start TP Lower Limit" storageaddress="0x7E3F"/> 
 	<table name="TVO Condition Upper Limit" storageaddress="0x7E45"/>
 	<table name="TVO Condition Lower Limit" storageaddress="0x7E46"/>
-	<table name="At Start Coolant Temperature Condition Upper Limit" storageaddress="0x7E47"/> 
-	<table name="At Start Coolant Temperature Condition Lower Limit" storageaddress="0x7E48"/> 
+	<table name="At Start Coolant Temperature Condition Limits" storageaddress="0x7E47"/> 
 	<table name="APS Open Degree Threshold (Brake)" storageaddress="0x8748"/>
 	<table name="Accelerator Open Degree Lower Limit" storageaddress="0x8734"/>
 	<table name="Accelerator Open Degree Threshold" storageaddress="0x8732"/>
@@ -277,23 +276,19 @@ Maps
 	<table name="Reguar Judgement BETAD" storageaddress="0x8660"/>
 	<table name="WOT Filling Up Efficiency IAT Compensation Coefficient Table" storageaddress="0xBF48"/>
 	<table name="AFR Sensor Operation Limits" storageaddress="0x86BC"/>
-	<table name="Diagnosis Permission AFR Upper Limit" storageaddress="0x86C0"/>
-	<table name="Diagnosis Permission AFR Lower Limit" storageaddress="0x86C2"/>
+	<table name="Diagnosis Permission AFR Limits" storageaddress="0x86C0"/>
 	<table name="Diagnosis Completion AFR Convergent Range" storageaddress="0x86C4"/> 
 	<table name="Change in Amount of Diagnosis Permission Air" storageaddress="0x86C6"/>
-	<table name="Diagnosis Permission Air Quantity Upper Limit" storageaddress="0x86C8"/>
-	<table name="Diagnosis Permission Air Quantity Lower Limit" storageaddress="0x86CA"/> 
+	<table name="Diagnosis Permission Air Quantity Limits" storageaddress="0x86C8"/>
 	<table name="AFM Function lower Limit Diagnosis Criteria Gain" storageaddress="0x7B60"/>
-	<table name="Diagnosis Region Actual AFR Upper Limit" storageaddress="0x86E2"/>
-	<table name="Diagnosis Region Actual AFR Lower Limit" storageaddress="0x86E4"/>
+	<table name="Diagnosis Region Actual AFR Limits" storageaddress="0x86E2"/>
 	<table name="Rich Side Second Slice Reset (Shift Subtraction)" storageaddress="0x85F2"/>
 	<table name="Lean Slices 2x Cross Shift Learning Value" storageaddress="0x86E6"/>
 	<table name="Lean Side Second Slice Reset (Shift Addition)" storageaddress="0x85F4"/>
 	<table name="Rich Slices 2x Cross Shift Learning Value" storageaddress="0x86E8"/>
 	<table name="AFSHDM Change Quantity S/L" storageaddress="0x86EA"/>
 	<table name="AFSHOS Limits" storageaddress="0x85F6"/>
-	<table name="Monitor Clamp Learning Lean Side Hysteresis" storageaddress="0x86EC"/>
-	<table name="Monitor Clamp Learning Rich Side Hysteresis" storageaddress="0x86EE"/>
+	<table name="Monitor Clamp Learning Lean and Rich Side Hysteresis" storageaddress="0x86EC"/>
 	<table name="Urgent Slowdown Torque Compensation Setup Value" storageaddress="0x7B30"/>
 	<table name="AFR Compensation Limits" storageaddress="0x8704"/>
 	<table name="Throttle Failure TVO" storageaddress="0x7EB6"/>
@@ -325,18 +320,17 @@ Maps
 	<table name="AFM Diagnosis Upper Limit" storageaddress="0x7B62"/>
 	<table name="AFM Diagnosis Lower Limit" storageaddress="0x7B61"/>
 	<table name="AFR Sensor Breakage Diagnosis Upper Limit" storageaddress="0x7B6B"/>
+	<table name="AFR Sensor Breakage Diagnosis Lower Limit" storageaddress="0x7B6E"/>
 	<table name="Diagnosis Condition Upper Limit" storageaddress="0x7B6C"/>
 	<table name="Diagnosis Condition Lower Limit" storageaddress="0x7B6F"/>
 	<table name="Lean/Rich Response Diagnosis Condition Upper Limit" storageaddress="0x7B6D"/>
-	<table name="AFR Sensor Breakage Diagnosis Lower Limit" storageaddress="0x7B6E"/>
 	<table name="Lean/Rich Response Diagnosis Condition Lower Limit" storageaddress="0x7B70"/>
 	<table name="Region B N/L Speed Upper Limit" storageaddress="0x7BF8"/>
 	<table name="Region B N/L Speed Lower Limit" storageaddress="0x7BF9"/>
 	<table name="Complete Combustion RPM" storageaddress="0x7C58"/>
 	<table name="Parameter Monitor Permission lower Limit" storageaddress="0x7C5E"/>
 	<table name="Cylinder Distinction Condition Lower Limit" storageaddress="0x7C8E"/>
-	<table name="Gasoline Mixing Quantity Decrease Upper Limit" storageaddress="0x7C9D"/>
-	<table name="Gasoline Mixing Quantity Decrease Lower Limit" storageaddress="0x7C9E"/>
+	<table name="Gasoline Mixing Quantity Decrease Limits" storageaddress="0x7C9D"/>
 	<table name="L/U Prohibition Engine Speed (AC OFF)" storageaddress="0x7D08"/>
 	<table name="L/U Prohibition Engine Speed (AC OFF, Slowdown)" storageaddress="0x7D09"/>
 	<table name="L/U Prohibiton Engine Speed (AC ON)" storageaddress="0x7D0A"/>
@@ -435,15 +429,13 @@ Maps
 	<table name="Data for KSi Computation" storageaddress="0x806D"/>
 	<table name="Lambda Point Compensation Value Initial Value" storageaddress="0x85F0"/>
 	<table name="VB Decline Judgement Voltage" storageaddress="0x7B48"/>
-	<table name="Diagnosis Criteria Upper Limit Value" storageaddress="0x86D0"/>
-	<table name="Diagnosis Criteria Lower Limit Value" storageaddress="0x86D2"/>
+	<table name="Diagnosis Criteria Limits" storageaddress="0x86D0"/>
 	<table name="AFR Sensor Heater Trouble Diagnosis Lower Limit Value" storageaddress="0x7B5A"/>
 	<table name="AFM Start, Surge Judgement Voltage" storageaddress="0x86D4"/>
 	<table name="AFM Start, Surge Judgement Voltage 2" storageaddress="0x86D6"/>
 	<table name="AFM Power Supply NG Judgement Upper Limit Value" storageaddress="0x86D8"/>
 	<table name="AFM Power Supply NG Judgemnet Lower Limit Value" storageaddress="0x86DE"/>
-	<table name="AFR Sensor Breakage Diagnosis VB Upper Limit Value" storageaddress="0x7B77"/>
-	<table name="AFR Sensor Breakage Diagnosis VB Lower Limit Value" storageaddress="0x7B78"/>
+	<table name="AFR Sensor Breakage Diagnosis VB Limits" storageaddress="0x7B77"/>
 	<table name="Steady State Judgement Smoothing Coefficient Map" storageaddress="0x9151">
 		<table type="X Axis" storageaddress="0xB27B"/>
 		<table type="Y Axis" storageaddress="0xB277"/>
@@ -964,7 +956,7 @@ Maps
 	<table name="At Least, Coolant Temperature Judgement Time" storageaddress="0x8451"/> 
 	<table name="Maximum Operation Time" storageaddress="0x8452"/> 
 	<table name="Coolant Temperature Convergent Judgement Section Coefficient" storageaddress="0x844C"/> 
-	<table name="TVO upper Limit Value" storageaddress="0x845A"/>
+	<table name="TVO Upper Limit Value" storageaddress="0x845A"/>
 	<table name="After Idle Off, TVO Value Lower Limit" storageaddress="0x8459"/>
 	<table name="Evaporation Heat Constant Lower Limit" storageaddress="0x845E"/>
 	<table name="Vehicle Speed Sensor Un-Adjustment Diagnosis Time" storageaddress="0x845F"/>
@@ -1425,7 +1417,7 @@ Maps
 	<table name="At Time of High Coolant Temperature, Limit Speed Decrease Rate" storageaddress="0x8A16"/>
 	<table name="At Time of High Coolant Temperature, Limit Speed" storageaddress="0x8A1A"/> 
 	<table name="At Time of High Coolant Temperature, Limit Speed Rate of Increase" storageaddress="0x8A1C"/> 
-	<table name="Target AF Rich Set" storageaddress="0x8A2E"/> 
+	<table name="Target AFR Rich Set" storageaddress="0x8A2E"/> 
 	<table name="TINT Compensation Coefficient Learning Value Lower Limit by the Cylinder" storageaddress="0x8A30"/> 
 	<table name="TINT Compensation Coefficient Learning Value Upper Limit by the Cylinder" storageaddress="0x8A32"/>
 	<table name="Engine Speed (For the Hysteresis)" storageaddress="0x8A3C"/> 
@@ -1507,8 +1499,7 @@ Maps
 	<table name="Target Pull Down Pressure" storageaddress="0x8928"/>
 	<table name="Pull Down F/B Control Switchover Pull Down Pressure (Low Vehicle Speed Side)" storageaddress="0x892A"/> 
 	<table name="Lean Side Delay" storageaddress="0x892E"/> 	
-	<table name="Lambda Control Closed Permission AFR Lower Limit" storageaddress="0x893C"/> 
-	<table name="Lambda Control Closed Permission AFR Upper Limit" storageaddress="0x893E"/> 
+	<table name="Lambda Control Closed Permission AFR Limits" storageaddress="0x893C"/> 
 	<table name="Air Quantity Area Conversion Coefficient" storageaddress="0x8948"/> 
 	<table name="Lean/Rich Criteria" storageaddress="0x894A"/> 
 	<table name="TPS1 Full Close Position Learning Value Upper Limit Limiter" storageaddress="0x894C"/> 
@@ -1655,7 +1646,7 @@ Maps
 	<table name="At Time of NG, DUMP (Non-VIP Mass Airflow Meter Installation Car)" storageaddress="0x87D8"/> 
 	<table name="Continuous NO. Load Condition Formation Counter Value" storageaddress="0x87F6"/> 
 	<table name="Lean Side Slice Hysteresis" storageaddress="0x8930"/> 
-	<table name="Lean Side Combustion Limit A/F" storageaddress="0x8932"/>
+	<table name="Lean Side Combustion Limit AFR" storageaddress="0x8932"/>
 	<table name="For 0.02in Leak Diagnosis" storageaddress="0x8936"/> 
 	<table name="DVP5 Measuring Permission Leak Down Time Lower Limit" storageaddress="0x8938"/> 
 	<table name="0.04in Leak Diagnosis DVP5 Measuring Permission Leak Down Time Lower Limit" storageaddress="0x893A"/> 	
@@ -1955,78 +1946,40 @@ Maps
 	<table name="Actual Gear Ratio Upper Limit Value Extreme High 2" storageaddress="0xD7BE"/> Unknown a2l or uint8/uint16
 	<table name="Actual Gear Ratio Switchover Rate 1" storageaddress="0x8A96"/> Unknown A2L or uint8/uin16
 	<table name="Actual Gear Ratio Switchover Rate 2" storageaddress="0xD7C4"/> Unknown A2L or uint8/uin16	
-	
-	
-	Verify all below/////
-	<table name="Compensation Vessel H/G Constant 4 (LO Gain)" storageaddress="0x7AE1"/> (mN_GdD1_H)
-	<table name="Compensation Vessel H/G Constant 3 (HI Gain)" storageaddress="0x7AE2"/> (mN_GdD1_H)		
-	<table name="Compensation Vessel H/G Constant 3 (LO Gain)" storageaddress="0x7AE3"/> (mN_GdD1_H)	
-	<table name="Compensation Vessel H/G Constant 2 (HI Gain)" storageaddress="0x7AE4"/> (mN_GdD1_H)	
-	<table name="Compensation Vessel H/G Constant 2 (LO Gain)" storageaddress="0x7AE5"/> (mN_GdD1_H)	
-	<table name="Compensation Vessel H/G Constant 1 (HI Gain)" storageaddress="0x7AE6"/> (mN_GdD1_H)	
-	<table name="Compensation Vessel H/G Constant 1 (LO Gain)" storageaddress="0x7AE7"/> (mN_GdD1_H)		
-	<table name="Compensation Vessel H Constant 3 (HI Gain)" storageaddress="0x7AE8"/> (mN_GdD1_H)	
-	<table name="Compensation Vessel H Constant 3 (LO Gain)" storageaddress="0x7AE9"/> (mN_GdD1_H)	
-	<table name="Compensation Vessel H Constant 2 (HI Gain)" storageaddress="0x7AEA"/> (mN_GdD1_H)	
-	<table name="Compensation Vessel H Constant 2 (LO Gain)" storageaddress="0x7AEB"/> (mN_GdD1_H)		
-	<table name="Compensation Vessel H Constant 1 (HI Gain)" storageaddress="0x7AEC"/> (mN_GdD1_H)	
-	<table name="Compensation Vessel L Constant 2" storageaddress="0x7AED"/> (mN_GdD1_H)		
-	<table name="Compensation Vessel L Constant 1" storageaddress="0x7AEE"/> (mN_GdD1_H)	
-	<table name="Compensation Vessel 1/R Constant 1" storageaddress="0x7AEF"/> (mN_GdD1_H)		
-	<table name="Compensation Vessel 1/R Constant 1" storageaddress="0x7AF0"/> (mN_RD0 A2L VERIFY BETWEEN THESE TWO. CHECK ALL)
 	<table name="AFSHOS Integration Number of Times" storageaddress="0x7B84"/> (mAHOSNMX A2L)
 	<table name="Learning Convergent Judgement Time" storageaddress="0x7B85"/> (mAHOSTMH A2L)
-	<table name="Maximum Time Allowed for a Gear Shift" storageaddress="0x7B7E"/> (mAGBSIPDL A2l)
-	<table name="AGB SIP Continuation Time Check NG Judgement Time" storageaddress="0x7B7F"/> (mAGBSIPNG A2L)
 	<table name="AGB Torque Rise Integral Value Clear Delay Time" storageaddress="0x7B80"/> (mAGBTUPDL A2L)
+	<table name="Torque IAT Compensation Coefficient Map that Engine Output is Possible" storageaddress="0xD066"/> (mTTANFAC A2l)
+	<table name="At Time of Rich, O2 Magnificationn" storageaddress="0x7AF8"/> (mRICHG A2l)
+	<table name="- Control Effect-Less Switching Vehicle Speed Condition" storageaddress="0x7F5D"/> (mINVVSP A2L)
+	<table name="Coolant Temperature Compensation Air Flow Quantity Table" storageaddress="0xBE42"/> (mTQTW A2L)
+	<table name="Table for THQATH" storageaddress="0xBDEE"/> (mTQATHM A2L)
+	<table name="SQASL Table" storageaddress="0xBF08"/> (mTSQASL A2L)
+	<table name="Learning Gain Table" storageaddress="0xBE8C"/> (mTRLRC A2L)
+	<table name="Learning Gain Table" storageaddress="0xBE8C"/> (mTRLRC A2L)
+	<table name="Slosh Judgement Value for 0.04in Judgement" storageaddress="0x87C4"/> (mDPSLSH04)
+	<table name="Stable Voltage Continuation Judgement Time" storageaddress="0x83F0"/> (mTMRCD A2L)
 	<table name="Radiator Fan Transient State Compensation Decrease Rate" storageaddress="0x7CE1"/> (mDISCRU A2L)
+	<table name="Offset Learning Initial Value" storageaddress="0x7F54"/> (mINOFST A2L)
+	Verify all below/////
+
+
+
+
+
 	<table name="Offset Learning Initial Value" storageaddress="0x7F54"/> (mINOFST A2L VERIFY IN IDA)
 	<table name="Time of Slowdown, Inverse Operation Time" storageaddress="0x7CF6"/> (mDLINVDEC A2L)
 	<table name="Fuel Diagnosis NG Judgement Delay" storageaddress="0x83F4"/> (mTMRNGF A2L)
 	<table name="Fuel Diagnosis Rich CPC NG Judgement Delay" storageaddress="0x83F3"/> (mTMRNGD A2L)
 	<table name="Fuel Diagnosis Lean CPC NG Judgement Delay" storageaddress="0x83F2"/> (mTMRND2 A2L)
 	<table name="At Time of ND Select, Timer for Accelerator Judgement" storageaddress="0x83F1"/> (mTMRND A2L)
-	<table name="Stable Voltage Continuation Judgement Time" storageaddress="0x83F0"/> (mTMRCD A2L)
-	<table name="Loss in Weight Compensation Reference Value table" storageaddress="0xBD3E"/> (mTNQND A2l)
-	<table name="Slosh Judgement Value for 0.04in Judgement" storageaddress="0x87C4"/> (mDPSLSH04 VERIFY IN IDA)
-	<table name="Learning Gain Table" storageaddress="0xBE8C"/> (mTRLRC A2L)
-	<table name="SQASL Table" storageaddress="0xBF08"/> (mTSQASL A2L)
-	<table name="Table for THQATH" storageaddress="0xBDEE"/> (mTQATHM A2L)
-	<table name="Coolant Temperature Compensation Air Flow Quantity Table" storageaddress="0xBE42"/> (mTQTW A2L)
-	<table name="- Control Effect-Less Switching Vehicle Speed Condition" storageaddress="0x7F5D"/> (mINVVSP A2L VERIFY!!! not in ida tho :/) 
-	<table name="Stage 2 Diagnosis Permission Condition Time" storageaddress="0x81D2"/> (mPSYDG4 A2L, Can't verify with IDA :/)
-	<table name="At Time of Rich, O2 Magnificationn" storageaddress="0x7AF8"/> (mRICHG A2l VERIFYYYYY)
-	<table name="CIDTBL Distinction Flag 1100H-111FH" storageaddress="0xB547"/> (mSCID10 A2L)
-	<table name="CIDTBL Distinction Flag 1140H-145FH" storageaddress="0xB54B"/> (mSCID114 A2L)
-	<table name="CIDTBL Distinction Flag 1160H-117FH" storageaddress="0xB54F"/> (mSCID116 A2L)
-	<table name="CIDTBL Distinction Flag 1120H-113FH" storageaddress="0xB553"/> (mSCID12 A2L)
-	<table name="CIDTBL Distinction Flag 1401H-1420H" storageaddress="0xB557"/> (mSCID14 A2L)
-	<table name="CIDTBL Distinction Flag 1421H-143FH" storageaddress="0xB55B"/> (mSCID16 A2L)
-	<table name="CIDTBL Distinction Flag 1200H-121FH" storageaddress="0xB55F"/> (mSCID20 A2L)
-	<table name="CIDTBL Distinction Flag 1220H-123FH" storageaddress="0xB563"/> (mSCID22 A2L)
-	<table name="CIDTBL Distinction Flag 1241H-1260H" storageaddress="0xB567"/> (mSCID24 A2L)
-	<table name="CIDTBL Distinction Flag 1300H-131FH" storageaddress="0xB56B"/> (mSCID30 A2L)
-	<table name="CIDTBL Distinction Flag 1500H-151FH" storageaddress="0xB56F"/> (mSCID50 A2L)
-	<table name="I/O Control Distinction Flag 00H-1FH" storageaddress="0xB57B"/> (mSIOID0 A2L)
-	<table name="I/O Control Distinction Flag 20H-3FH" storageaddress="0xB57F"/> (mSIOID2 A2L)
-	<table name="I/O Control Distinction Flag 40H-5FH" storageaddress="0xB583"/> (mSIOID4 A2L)
-	<table name="I/O Control Distinction Flag 60H-7FH" storageaddress="0xB587"/> (mSIOID6 A2L)
-	<table name="LID Distinction Flag" storageaddress="0xB5AB"/> (mSPLID0 A2L)
-	<table name="SRLTBL Distinction Flag 01H-20H" storageaddress="0xB5AF"/> (mSSRLID0 A2L)
-	<table name="WDLID Distinction Flag 01H-20H" storageaddress="0xB5B3"/> (mSWDLID0 A2L)
-	<table name="SWMONT Distinction Flag" storageaddress="0xB5B7"/> (mSWID A2L)	
-	<table name="Torque IAT Compensation Coefficient Map that Engine Output is Possible" storageaddress="0xD066"/> (mTTANFAC A2l)
-	<table name="Coefficient A0 (QA Region #1)" storageaddress="0x85D6"/> 
-	<table name="Coefficient A0 (QA Region #1 Bank 2)" storageaddress="0x85D8"/> 
-	<table name="Coefficient A0 (QA Region #2)" storageaddress="0x85DA"/> 
-	<table name="Coefficient A0 (QA Region #3)" storageaddress="0x85DE"/> 
-	<table name="Coefficient A0 (QA Region #3 Bank 2)" storageaddress="0x85E0"/> 
-	<table name="Coefficient A1 (QA Region #1)" storageaddress="0x85E2"/> 
-	<table name="Coefficient A1 (QA Region #1 Bank 2)" storageaddress="0x85E4"/> 
-	<table name="Coefficient A1 (QA Region #2)" storageaddress="0x85E6"/> 
-	<table name="Coefficient A1 (QA Region #2 Bank 2)" storageaddress="0x85E8"/> 
-	<table name="Coefficient A1 (QA Region #3)" storageaddress="0x85EA"/> 
-	<table name="Coefficient A1 (QA Region #3 Bank 2)" storageaddress="0x85EC"/> 
+
+
+
+
+
+
+
 
 	ASCD Max set speed 0x8B84 int32 for all. Cant find ASCD Min set speed?
 	ASCD Max calc speed 0x8C08
@@ -2067,6 +2020,26 @@ Maps
 
 0x82F8 mfSTFSARI 0x0002 /mfVINV 0x0040 // APOFS Shaft Conversion treatment flag and Control excuse switching for tuning :DDD
 
+	<table name="CIDTBL Distinction Flag 1100H-111FH" storageaddress="0xB547"/> (mSCID10 A2L)
+	<table name="CIDTBL Distinction Flag 1140H-145FH" storageaddress="0xB54B"/> (mSCID114 A2L)
+	<table name="CIDTBL Distinction Flag 1160H-117FH" storageaddress="0xB54F"/> (mSCID116 A2L)
+	<table name="CIDTBL Distinction Flag 1120H-113FH" storageaddress="0xB553"/> (mSCID12 A2L)
+	<table name="CIDTBL Distinction Flag 1401H-1420H" storageaddress="0xB557"/> (mSCID14 A2L)
+	<table name="CIDTBL Distinction Flag 1421H-143FH" storageaddress="0xB55B"/> (mSCID16 A2L)
+	<table name="CIDTBL Distinction Flag 1200H-121FH" storageaddress="0xB55F"/> (mSCID20 A2L)
+	<table name="CIDTBL Distinction Flag 1220H-123FH" storageaddress="0xB563"/> (mSCID22 A2L)
+	<table name="CIDTBL Distinction Flag 1241H-1260H" storageaddress="0xB567"/> (mSCID24 A2L)
+	<table name="CIDTBL Distinction Flag 1300H-131FH" storageaddress="0xB56B"/> (mSCID30 A2L)
+	<table name="CIDTBL Distinction Flag 1500H-151FH" storageaddress="0xB56F"/> (mSCID50 A2L)
+	<table name="I/O Control Distinction Flag 00H-1FH" storageaddress="0xB57B"/> (mSIOID0 A2L)
+	<table name="I/O Control Distinction Flag 20H-3FH" storageaddress="0xB57F"/> (mSIOID2 A2L)
+	<table name="I/O Control Distinction Flag 40H-5FH" storageaddress="0xB583"/> (mSIOID4 A2L)
+	<table name="I/O Control Distinction Flag 60H-7FH" storageaddress="0xB587"/> (mSIOID6 A2L)
+
+	<table name="LID Distinction Flag" storageaddress="0xB5AB"/> (mSPLID0 A2L)
+	<table name="SRLTBL Distinction Flag 01H-20H" storageaddress="0xB5AF"/> (mSSRLID0 A2L)
+	<table name="WDLID Distinction Flag 01H-20H" storageaddress="0xB5B3"/> (mSWDLID0 A2L)
+	<table name="SWMONT Distinction Flag" storageaddress="0xB5B7"/> (mSWID A2L)	
 
 7BE2 HTASW IS removed, Related to Meter Can A/C mfMETCAN
 0x8441 2TRIP Diagnosis Flag mTRIPSWS
@@ -2105,6 +2078,40 @@ DDCF mFMF6NG
 0x851F mfWOTTP 
 7C61 mfCSBU
 -->
+
+<!-- Useless maps 
+
+	<table name="Coefficient A0 (QA Region #1)" storageaddress="0x85D6"/> 
+	<table name="Coefficient A0 (QA Region #1 Bank 2)" storageaddress="0x85D8"/> 
+	<table name="Coefficient A0 (QA Region #2)" storageaddress="0x85DA"/> 
+	<table name="Coefficient A0 (QA Region #3)" storageaddress="0x85DE"/> 
+	<table name="Coefficient A0 (QA Region #3 Bank 2)" storageaddress="0x85E0"/> 
+	<table name="Coefficient A1 (QA Region #1)" storageaddress="0x85E2"/> 
+	<table name="Coefficient A1 (QA Region #1 Bank 2)" storageaddress="0x85E4"/> 
+	<table name="Coefficient A1 (QA Region #2)" storageaddress="0x85E6"/> 
+	<table name="Coefficient A1 (QA Region #2 Bank 2)" storageaddress="0x85E8"/> 
+	<table name="Coefficient A1 (QA Region #3)" storageaddress="0x85EA"/> 
+	<table name="Coefficient A1 (QA Region #3 Bank 2)" storageaddress="0x85EC"/> 
+
+	Compensation Vessel H/G Constant 4 (LO Gain)" storageaddress="0x7AE1"/> (mN_GdD1_H)
+	Compensation Vessel H/G Constant 3 (HI Gain)" storageaddress="0x7AE2"/> (mN_GdD1_H)		
+	Compensation Vessel H/G Constant 3 (LO Gain)" storageaddress="0x7AE3"/> (mN_GdD1_H)	
+	Compensation Vessel H/G Constant 2 (HI Gain)" storageaddress="0x7AE4"/> (mN_GdD1_H)	
+	Compensation Vessel H/G Constant 2 (LO Gain)" storageaddress="0x7AE5"/> (mN_GdD1_H)	
+	Compensation Vessel H/G Constant 1 (HI Gain)" storageaddress="0x7AE6"/> (mN_GdD1_H)	
+	Compensation Vessel H/G Constant 1 (LO Gain)" storageaddress="0x7AE7"/> (mN_GdD1_H)		
+	Compensation Vessel H Constant 3 (HI Gain)" storageaddress="0x7AE8"/> (mN_GdD1_H)	
+	Compensation Vessel H Constant 3 (LO Gain)" storageaddress="0x7AE9"/> (mN_GdD1_H)	
+	Compensation Vessel H Constant 2 (HI Gain)" storageaddress="0x7AEA"/> (mN_GdD1_H)	
+	Compensation Vessel H Constant 2 (LO Gain)" storageaddress="0x7AEB"/> (mN_GdD1_H)		
+	Compensation Vessel H Constant 1 (HI Gain)" storageaddress="0x7AEC"/> (mN_GdD1_H)	
+	Compensation Vessel L Constant 2" storageaddress="0x7AED"/> (mN_GdD1_H)		
+	Compensation Vessel L Constant 1" storageaddress="0x7AEE"/> (mN_GdD1_H)	
+	Compensation Vessel 1/R Constant 1" storageaddress="0x7AEF"/> (mN_GdD1_H)		
+	Compensation Vessel 1/R Constant 1" storageaddress="0x7AF0"/> (mN_RD0 A2L VERIFY BETWEEN THESE TWO. CHECK ALL)
+	
+	-->
+
 <!--
 \\ Unknown Maps //
 	

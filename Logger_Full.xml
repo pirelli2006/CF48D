@@ -39169,7 +39169,16 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
 						<conversion units="Deg" expr="x-64" format="0.00" />
 					</conversions>
 				</ecuparam>								
-							
+<!-- Scaling could be wrong-->
+					<ecuparam id="Z34" name="Engine Torque" desc="Z34- vTENG10" target="1">
+					<ecu id="CF48D">
+						<address length="2">0xFF184E</address>
+					</ecu>
+					<conversions>
+						<conversion units="Nm" storagetype="int16" expr="(x/10)-3276.8" format="0.00" />
+					</conversions>
+				</ecuparam>								
+												
 LOGGER ADD FOR CF48D;;;
 
 X = X_X#1 in the event that there's an X_X#2 (not confirmed)
@@ -39214,7 +39223,7 @@ vCNTRLVSP - 0xFF11E2 //In control character, a vehicle speed for the control
 wvAPOFS - 0xFF980E // Accelerator Open Degree for TVO Operation
 vAPOSTFS - 0xFF1162 // After it deals wiht APOFS Shaft Conversion, Accelerator Open Degree				
 vATAPOST - 0xFF2335 // APOST For the ATCU Transmission		
-vTENG10 - 0xFF184E // Engine Torque Basic Value
+
 wvNE 0xFF85EA // Engine Speed			
 vITACTE 0xFF1492 // ITAC for torque operation
 Atmospheric Pressure Compensation Coefficient Table Y Axis Trace - 0xFF8520 // Unknown A2L	

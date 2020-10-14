@@ -1642,7 +1642,7 @@
 	<description>Target A/F P-gain table (bank2)</description>
 	</table>
 
-	<table type="3D" name="AFR Conversion Table" category="AFR" storagetype="uint16" sizex="1" sizey="16" endian="big" userlevel="5">
+	<table type="3D" name="AFR Conversion Table" category="AFR" storagetype="uint16" sizex="1" sizey="16" endian="big" userlevel="1">
 		<scaling units="AFR (Gasoline Scale)" expression="x*0.002" to_byte="x/0.002" format="0.00"/> 
 		<table type="X Axis" name="-" storagetype="uint8" endian="big">
 			<scaling units="-" expression="x" to_byte="x" format="0"/>
@@ -1832,14 +1832,6 @@
 	<description>mLEANHYS- Lean side slice hysteresis</description>
 	</table>
 
-  	<table type="2D" name="Lean Side Combustion Limit A/F" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
-		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>-</data>
-	</table>
-	<description>mLEANLMT- Lean side combustion limit A/F</description>
-	</table>
-	
   	<table type="2D" name="Target AFR Basic Value for the Digital Variable" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="|" expression="x*0.000061" to_byte="x/0.000061" format="0.000000"/>
 	<table type="Y Axis" name="Above" sizey="1">
@@ -2515,16 +2507,8 @@
 	</table>
 	<description>mCKSTTM- After the start, time judgement value</description>
 	</table>
-	
-	<table type="2D" name="AFR Sensor Breakage Diagnosis TP Upper Limit" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="ms" expression="x*.125" to_byte="x/.125" format="0.00"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>ms</data>
-	</table>
-	<description>mAFSTPH- A/F sensor breakage diagnosis TP upper limit value</description>
-	</table>
 
-	<table type="2D" name="AFR Sensor Breakage Diagnosis TP Lower Limit" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFR Sensor Breakage Diagnosis TP Lower Limit" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="ms" expression="x*.125" to_byte="x/.125" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>ms</data>
@@ -2532,7 +2516,23 @@
 	<description>mAFSTPL- A/F sensor breakage diagnosis TP lower limit value</description>
 	</table>
 	
-	<table type="2D" name="AFR Sensor Breakage Slice Level Upper Limit" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFR Sensor Breakage Diagnosis TP Upper Limit" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="ms" expression="x*.125" to_byte="x/.125" format="0.00"/>
+	<table type="Y Axis" name="Above" sizey="1">
+			<data>ms</data>
+	</table>
+	<description>mAFSTPH- A/F sensor breakage diagnosis TP upper limit value</description>
+	</table>
+
+	<table type="2D" name="AFR Sensor Breakage Slice Level Lower Limit" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+		<scaling units="mV" expression="x*5" to_byte="x/5" format="0.00"/>
+	<table type="Y Axis" name="Above" sizey="1">
+			<data>-</data>
+	</table>
+	<description>mAFVNGL1- A/F sensor breakage slice level lower limit value 1</description>
+	</table>
+	
+	<table type="2D" name="AFR Sensor Breakage Slice Level Upper Limit" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*5" to_byte="x/5" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -2540,23 +2540,7 @@
 	<description>mAFVNGH1- A/F sensor breakage slice level upper limit value 1</description>
 	</table>
 
-	<table type="2D" name="AFR Sensor Breakage Slice Level Lower Limit" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="mV" expression="x*5" to_byte="x/5" format="0.00"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>-</data>
-	</table>
-	<description>mAFVNGL1- A/F sensor breakage slice level lower limit value 1</description>
-	</table>
-
-	<table type="2D" name="AFR Sensor Breakage Slice Level Upper Limit 2" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="mV" expression="x*5" to_byte="x/5" format="0.00"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>-</data>
-	</table>
-	<description>mAFVNGH2- A/F sensor breakage slice level upper limit value 2</description>
-	</table>
-
-	<table type="2D" name="AFR Sensor Breakage Slice Level Lower Limit 2" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFR Sensor Breakage Slice Level Lower Limit 2" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*5" to_byte="x/5" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -2564,7 +2548,15 @@
 	<description>mAFVNGL2- A/F sensor breakage slice level lower limit value 2</description>
 	</table>
 	
-	<table type="2D" name="AFR Sensor Breakage NG Judgement Time" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFR Sensor Breakage Slice Level Upper Limit 2" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+		<scaling units="mV" expression="x*5" to_byte="x/5" format="0.00"/>
+	<table type="Y Axis" name="Above" sizey="1">
+			<data>-</data>
+	</table>
+	<description>mAFVNGH2- A/F sensor breakage slice level upper limit value 2</description>
+	</table>
+	
+	<table type="2D" name="AFR Sensor Breakage NG Judgement Time" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Sec" expression="x" to_byte="x" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -2572,15 +2564,7 @@
 	<description>mAFVNGT1- A/F sensor breakage NG judgement time</description>
 	</table>
 
-	<table type="2D" name="AFR Sensor Breakage Diagnosis Vehicle Speed Upper Limit" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="Km/h" expression="x*2" to_byte="x/2" format="0.00"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>-</data>
-	</table>
-	<description>mAFVSPH- A/F sensor breakage diagnosis vehicle speed upper limit value</description>
-	</table>
-
-	<table type="2D" name="AFR Sensor Breakage Diagnosis Vehicle Speed Lower Limit" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFR Sensor Breakage Diagnosis Vehicle Speed Lower Limit" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Km/h" expression="x*2" to_byte="x/2" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -2588,7 +2572,15 @@
 	<description>mAFVSPL- A/F sensor breakage diagnosis vehicle speed lower limit value</description>
 	</table>
 	
-	<table type="2D" name="High EGT Stage Delay 1" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFR Sensor Breakage Diagnosis Vehicle Speed Upper Limit" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="Km/h" expression="x*2" to_byte="x/2" format="0.00"/>
+	<table type="Y Axis" name="Above" sizey="1">
+			<data>-</data>
+	</table>
+	<description>mAFVSPH- A/F sensor breakage diagnosis vehicle speed upper limit value</description>
+	</table>
+	
+	<table type="2D" name="High EGT Stage Delay 1" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Sec" expression="x*.2" to_byte="x/.2" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>Sec</data>
@@ -2596,7 +2588,7 @@
 	<description>mKMCT31- A high exhaust temperature stage delay 1// Function: Target equivalence ratio</description>
 	</table>
 
-	<table type="2D" name="High EGT Stage Delay 2" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="High EGT Stage Delay 2" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Sec" expression="x*.2" to_byte="x/.2" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>Sec</data>
@@ -2604,7 +2596,7 @@
 	<description>mKMCT32- A high exhaust temperature stage delay 2// Function: Target equivalence ratio</description>
 	</table>
 	
-	<table type="2D" name="At the Time of the Start, TFBYA0 Maintenance Time" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="At the Time of the Start, TFBYA0 Maintenance Time" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="ms" expression="x*100" to_byte="x/100" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>ms</data>
@@ -2612,23 +2604,23 @@
 	<description>At the time of the start, TFBYA0 maintenance time</description>
 	</table>
 	
-	<table type="2D" name="At the Time of Delay, Retard Rate Judgement Constant High Octane" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="NULL" expression="x*.0078125" to_byte="x/.0078125" format="0.00"/>
+	<table type="2D" name="At the Time of Delay, Retard Rate Judgement Constant High Octane" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="NULL" expression="x*.0078125" to_byte="x/.0078125" format="0.000"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>NULL</data>
 	</table>
 	<description>mKMRCOH- At the time of the delay, retard rate judgement constant high-octane//Function: Expansion control of lambda control area</description>
 	</table>
 
-	<table type="2D" name="At the Time of Delay, Retard Rate Judgement Constant Regular" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="NULL" expression="x*.0078125" to_byte="x/.0078125" format="0.00"/>
+	<table type="2D" name="At the Time of Delay, Retard Rate Judgement Constant Regular" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="NULL" expression="x*.0078125" to_byte="x/.0078125" format="0.000"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>NULL</data>
 	</table>
 	<description>mKMRCOR- At the time of the delay, retard rate judgement constant regular//Function: Expansion control of lambda control area</description>
 	</table>
 	
-	<table type="2D" name="Low Rotation Stage Delay 1" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Low Rotation Stage Delay 1" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Sec" expression="x*.2" to_byte="x/.2" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>Sec</data>
@@ -2636,7 +2628,7 @@
 	<description>mKMCT41- A low rotation stage delay 1// Function: Target equivalence ratio</description>
 	</table>
 
-	<table type="2D" name="Low Rotation Stage Delay 2" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Low Rotation Stage Delay 2" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Sec" expression="x*.2" to_byte="x/.2" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>Sec</data>
@@ -2644,7 +2636,7 @@
 	<description>mKMCT42- A low rotation stage delay 2// Function: Target equivalence ratio</description>
 	</table>
 	
-	<table type="2D" name="KMR Delay Prohibition Coolant Temperature" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="KMR Delay Prohibition Coolant Temperature" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0"/>
 	<table type="Y Axis" name="Coolant Temperature" sizey="1">
 			<data>Z</data>
@@ -2652,39 +2644,39 @@
 	<description>mTWKMR- KMR delay prohibition coolant temperature</description>
 	</table>
 	
-	<table type="2D" name="TFBAY0 Hysteresis" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="l" expression="x*.0078125" to_byte="x/.0078125" format="0"/>
+	<table type="2D" name="TFBAY0 Hysteresis" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="l" expression="x*.0078125" to_byte="x/.0078125" format="0.000"/>
 	<table type="Y Axis" name="l" sizey="1">
 			<data>l</data>
 	</table>
 	<description>mTFAIN- TFBAY0 hysteresis</description>
 	</table>
 
-	<table type="2D" name="TFBAY0 Hysteresis 2" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="l" expression="x*.0078125" to_byte="x/.0078125" format="0"/>
+	<table type="2D" name="TFBAY0 Hysteresis 2" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="l" expression="x*.0078125" to_byte="x/.0078125" format="0.000"/>
 	<table type="Y Axis" name="l" sizey="1">
 			<data>l</data>
 	</table>
 	<description>mTFAIN2- TFBAY0 hysteresis 2</description>
 	</table>
 
-	<table type="2D" name="TFBAY0 Hysteresis 3" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="l" expression="x*.0078125" to_byte="x/.0078125" format="0"/>
+	<table type="2D" name="TFBAY0 Hysteresis 3" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="l" expression="x*.0078125" to_byte="x/.0078125" format="0.000"/>
 	<table type="Y Axis" name="l" sizey="1">
 			<data>l</data>
 	</table>
 	<description>mTFAOUT- TFBAY0 hysteresis 3</description>
 	</table>
 	
-	<table type="2D" name="TFBYA Limiter" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="l" expression="x*.015625" to_byte="x/.015625" format="0"/>
+	<table type="2D" name="TFBYA Limiter" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="l" expression="x*.015625" to_byte="x/.015625" format="0.000"/>
 	<table type="Y Axis" name="l" sizey="1">
 			<data>l</data>
 	</table>
 	<description>mTFALMT- TFBYA limiter</description>
 	</table>
 	
-	<table type="2D" name="Learning Start Coolant Temperature" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Learning Start Coolant Temperature" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0"/>
 	<table type="Y Axis" name="Z" sizey="1">
 			<data>Z</data>
@@ -2692,8 +2684,8 @@
 	<description>mTWLRC- Learning start coolant temperature// Function: A/F sensor air fuel ratio control learning control (SULEV 6/8cyl)</description>
 	</table>
 	
-	<table type="2D" name="Duty Rise Coefficient" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="%/100ms" expression="x*.1" to_byte="x/.1" format="0"/>
+	<table type="2D" name="Duty Rise Coefficient" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+		<scaling units="%/100ms" expression="x*.1" to_byte="x/.1" format="0.000"/>
 	<table type="Y Axis" name="Duty Rise Coefficient" sizey="1">
 			<data>%/100ms</data>
 	</table>
@@ -2716,16 +2708,16 @@
 	<description>Target A/F upper limit value</description>
 	</table>
 	
-	<table type="2D" name="Calibration Target AFR Limitation Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="-" expression="x*.01" to_byte="x/.01" format="0"/>
+	<table type="2D" name="Calibration Target AFR Limitation Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="-" expression="x*.01" to_byte="x/.01" format="0.00"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
 	<description>mCATGND-Calibration target A/F limitation value</description>
 	</table>
 	
-	<table type="2D" name="At Time of Initialization, Target AFR" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0"/>
+	<table type="2D" name="At Time of Initialization, Target AFR" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0.00"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
@@ -2740,48 +2732,48 @@
 	<description>mMABF A change in a target A/F</description>
 	</table>
 	
-	<table type="2D" name="Delta AFR Monotone Increasing Judgement Value" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="-" expression="x*.004" to_byte="x/.004" format="0"/>
+	<table type="2D" name="Delta AFR Monotone Increasing Judgement Value" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="4" >
+		<scaling units="AFR?" expression="x*.004" to_byte="x/.004" format="0.00"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
 	<description>mDABFHIS-Delta-A/F monotone increasing judgement value</description>
 	</table>
 	
-	<table type="2D" name="AFR Sensor Rich Side NG Criteria" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0"/>
+	<table type="2D" name="AFR Sensor Rich Side NG Criteria" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="4" >
+		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0.00"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
-	<description>A/F sensor rich side NG criteria</description>
+	<description>mAHOSNGH- A/F sensor rich side NG criteria</description>
 	</table>
 
-	<table type="2D" name="AFR Sensor Lean Side NG Criteria" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0"/>
+	<table type="2D" name="AFR Sensor Lean Side NG Criteria" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="4" >
+		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0.00"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
-	<description>A/F sensor lean side NG criteria</description>
+	<description>mAHOSNGL- A/F sensor lean side NG criteria</description>
 	</table>
 	
-	<table type="2D" name="AFR Deviation Allowable Value for AFR Enactment" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="l" expression="x*.02" to_byte="x/.02" format="0"/>
+	<table type="2D" name="AFR Deviation Allowable Value for AFR Enactment" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="l" expression="x*.02" to_byte="x/.02" format="0.00"/>
 	<table type="Y Axis" name="l" sizey="1">
 			<data>l</data>
 	</table>
-	<description>A/F deviation allowable value for the A/F enactment judgement</description>
+	<description>mAFSOK- A/F deviation allowable value for the A/F enactment judgement</description>
 	</table>
 	
-	<table type="2D" name="AFR Deviation Condition Continuation Time for AFR Enactment" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="l" expression="x*.02" to_byte="x/.02" format="0"/>
+	<table type="2D" name="AFR Deviation Condition Continuation Time for AFR Enactment" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="Sec" expression="x*.1" to_byte="x/.1" format="0.00"/>
 	<table type="Y Axis" name="l" sizey="1">
-			<data>VERIFY SCALING</data>
+			<data>-</data>
 	</table>
-	<description>A/F deviation allowable value for the A/F enactment judgement//VERIFY SCALING</description>
+	<description>mAFSOKTM- A/F deviation condition continuation time for the A/F enactment judgement//VERIFY SCALING</description>
 	</table>
 	
-	<table type="2D" name="At Time of Resetting, HSOSQ Minimum Value" category="AFR" storagetype="int16" sizey="2" endian="big" userlevel="5" >
-		<scaling units="Mg" expression="x*2.56" to_byte="x/2.56" format="0"/>
+	<table type="2D" name="At Time of Resetting, HSOSQ Minimum Value" category="AFR" storagetype="int16" sizey="2" endian="big" userlevel="4" >
+		<scaling units="Mg" expression="x*2.56" to_byte="x/2.56" format="0.00"/>
 	<table type="Y Axis" name="Long" sizey="2">
 			<data>0</data>
 			<data>1</data>
@@ -2789,12 +2781,12 @@
 	<description>mRHSOSQL- At the time of resetting, HSOSQ minimum value// HSOSQ Mean AFSABF (Aka AFR) </description>
 	</table>
 	
-	<table type="2D" name="AFR Sensor Heater Electric Current Weighted Average" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="l" expression="x*.00390625" to_byte="x/.00390625" format="0"/>
+	<table type="2D" name="AFR Sensor Heater Electric Current Weighted Average" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="l" expression="x*.00390625" to_byte="x/.00390625" format="0.00"/>
 	<table type="Y Axis" name="l" sizey="1">
 			<data>l</data>
 	</table>
-	<description>A/F sensor heater electric current weighted average index number</description>
+	<description>mAFHKJYU- A/F sensor heater electric current weighted average index number</description>
 	</table>
 	
 	<table type="2D" name="AFR Deviation Upper Limit" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
@@ -2805,47 +2797,33 @@
 	<description>Air-fuel ratio deviation upper limit value</description>
 	</table>
 	
-	<table type="2D" name="AFR Sensor Heater Trouble Diagnosis Lower Limit Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="mV" expression="x*80" to_byte="x/80" format="0"/>
+	<table type="2D" name="AFR Sensor Heater Trouble Diagnosis Lower Limit Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="mV" expression="x*80" to_byte="x/80" format="0.00"/>
 	<table type="Y Axis" name="mV" sizey="1">
 			<data>mV</data>
 	</table>
-	<description>A/F sensor heater trouble diagnosis VB lower limit value</description>
+	<description>mAFHVBL- A/F sensor heater trouble diagnosis VB lower limit value</description>
 	</table>
 
-	<table type="2D" name="AFR Sensor Breakage Diagnosis VB Upper Limit Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFR Sensor Breakage Diagnosis VB Limits" category="AFR" storagetype="uint8" sizey="2" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*80" to_byte="x/80" format="0"/>
-	<table type="Y Axis" name="mV" sizey="1">
-			<data>mV</data>
+	<table type="Y Axis" name="Limits" sizey="2">
+			<data>Upper</data>
+			<data>Lower</data>
 	</table>
 	<description>mAFSVBH- A/F sensor breakage diagnosis VB upper limit value// Function: Front A/F sensor connectivity diagnosis</description>
 	</table>
-
-	<table type="2D" name="AFR Sensor Breakage Diagnosis VB Lower Limit Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="mV" expression="x*80" to_byte="x/80" format="0"/>
-	<table type="Y Axis" name="mV" sizey="1">
-			<data>mV</data>
-	</table>
-	<description>mAFSVBL- A/F sensor breakage diagnosis VB lower limit value// Function: Front A/F sensor connectivity diagnosis</description>
-	</table>
 	
-	<table type="2D" name="Diagnosis Criteria Upper Limit Value" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Diagnosis Criteria Limits" category="AFR" storagetype="uint16" sizey="2" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*5" to_byte="x/5" format="0"/>
-	<table type="Y Axis" name="mV" sizey="1">
-			<data>mV</data>
+	<table type="Y Axis" name="Limits" sizey="2">
+			<data>Upper</data>
+			<data>Lower</data>
 	</table>
 	<description>mAFHMAX- Diagnosis criteria upper limit value// Function: Front A/F sensor heater diagnosis</description>
 	</table>
-
-	<table type="2D" name="Diagnosis Criteria Lower Limit Value" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="mV" expression="x*5" to_byte="x/5" format="0"/>
-	<table type="Y Axis" name="mV" sizey="1">
-			<data>mV</data>
-	</table>
-	<description>mAFHMIN- Diagnosis criteria lower limit value// Function: Front A/F sensor heater diagnosis</description>
-	</table>
 	
-	<table type="2D" name="Engine Rotation Delay" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Engine Rotation Delay" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="REV" expression="x" to_byte="x" format="0"/>
 	<table type="Y Axis" name="REV" sizey="1">
 			<data>REV</data>
@@ -2853,42 +2831,42 @@
 	<description>mINLD- Engine rotation delay // A2L Function Lambda Control Closed Loop Activation Delay Diagnosis</description>
 	</table>
 	
-	<table type="2D" name="O2 Sensor Slice Setup Hysteresis" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="5">
+	<table type="2D" name="O2 Sensor Slice Setup Hysteresis" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="4">
 	<scaling units="mv" expression="x*5" to_byte="x/5" format="0"/> 
 	<table type="Y Axis" name="Long" sizey="2" format="0">
 			<data>0</data> 
 			<data>1</data>
 	</table>
-	<description>RrO2 sensor slice setup hysteresis</description>
+	<description>mRO2DTHS1- RrO2 sensor slice setup hysteresis</description>
 	</table>
 	
-	<table type="2D" name="Lambda Point Compensation Value Initial Value" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Lambda Point Compensation Value Initial Value" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*5" to_byte="x/5" format="0"/>
 	<table type="Y Axis" name="mV" sizey="1">
 			<data>mV</data>
 	</table>
-	<description>Lambda point compensation value initial value</description>
+	<description>mADJINI- Lambda point compensation value initial value</description>
 	</table>
 	
-	<table type="2D" name="O2 Sensor Second Slice Setup Hysteresis (Lean Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="5">
+	<table type="2D" name="O2 Sensor Second Slice Setup Hysteresis (Lean Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="4">
 	<scaling units="mv" expression="x*5" to_byte="x/5" format="0"/> 
 	<table type="Y Axis" name="Long" sizey="2" format="0">
 			<data>0</data> 
 			<data>1</data>
 	</table>
-	<description>Lean side RrO2 sensor the second slice setup hysteresis</description>
+	<description>mRO2DTHS2- Lean side RrO2 sensor the second slice setup hysteresis</description>
 	</table>
 
-	<table type="2D" name="O2 Sensor Second Slice Setup Hysteresis (Rich Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="5">
+	<table type="2D" name="O2 Sensor Second Slice Setup Hysteresis (Rich Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="4">
 	<scaling units="mv" expression="x*5" to_byte="x/5" format="0"/> 
 	<table type="Y Axis" name="Long" sizey="2" format="0">
 			<data>0</data> 
 			<data>1</data>
 	</table>
-	<description>Rich side RrO2 sensor the second slice setup hysteresis</description>
+	<description>mRO2DTHS3- Rich side RrO2 sensor the second slice setup hysteresis</description>
 	</table>
 	
-	<table type="2D" name="NE Lattice Hysteresis" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="NE Lattice Hysteresis" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*12.5" to_byte="x/12.5" format="0"/>
 	<table type="Y Axis" name="RPM" sizey="1">
 			<data>RPM</data>
@@ -2896,65 +2874,65 @@
 	<description>mLHNES- NE lattice hysteresis// Function: A/F sensor air fuel ratio control learning control (SULEV 6/8cyl)</description>
 	</table>
 	
-	<table type="2D" name="O2 Sensor Slice (Lean Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="5">
+	<table type="2D" name="O2 Sensor Slice (Lean Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="4">
 	<scaling units="mv" expression="x*5" to_byte="x/5" format="0"/> 
 	<table type="Y Axis" name="Long" sizey="2" format="0">
 			<data>0</data> 
 			<data>1</data>
 	</table>
-	<description>Lean side RrO2 sensor slice</description>
+	<description>mRO2L1DT- Lean side RrO2 sensor slice</description>
 	</table>
 
-	<table type="2D" name="O2 Sensor Second Slice (Lean Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="5">
+	<table type="2D" name="O2 Sensor Second Slice (Lean Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="4">
 	<scaling units="mv" expression="x*5" to_byte="x/5" format="0"/> 
 	<table type="Y Axis" name="Long" sizey="2" format="0">
 			<data>0</data> 
 			<data>1</data>
 	</table>
-	<description>Lean side RrO2 sensor the second slice</description>
+	<description>mRO2L2DT- Lean side RrO2 sensor the second slice</description>
 	</table>
 	
-	<table type="2D" name="Rich Side Second Slice Reset (Shift Subtraction)" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Rich Side Second Slice Reset (Shift Subtraction)" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0.00"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Above</data>
 	</table>
-	<description>When a rich side the second slice is reset, the amount of shift subtraction</description>
+	<description>mAFSHDEC- When a rich side the second slice is reset, the amount of shift subtraction</description>
 	</table>
 
-	<table type="2D" name="Lean Slices 2x Cross Shift Learning Value" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Lean Slices 2x Cross Shift Learning Value" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0.000"/>
+	<table type="Y Axis" name="-" sizey="1">
+			<data>Above</data>
+	</table>
+	<description>mAFSHDEC2- When lean slices two times cross, shift learning value</description>
+	</table>
+
+	<table type="2D" name="Lean Side Second Slice Reset (Shift Addition)" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0.00"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Above</data>
 	</table>
-	<description>When lean slices two times cross, shift learning value</description>
+	<description>mAFSHINC- When a lean side the second slice is reset, the amount of shift addition</description>
 	</table>
 
-	<table type="2D" name="Lean Side Second Slice Reset (Shift Addition)" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0.00"/>
+	<table type="2D" name="Rich Slices 2x Cross Shift Learning Value" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0.000"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Above</data>
 	</table>
-	<description>When a lean side the second slice is reset, the amount of shift addition</description>
+	<description>mAFSHINC2- When rich slices two times cross, shift learning value</description>
 	</table>
 
-	<table type="2D" name="Rich Slices 2x Cross Shift Learning Value" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0.00"/>
-	<table type="Y Axis" name="-" sizey="1">
-			<data>Above</data>
-	</table>
-	<description>When rich slices two times cross, shift learning value</description>
-	</table>
-
-	<table type="2D" name="High EGT Richization Upper Limit" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="High EGT Richization Upper Limit" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0"/>
 	<table type="Y Axis" name="RPM" sizey="1">
 			<data>RPM</data>
 	</table>
-	<description>At the time of the high exhaust temperature, rich-ization control condition upper limit engine speed</description>
+	<description>mHTRPMH- At the time of the high exhaust temperature, rich-ization control condition upper limit engine speed</description>
 	</table>
 	
-	<table type="2D" name="O2 Sensor Third Slice (Lean Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="5">
+	<table type="2D" name="O2 Sensor Third Slice (Lean Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="4">
 	<scaling units="mv" expression="x*5" to_byte="x/5" format="0"/> 
 	<table type="Y Axis" name="Long" sizey="2" format="0">
 			<data>0</data> 
@@ -2963,7 +2941,7 @@
 	<description>Lean side RrO2 sensor the third slice</description>
 	</table>
 
-	<table type="2D" name="O2 Sensor Slice (Rich Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="5">
+	<table type="2D" name="O2 Sensor Slice (Rich Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="4">
 	<scaling units="mv" expression="x*5" to_byte="x/5" format="0"/> 
 	<table type="Y Axis" name="Long" sizey="2" format="0">
 			<data>0</data> 
@@ -2972,7 +2950,7 @@
 	<description>Rich side RrO2 sensor slice</description>
 	</table>
 
-	<table type="2D" name="O2 Sensor Second Slice (Rich Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="5">
+	<table type="2D" name="O2 Sensor Second Slice (Rich Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="4">
 	<scaling units="mv" expression="x*5" to_byte="x/5" format="0"/> 
 	<table type="Y Axis" name="Long" sizey="2" format="0">
 			<data>0</data> 
@@ -2981,7 +2959,7 @@
 	<description>Rich side RrO2 sensor the second slice</description>
 	</table>
 
-	<table type="2D" name="O2 Sensor Third Slice (Rich Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="5">
+	<table type="2D" name="O2 Sensor Third Slice (Rich Side)" category="AFR" storagetype="uint16" sizex="1" sizey="2" endian="big" userlevel="4">
 	<scaling units="mv" expression="x*5" to_byte="x/5" format="0"/> 
 	<table type="Y Axis" name="Long" sizey="2" format="0">
 			<data>0</data> 
@@ -2999,7 +2977,7 @@
 	<description>A/F amplitude (lean side)</description>
 	</table>
 	
-	<table type="2D" name="Region Speed W/O Delay" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Region Speed W/O Delay" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*50" to_byte="x/50" format="0"/>
 	<table type="Y Axis" name="RPM" sizey="1">
 			<data>RPM</data>
@@ -3007,12 +2985,12 @@
 	<description>mKMRDNL- Region speed without a delay// Apart of Target Equivalance function</description>
 	</table>
 
-	<table type="2D" name="Stoichiometric Value" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+	<table type="2D" name="Stoichiometric Value" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
 		<scaling units="(Gasoline Scale)" expression="x*.002" to_byte="x/.002" format="0.00"/>
 	<table type="Y Axis" name="Stoichiometric" sizey="1">
 			<data>AFR</data>
 	</table>
-	<description>Target A/F clamp value. Change for E85 or other fuel. (NEED TO VERIFY IF THAT'S THE PURPOSE)</description>
+	<description>mABFCMPV- Target A/F clamp value. Change for E85 or other fuel. (NEED TO VERIFY IF THAT'S THE PURPOSE)</description>
 	</table>
 
 	<table type="2D" name="AFR Weighted Average Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
@@ -3032,7 +3010,7 @@
 	<description>A/F sensor activated judgement permission TFBYA(Target AFR Equivalence Quantity) upper limit</description>
 	</table>
 
-	<table type="2D" name="High EGT Target AFR" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="High EGT Target AFR" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="(Gasoline Scale)" expression="x*.002" to_byte="x/.002" format="0.00"/>
 	<table type="Y Axis" name="Target AFR" sizey="1">
 			<data>AFR</data>
@@ -3040,12 +3018,12 @@
 	<description>At the time of the high exhaust temperature, rich-ization control target A/F</description>
 	</table>
 
-	<table type="2D" name="AFSHDM Change Quantity S/L" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFSHDM Change Quantity S/L" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0.00"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Above</data>
 	</table>
-	<description>AFSHDM change quantity S/L //Needs to be examined for functionality. Maybe Air Fuel Sensor related? Find HDM meaning?</description>
+	<description>mAFSHSL- AFSHDM change quantity S/L // A/F sensor air fuel ratio control learning control (SULEV 6/8cyl)</description>
 	</table>
 
 	<table type="2D" name="AFSHOS Limits" category="AFR" storagetype="int16" sizey="2" endian="big" userlevel="4" >
@@ -3054,27 +3032,20 @@
 			<data>Minimum</data>
 			<data>Maximum</data>
 	</table>
-	<description>AFSHOS(Correction Amount Learning Value) minimum value</description>
+	<description>AFSHOS(Correction Amount Learning Value) minimum and max value</description>
 	</table>
 
-	<table type="2D" name="Monitor Clamp Learning Lean Side Hysteresis" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Monitor Clamp Learning Lean and Rich Side Hysteresis" category="AFR" storagetype="uint16" sizey="2" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0.00"/>
-	<table type="Y Axis" name="-" sizey="1">
-			<data>Above</data>
+	<table type="Y Axis" name="Hysteresis" sizey="2">
+			<data>Lean</data>
+			<data>Rich</data>
 	</table>
-	<description>At the time of the monitor clamp, learning lean side hysteresis// Figure out monitor clamp and hysteresis meaning. Hysteresis might mean threshold?</description>
-	</table>
-	
-	<table type="2D" name="Monitor Clamp Learning Rich Side Hysteresis" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="-" expression="x*.002" to_byte="x/.002" format="0.00"/>
-	<table type="Y Axis" name="-" sizey="1">
-			<data>Above</data>
-	</table>
-	<description>At the time of the monitor clamp, learning rich side hysteresis</description>
+	<description>At the time of the monitor clamp, learning lean side hysteresis</description>
 	</table>
 
 	<table type="2D" name="AFR Compensation Limits" category="AFR" storagetype="uint16" sizey="2" endian="big" userlevel="4" >
-		<scaling units="Lower Limit" expression="x*.00390625" to_byte="x/.00390625" format="0.00"/>
+		<scaling units="Limit" expression="x*.00390625" to_byte="x/.00390625" format="0.00"/>
 	<table type="Y Axis" name="Equivalence Quantity" sizey="2">
 			<data>Upper</data>
 			<data>Lower</data>
@@ -3082,7 +3053,7 @@
 	<description>Air-fuel ratio compensation lower limit</description>
 	</table>
 
-	<table type="2D" name="Lean Side Delay" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Lean Side Delay" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Sec" expression="x*0.1" to_byte="x/0.1" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3090,23 +3061,16 @@
 	<description>mLEANDLY- Lean side delay</description>
 	</table>
 
-	<table type="2D" name="Lambda Control Closed Permission AFR Lower Limit" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Lambda Control Closed Permission AFR Limits" category="AFR" storagetype="uint16" sizey="2" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>-</data>
+	<table type="Y Axis" name="Limits" sizey="2">
+			<data>Lower</data>
+			<data>Upper</data>
 	</table>
 	<description>mLMCLSLW- Lambda control closed permission A/F lower limit</description>
 	</table>
 
-	<table type="2D" name="Lambda Control Closed Permission AFR Upper Limit" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>-</data>
-	</table>
-	<description>mLMCLSUP- Lambda control closed permission A/F upper limit</description>
-	</table>
-
-	<table type="2D" name="Rich Side Slice Hysteresis" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Rich Side Slice Hysteresis" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3114,7 +3078,7 @@
 	<description>mRICHHYS- Rich side slice hysteresis</description>
 	</table>
 
-	<table type="2D" name="TFBYA Change Rate Limiter" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="TFBYA Change Rate Limiter" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="/10ms" expression="x*0.00390625" to_byte="x/0.00390625" format="0.0000"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3122,7 +3086,7 @@
 	<description>mDTFAD1- TFBYA change rate limiter</description>
 	</table>
 
-	<table type="2D" name="TFBYA Change Rate Limiter 2" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="TFBYA Change Rate Limiter 2" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="/10ms" expression="x*0.00390625" to_byte="x/0.00390625" format="0.0000"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3130,7 +3094,15 @@
 	<description>mDTFAD2- TFBYA change rate limiter 2</description>
 	</table>
 	
-	<table type="2D" name="Rich Side Combustion Limit AFR" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Lean Side Combustion Limit AFR" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="3" >
+		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
+	<table type="Y Axis" name="Above" sizey="1">
+			<data>-</data>
+	</table>
+	<description>mLEANLMT- Lean side combustion limit A/F</description>
+	</table>
+		
+	<table type="2D" name="Rich Side Combustion Limit AFR" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="3" >
 		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3138,7 +3110,15 @@
 	<description>mRICHLMT- Rich side combustion limit A/F</description>
 	</table>
 
-	<table type="2D" name="Rich/Lean Criteria" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AF Sensor Activated Judgement S/L (Lean Side)" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+		<scaling units="mV" expression="x*5" to_byte="x/5" format="0.00"/>
+	<table type="Y Axis" name="Above" sizey="1">
+			<data>-</data>
+	</table>
+	<description>mSESSTL- A/F sensor activated judgement S/L (lean side)</description>
+	</table>
+
+	<table type="2D" name="Rich/Lean Criteria" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3146,15 +3126,7 @@
 	<description>mRLCRT- Rich/lean criteria</description>
 	</table>
 	
-	<table type="2D" name="AF Sensor Activated Judgement S/L (Lean Side)" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="mV" expression="x*5" to_byte="x/5" format="0.00"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>-</data>
-	</table>
-	<description>mSESSTL- A/F sensor activated judgement S/L (lean side)</description>
-	</table>
-	
-	<table type="2D" name="Lean/Rich Criteria" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Lean/Rich Criteria" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3162,7 +3134,7 @@
 	<description>mLRCRT- Lean/rich criteria</description>
 	</table>
 
-	<table type="2D" name="Lean/Rich OK Criteria" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Lean/Rich OK Criteria" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3170,7 +3142,7 @@
 	<description>mOKLRCRT- Lean/rich OK criteria</description>
 	</table>
 
-	<table type="2D" name="Rich/Lean OK Criteria" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Rich/Lean OK Criteria" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3178,7 +3150,7 @@
 	<description>mOKRLCRT- Rich/lean OK criteria</description>
 	</table>
 	
-	<table type="2D" name="AF Sensor Activated Judgement Delay Time 1" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AF Sensor Activated Judgement Delay Time 1" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="ms" expression="x*10" to_byte="x/10" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3186,7 +3158,7 @@
 	<description>mTDSTAF1- A/F sensor activated judgement delay time 1</description>
 	</table>
 
-	<table type="2D" name="AF Sensor Activated Judgement Delay Time 2" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AF Sensor Activated Judgement Delay Time 2" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="s" expression="x" to_byte="x" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3194,7 +3166,7 @@
 	<description>mTDSTAF2- A/F sensor activated judgement delay time 2</description>
 	</table>
 	
-	<table type="2D" name="Delta- AF Value Computed Delay Time" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Delta- AF Value Computed Delay Time" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="s" expression="x*0.1" to_byte="x/0.1" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3202,7 +3174,7 @@
 	<description>mTDABF- Delta-A/F value computed delay time</description>
 	</table>
 
-	<table type="2D" name="Target AFR Rich Set" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Target AFR Rich Set" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3210,7 +3182,7 @@
 	<description>mRTGABF- TARGET A/F RICH SET</description>
 	</table>
 
-	<table type="2D" name="Lambda Control Clamp Time Upper Limit Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Lambda Control Clamp Time Upper Limit Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Rev" expression="x" to_byte="x" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3218,7 +3190,7 @@
 	<description>mLMCLSMX- Lambda control clamp time upper limit value</description>
 	</table>
 	
-	<table type="2D" name="Second Learning Requirement Maximum AFR Change Target Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Second Learning Requirement Maximum AFR Change Target Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="%" expression="x*0.1" to_byte="x/0.1" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3226,7 +3198,7 @@
 	<description>mMXDLALP2- The second learning requirement maximum air-fuel ratio change target value</description>
 	</table>
 
-	<table type="2D" name="Maximum AFR Change Target Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Maximum AFR Change Target Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="%" expression="x*0.1" to_byte="x/0.1" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -3278,23 +3250,16 @@
 	
 	\\AFR (Diagnosis)//
 	
-	<table type="2D" name="Diagnosis Region Actual AFR Lower Limit" category="AFR (Diagnosis)" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Diagnosis Region Actual AFR Limits" category="AFR (Diagnosis)" storagetype="uint16" sizey="2" endian="big" userlevel="4" >
 		<scaling units="AFR" expression="x*.002" to_byte="x/.002" format="0.00"/>
-	<table type="Y Axis" name="AFR" sizey="1">
-			<data>Above</data>
+	<table type="Y Axis" name="Limits" sizey="2">
+			<data>Upper</data>
+			<data>Lower</data>
 	</table>
-	<description>Diagnosis region condition actual A/F lower limit value</description>
+	<description>mAFSAFHI- Diagnosis region condition actual A/F upper limit value</description>
 	</table>
 	
-	<table type="2D" name="Diagnosis Region Actual AFR Upper Limit" category="AFR (Diagnosis)" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="AFR" expression="x*.002" to_byte="x/.002" format="0.00"/>
-	<table type="Y Axis" name="AFR" sizey="1">
-			<data>Above</data>
-	</table>
-	<description>Diagnosis region condition actual A/F upper limit value</description>
-	</table>
-	
-	<table type="2D" name="AFR Sensor Breakage Diagnosis Lower Limit" category="AFR (Diagnosis)" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFR Sensor Breakage Diagnosis Lower Limit" category="AFR (Diagnosis)" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0"/>
 	<table type="Y Axis" name="RPM" sizey="1">
 			<data>RPM</data>
@@ -3302,7 +3267,7 @@
 	<description>A/F sensor breakage diagnosis Nrpm lower limit value</description>
 	</table>
 	
-	<table type="2D" name="AFR Sensor Breakage Diagnosis Upper Limit" category="AFR (Diagnosis)" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="AFR Sensor Breakage Diagnosis Upper Limit" category="AFR (Diagnosis)" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0"/>
 	<table type="Y Axis" name="RPM" sizey="1">
 			<data>RPM</data>
@@ -3310,7 +3275,7 @@
 	<description>A/F sensor breakage diagnosis Nrpm upper limit value</description>
 	</table>
 
-	<table type="2D" name="Diagnosis Condition Lower Limit" category="AFR (Diagnosis)" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Diagnosis Condition Lower Limit" category="AFR (Diagnosis)" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0"/>
 	<table type="Y Axis" name="RPM" sizey="1">
 			<data>RPM</data>
@@ -3318,7 +3283,7 @@
 	<description>Diagnosis region condition rotation lower limit value</description>
 	</table>
 
-	<table type="2D" name="Diagnosis Condition Upper Limit" category="AFR (Diagnosis)" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Diagnosis Condition Upper Limit" category="AFR (Diagnosis)" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0"/>
 	<table type="Y Axis" name="RPM" sizey="1">
 			<data>RPM</data>
@@ -3326,7 +3291,7 @@
 	<description>Diagnosis region condition rotation upper limit value</description>
 	</table>
 
-	<table type="2D" name="Lean/Rich Response Diagnosis Condition Lower Limit" category="AFR (Diagnosis)" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Lean/Rich Response Diagnosis Condition Lower Limit" category="AFR (Diagnosis)" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0"/>
 	<table type="Y Axis" name="RPM" sizey="1">
 			<data>RPM</data>
@@ -3334,7 +3299,7 @@
 	<description>Lean rich response diagnosis region condition rotation lower limit value</description>
 	</table>
 	
-	<table type="2D" name="Lean/Rich Response Diagnosis Condition Upper Limit" category="AFR (Diagnosis)" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Lean/Rich Response Diagnosis Condition Upper Limit" category="AFR (Diagnosis)" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0"/>
 	<table type="Y Axis" name="RPM" sizey="1">
 			<data>RPM</data>
@@ -3342,61 +3307,48 @@
 	<description>Lean rich response diagnosis region condition rotation upper limit value</description>
 	</table>
 	
-	<table type="2D" name="Lean/Rich Response Deterioration Diagnosis" category="AFR (Diagnosis)" storagetype="int16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Lean/Rich Response Deterioration Diagnosis" category="AFR (Diagnosis)" storagetype="int16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*.004" to_byte="x/.004" format="0.00"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Above</data>
 	</table>
-	<description>Lean rich response deterioration diagnosis criteria</description>
+	<description>mDAFSAFMN- Lean rich response deterioration diagnosis criteria</description>
 	</table>
 	
-	<table type="2D" name="Diagnosis Permission AFR Lower Limit" category="AFR (Diagnosis)" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Diagnosis Permission AFR Limits" category="AFR (Diagnosis)" storagetype="uint16" sizey="2" endian="big" userlevel="4" >
 		<scaling units="AFR" expression="x*.002" to_byte="x/.002" format="0.000"/>
-	<table type="Y Axis" name="-" sizey="1">
-			<data>Above</data>
-	</table>
-	<description>Diagnosis permission A/F lower limit</description>
-	</table>
-	
-	<table type="2D" name="Diagnosis Permission AFR Upper Limit" category="AFR (Diagnosis)" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="AFR" expression="x*.002" to_byte="x/.002" format="0.000"/>
-	<table type="Y Axis" name="-" sizey="1">
-			<data>Above</data>
+	<table type="Y Axis" name="Limits" sizey="2">
+			<data>Upper</data>
+			<data>Lower</data>
 	</table>
 	<description>Diagnosis permission A/F upper limit</description>
 	</table>
 	
-	<table type="2D" name="Diagnosis Completion AFR Convergent Range" category="AFR (Diagnosis)" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="AFR" expression="x*.002" to_byte="x/.002" format="0.000"/>
+	<table type="2D" name="Diagnosis Completion AFR Convergent Range" category="AFR (Diagnosis)" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+		<scaling units="AFR" expression="x*.002" to_byte="x/.002" format="0.00"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Above</data>
 	</table>
-	<description>Diagnosis completion tense completion A/F convergent range</description>
+	<description>mAFDIFAF- Diagnosis completion tense completion A/F convergent range</description>
 	</table>
 	
-	<table type="2D" name="Change in Amount of Diagnosis Permission Air" category="AFR (Diagnosis)" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="-" expression="x" to_byte="x" format="0.000"/>
-	<table type="Y Axis" name="-" sizey="1">
-			<data>Above</data>
-	</table>
-	<description>A change in the amount of diagnosis permission air</description>
-	</table>
-	
-	<table type="2D" name="Diagnosis Permission Air Quantity Upper Limit" category="AFR (Diagnosis)" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Change in Amount of Diagnosis Permission Air" category="AFR (Diagnosis)" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x" to_byte="x" format="0.00"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Above</data>
+	</table>
+	<description>mAFDQAD- A change in the amount of diagnosis permission air</description>
+	</table>
+	
+	<table type="2D" name="Diagnosis Permission Air Quantity Limits" category="AFR (Diagnosis)" storagetype="uint16" sizey="2" endian="big" userlevel="4" >
+		<scaling units="-" expression="x" to_byte="x" format="0.00"/>
+	<table type="Y Axis" name="Limits" sizey="2">
+			<data>Upper</data>
+			<data>Lower</data>
 	</table>
 	<description>Diagnosis permission air quantity upper limit</description>
 	</table>
-	
-	<table type="2D" name="Diagnosis Permission Air Quantity Lower Limit" category="AFR (Diagnosis)" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="-" expression="x" to_byte="x" format="0.00"/>
-	<table type="Y Axis" name="-" sizey="1">
-			<data>Above</data>
-	</table>
-	<description>Diagnosis permission air quantity lower limit</description>
-	</table>	
+
 	
 	\\Fuel Delivery//
 	
@@ -4277,28 +4229,21 @@
 		<description>mTCCLV This table is how the ecu calculates 100% load at x rpm. The values shown are 100% load calculated from the base fuel schedule milliseconds. This is important for proper automatic transmission shifting. It needs to be adjusted so that the ecu sees at or near 100% when wide open throttle to correctly shift the automatic transmission.</description>
 	</table>
 	
-	<table type="2D" name="TP Weighted Average Coefficient" category="Fuel Delivery" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="l" expression="x*0.0009765625" to_byte="x/0.0009765625" format="0.000"/>
+	<table type="2D" name="TP Weighted Average Coefficient" category="Fuel Delivery" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="l" expression="x*0.0009765625" to_byte="x/0.0009765625" format="0.00000"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
 	<description>mAVETP- TP weighted average coefficient//Might want to check scaling</description>
 	</table>
 	
-	<table type="2D" name="Gasoline Mixing Quantity Decrease Upper Limit" category="Fuel Delivery" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Gasoline Mixing Quantity Decrease Limits" category="Fuel Delivery" storagetype="uint8" sizey="2" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*50" to_byte="x/50" format="0"/>
-	<table type="Y Axis" name="RPM" sizey="1">
-			<data>RPM</data>
+	<table type="Y Axis" name="Limits" sizey="2">
+			<data>Upper</data>
+			<data>Lower</data>
 	</table>
 	<description>Gasoline mixing quantity decrease upper limit speed</description>
-	</table>
-
-	<table type="2D" name="Gasoline Mixing Quantity Decrease Lower Limit" category="Fuel Delivery" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="RPM" expression="x*50" to_byte="x/50" format="0"/>
-	<table type="Y Axis" name="RPM" sizey="1">
-			<data>RPM</data>
-	</table>
-	<description>Gasoline mixing quantity decrease lower limit speed</description>
 	</table>
 	
 	<table type="2D" name="Fuel Temperature Condition Upper Limit" category="Fuel Delivery" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
@@ -5611,7 +5556,7 @@
 	<description>mTMFRTM- TMFR cut start time</description>
 	</table>
 	
-	<table type="2D" name="Engine Speed Limitation Condition 1" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Engine Speed Limitation Condition 1" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*50" to_byte="x/50" format="0"/>
 	<table type="Y Axis" name="RPM" sizey="1">
 			<data>RPM</data>
@@ -5619,24 +5564,24 @@
 	<description>mINVRPM1- Engine speed limitation condition 1// Inverse filter???</description>
 	</table>
 	
-	<table type="2D" name="Engine Speed Limitation Condition 2" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Engine Speed Limitation Condition 2" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="RPM" expression="x*50" to_byte="x/50" format="0"/>
 	<table type="Y Axis" name="RPM" sizey="1">
 			<data>RPM</data>
 	</table>
-	<description>Engine speed limitation condition 2</description>
+	<description>mINVRPM2- Engine speed limitation condition 2</description>
 	</table>
 	
-	<table type="2D" name="High All Vehicle Speeds Cut Cylinder Recover Speed" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="rpm" expression="x*25" to_byte="x/25" format="0.00"/>
+	<table type="2D" name="High All Vehicle Speeds Cut Cylinder Recover Speed" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
 	<description>mNRVCUT- High all vehicle speeds cut cylinder recover speed</description>
 	</table>
 
-	<table type="2D" name="High All Vehicle Speeds Cut Cylinder Recover Speed Hysteresis" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="rpm" expression="x*25" to_byte="x/25" format="0.00"/>
+	<table type="2D" name="High All Vehicle Speeds Cut Cylinder Recover Speed Hysteresis" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
@@ -5648,26 +5593,26 @@
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mNMAX0- Vehicle speed 0 Km/h cut judgement speed//Function: Fuel cut</description>
+	<description>mNMAX0- Vehicle speed 0 Km/h cut judgement speed//Function: Fuel cut // VERIFY</description>
 	</table>
 	
-	<table type="2D" name="Fuel Cut Recover Hysteresis" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="rpm" expression="x*25" to_byte="x/25" format="0.00"/>
+	<table type="2D" name="Fuel Cut Recover Hysteresis" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="RPM" expression="x*25" to_byte="x/25" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
 	<description>mOFCHYS- Fuel cut recover hysteresis</description>
 	</table>
 	
-  	<table type="2D" name="Continuous NO. Load Condition Formation Counter Value" category="Fuel Cut" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
-		<scaling units="Count" expression="x" to_byte="x" format="0.0000"/>
+  	<table type="2D" name="Continuous NO. Load Condition Formation Counter Value" category="Fuel Cut" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+		<scaling units="Count" expression="x" to_byte="x" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
 	<description>mENLCNT- Continuous NO. Load condition formation counter value//Function: Fuel Cut</description>
 	</table>
 	
-  	<table type="2D" name="Fuel Cut Prohibition Region Limit" category="Fuel Cut" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Fuel Cut Prohibition Region Limit" category="Fuel Cut" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*0.11" to_byte="x/0.11" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -5683,7 +5628,7 @@
 	<description>mMAXMODD- The number of multiple cylinder cut cylinders // Scaling MIGHT be wrong. Needs to be SINGLE DIGIT, NO DECIMALS.</description>
 	</table>
 	
-	<table type="2D" name="Vehicle Speed 0 Km/h Cut Judgement TP" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Vehicle Speed 0 Km/h Cut Judgement TP" category="Fuel Cut" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="ms" expression="x*0.125" to_byte="x/0.125" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -10481,7 +10426,7 @@
 	<description>mGKTVMN- Offset learning lower limit value//Function: ETC throttle related matters (for 1CPU)</description>
 	</table>
 
-	<table type="2D" name="Vehicle Speed Condition Lower Limit 3" category="Electronic Throttle" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Vehicle Speed Condition Lower Limit 3" category="Electronic Throttle" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Km/h" expression="x*2" to_byte="x/2" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -10489,8 +10434,8 @@
 	<description>mVSNSL- Vehicle speed condition lower limit//Function: NEUT Switch diagnosis (for ETC)</description>
 	</table>
 
-	<table type="2D" name="TVO upper Limit Value" category="Electronic Throttle" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="Degrees" expression="x*0.35" to_byte="x/0.35" format="0.00"/>
+	<table type="2D" name="TVO Upper Limit Value" category="Electronic Throttle" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+		<scaling units="Degree" expression="x*0.35" to_byte="x/0.35" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
@@ -10953,14 +10898,6 @@
 			<data>Above</data>
 	</table>
 	<description>At the time of the start, fuel cut condition TVO lower limit</description>
-	</table>
-	
-	<table type="2D" name="TVO Upper Limit Value" category="Electronic Throttle (Limiters)" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="mV" expression="x*5" to_byte="x/5" format="0.00"/>
-	<table type="Y Axis" name="mV" sizey="1">
-			<data>Above</data>
-	</table>
-	<description>TVO Upper Limit Value</description>
 	</table>
 	
 	<table type="2D" name="APS Output Normality Range Lower Limit (MainCPU)" category="Electronic Throttle (Limiters)" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
@@ -12119,15 +12056,15 @@
 		<description>mTTPINT TP initial value table. Startup which references Coolant Temperature. This table bypasses the injector K value, so modifying this for larger injectors is essential</description>
 	</table>
 	
-	<table type="2D" name="Start SW OFF Judgement Speed A" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="rpm" expression="x*12.5" to_byte="x/12.5" format="0.00"/>
+	<table type="2D" name="Start SW OFF Judgement Speed A" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+		<scaling units="RPM" expression="x*12.5" to_byte="x/12.5" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
 	<description>mNSTOFFA- START SW Off judgement speed A</description>
 	</table>
 	
-	<table type="2D" name="Initial Judgement Time" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Initial Judgement Time" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="ms" expression="x*10" to_byte="x/10" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -12135,7 +12072,7 @@
 	<description>mSTOFFT- Initial judgement time//Function: ON-OFF judgment control of the Starter Switch signal flag #STSW</description>
 	</table>
 
-	<table type="2D" name="Starter SWOFF Battery Voltage Judgement Threshold" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Starter SWOFF Battery Voltage Judgement Threshold" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*80" to_byte="x/80" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -12143,7 +12080,7 @@
 	<description>mSTOFFVBL- Starter SWOFF battery voltage judgement threshold</description>
 	</table>
 
-	<table type="2D" name="Start SWON Battery Voltage Judgement Threshold" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Start SWON Battery Voltage Judgement Threshold" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*80" to_byte="x/80" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -12151,7 +12088,7 @@
 	<description>mSTONVBL- Starter SWON battery voltage judgement threshold</description>
 	</table>
 
-	<table type="2D" name="At Time of Hard Cranking, Starter Switch On Battery Voltage" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="At Time of Hard Cranking, Starter Switch On Battery Voltage" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*80" to_byte="x/80" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -12159,7 +12096,7 @@
 	<description>mSTRTVB- At the time of the hard cranking, starter switch on battery voltage</description>
 	</table>
 	
-	<table type="2D" name="Sequential Fuel Injection Timing At Time of Start" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Sequential Fuel Injection Timing At Time of Start" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Degrees" expression="x*4" to_byte="x/4" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -12167,7 +12104,7 @@
 	<description>mINJTST- A sequential fuel injection timing at the time of the start</description>
 	</table>
 
-	<table type="2D" name="During the Cranking, Control Prohibition Time" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="During the Cranking, Control Prohibition Time" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="ms" expression="x*100" to_byte="x/100" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -12175,20 +12112,13 @@
 	<description>mETCSTT- During the cranking, control prohibition time</description>
 	</table>
 
-	<table type="2D" name="At Start Coolant Temperature Condition Upper Limit" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="At Start Coolant Temperature Condition Limits" category="Cranking and Startup" storagetype="uint8" sizey="2" endian="big" userlevel="4" >
 		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
-	<table type="Y Axis" name="Z" sizey="1">
-			<data>Above</data>
+	<table type="Y Axis" name="Limits" sizey="2">
+			<data>Upper</data>
+			<data>Lower</data>
 	</table>
 	<description>At the time of the start, coolant temperature condition upper limit</description>
-	</table>
-
-	<table type="2D" name="At Start Coolant Temperature Condition Lower Limit" category="Cranking and Startup" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
-		<scaling units="Z" expression="x-50" to_byte="x+50" format="0.00"/>
-	<table type="Y Axis" name="Z" sizey="1">
-			<data>Above</data>
-	</table>
-	<description>At the time of the start, coolant temperature condition lower limit</description>
 	</table>
 	
 	\\Knock and Misfire Detection//
@@ -13371,7 +13301,7 @@
 	<description>-</description>
 	</table>
 	
-	<table type="2D" name="MTFDFK Map APOST Lattice Point" category="Axis Data" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="MTFDFK Map APOST Lattice Point" category="Axis Data" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*0.11" to_byte="x/0.11" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -13379,7 +13309,7 @@
 	<description>mMTFAP1- MTFDFK map APOST lattice point</description>
 	</table>
 
-	<table type="2D" name="MTFDFK Map APOST Lattice Point 2" category="Axis Data" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="MTFDFK Map APOST Lattice Point 2" category="Axis Data" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*0.11" to_byte="x/0.11" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -13387,7 +13317,7 @@
 	<description>mMTFAP2- MTFDFK map APOST lattice point</description>
 	</table>
 
-	<table type="2D" name="MTFDFK Map VEL Lattice Point" category="Axis Data" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="MTFDFK Map VEL Lattice Point" category="Axis Data" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Km/h" expression="x*0.1" to_byte="x/0.1" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -13395,7 +13325,7 @@
 	<description>mMTFVS1- MTFDFK map VEL lattice point</description>
 	</table>
 
-	<table type="2D" name="MTFDFK Map VEL Lattice Point 2" category="Axis Data" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="MTFDFK Map VEL Lattice Point 2" category="Axis Data" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Km/h" expression="x*0.1" to_byte="x/0.1" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -13405,7 +13335,7 @@
 	
 	\\Axis (Limiters)//
 	
-	<table type="3D" name="QH0 Upper Limit Table" category="Axis (Limiters)" storagetype="uint16" sizex="1" sizey="16" endian="big" userlevel="5">
+	<table type="3D" name="QH0 Upper Limit Table" category="Axis (Limiters)" storagetype="uint16" sizex="1" sizey="16" endian="big" userlevel="4">
 	<scaling units="%" expression="x*0.001525879" to_byte="x/0.0.001525879" format="0.00"/> 
 	<table type="X Axis" name="-" sizex="1">
 			<data>%</data>
@@ -13428,10 +13358,10 @@
 			<data>5600</data>
 			<data>6000</data> 
 	</table>
-	<description>mTQH0LMT QHO Upper Limit Table</description>
+	<description>mTQH0LMT- QHO Upper Limit Table</description>
 	</table>
 
-	<table type="3D" name="QH0 Vehicle Speed Upper Limit Table" category="Axis (Limiters)" storagetype="uint16" sizex="1" sizey="8" endian="big" userlevel="5">
+	<table type="3D" name="QH0 Vehicle Speed Upper Limit Table" category="Axis (Limiters)" storagetype="uint16" sizex="1" sizey="8" endian="big" userlevel="4">
 	<scaling units="%" expression="x*0.001525879" to_byte="x/0.0.001525879" format="0.00"/> 
 	<table type="X Axis" name="-" sizex="1">
 			<data>%</data>
@@ -13449,12 +13379,12 @@
 	<description>QH0 upper limit vehicle speed table</description>
 	</table>
 	
-	<table type="2D" name="QH0 Upper Limit Judgement Hysteresis" category="Axis (Limiters)" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="QH0 Upper Limit Judgement Hysteresis" category="Axis (Limiters)" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="%" expression="x*.001525879" to_byte="x/.001525879" format="0.00"/>
 	<table type="Y Axis" name="%" sizey="1">
 			<data>Above</data>
 	</table>
-	<description>QH0 upper limit judgement hysteresis</description>
+	<description>mDQH0LMT- QH0 upper limit judgement hysteresis</description>
 	</table> 
 	
 	\\Conversions and Calculations//
