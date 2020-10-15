@@ -198,7 +198,7 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Deg</data>
 	</table>
-	<description>Initial retard quantity table 1</description>
+	<description>mTTRADV1- Initial retard quantity table 1</description>
 	</table>
 
 	<table type="3D" name="Initial Retard Quantity 2" category="Ignition Timing" storagetype="uint8" sizex="4" endian="big" userlevel="2" >
@@ -212,7 +212,7 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Deg</data>
 	</table>
-	<description>Initial retard quantity table 2</description>
+	<description>mTTRADV2- Initial retard quantity table 2</description>
 	</table>
 
 	<table type="3D" name="Initial Retard Quantity 2 (Steps from Idle)" category="Ignition Timing" storagetype="uint8" sizex="4" endian="big" userlevel="2" >
@@ -226,7 +226,7 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Deg</data>
 	</table>
-	<description>Initial retard quantity table 2 (When it steps from the idle.)</description>
+	<description>mTTRADV22- Initial retard quantity table 2 (When it steps from the idle.)</description>
 	</table>
 
 	<table type="3D" name="Initial Retard Quantity 3" category="Ignition Timing" storagetype="uint8" sizex="4" endian="big" userlevel="2" >
@@ -240,7 +240,7 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Deg</data>
 	</table>
-	<description>Initial retard quantity table 3</description>
+	<description>mTTRADV3- Initial retard quantity table 3</description>
 	</table>
 
 	<table type="3D" name="Initial Retard Quantity 4" category="Ignition Timing" storagetype="uint8" sizex="4" endian="big" userlevel="2" >
@@ -254,7 +254,7 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>Deg</data>
 	</table>
-	<description>Initial retard quantity table 4</description>
+	<description>mTTRADV4- Initial retard quantity table 4</description>
 	</table>
 	
 	<table type="2D" name="Complete Combustion RPM" category="Ignition Timing" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
@@ -6047,53 +6047,26 @@
 	</table>
 	
 	\\Catalyst// 
-	
+
+		
 	<table type="3D" name="Catalyst Temperature (Before Activated Judgement)" category="Catalyst" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="4" logparam="?">
 		<scaling units="Fahrenheit" expression="x*4" to_byte="x/4" format="0" fineincrement="1" coarseincrement="5" />
-	<table type="X Axis" name="ms" format="0.00" sizex="8">
-			<data>1.25</data>
-			<data>3</data> 
-			<data>5</data>
-			<data>6</data> 
-			<data>7</data>
-			<data>8</data> 
-			<data>9</data>
-			<data>10</data> 
-		</table>		
-	<table type="Y Axis" name="RPM" sizey="8" logparam="P8">
-			<data>750</data>
-			<data>1200</data> 
-			<data>1600</data>
-			<data>2000</data> 	
-			<data>2400</data>
-			<data>2800</data> 
-			<data>3200</data>
-			<data>3600</data> 
+	<table type="X Axis" name="ms" storagetype="uint8" endian="big">
+			<scaling units="ms" expression="x*0.125" to_byte="x/0.125" format="0.00"/>
+	</table>		
+	<table type="Y Axis" name="RPM" storagetype="uint8" endian="big" logparam="P8">
+			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0"/>
 		</table>
 		<description>mMTEX1- In front of the activated judgement, catalyst temperature map// Fahrenheit needs confirmed</description>
 	</table>
 
 	<table type="3D" name="Catalyst Temperature (After Activated Judgement)" category="Catalyst" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="4" logparam="?">
 		<scaling units="Fahrenheit" expression="x*4" to_byte="x/4" format="0" fineincrement="1" coarseincrement="5" />
-	<table type="X Axis" name="ms" format="0.00" sizex="8">
-			<data>1.25</data>
-			<data>3</data> 
-			<data>5</data>
-			<data>6</data> 
-			<data>7</data>
-			<data>8</data> 
-			<data>9</data>
-			<data>10</data> 
-		</table>		
-	<table type="Y Axis" name="RPM" sizey="8" logparam="P8">
-			<data>750</data>
-			<data>1200</data> 
-			<data>1600</data>
-			<data>2000</data> 	
-			<data>2400</data>
-			<data>2800</data> 
-			<data>3200</data>
-			<data>3600</data> 
+	<table type="X Axis" name="ms" storagetype="uint8" endian="big">
+			<scaling units="ms" expression="x*0.125" to_byte="x/0.125" format="0.00"/>
+	</table>		
+	<table type="Y Axis" name="RPM" storagetype="uint8" endian="big" logparam="P8">
+			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0"/>
 		</table>
 		<description>mMTEX2- After the activated judgement, catalyst temperature map// Fahrenheit needs confirmed</description>
 	</table>
@@ -9065,7 +9038,7 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
-	<description>PTD ON/ off switchover step value table</description>
+	<description>mTSTPTRN- PTD ON/ off switchover step value table</description>
 	</table>
 
 	<table type="3D" name="PTD On/Off Switchover Step Value Table (Low Speed)" category="Torque Management" storagetype="uint16" sizex="4" endian="big" userlevel="4" >
@@ -9079,7 +9052,7 @@
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
-	<description>PTD ON/ off switchover step value table (low speed)</description>
+	<description>mTSTPTRNL- PTD ON/ off switchover step value table (low speed)</description>
 	</table>
 	
 	<table type="3D" name="Base Torque Table" category="Torque Management" storagetype="uint8" sizey="16" endian="big" userlevel="4" >
@@ -9275,7 +9248,7 @@
 	<description>mTTXMAX- Maximum operation time//Function: FAST torque injection cut off</description>
 	</table>
 	
-	<table type="2D" name="T/M Excessive Torqaue Going Down Upper Limit Time" category="Torque Management" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+	<table type="2D" name="T/M Excessive Torque Going Down Upper Limit Time" category="Torque Management" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="ms" expression="x*10" to_byte="x/10" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
@@ -9627,28 +9600,46 @@
 		<description>mTEHOSMAP- TTEPTD torque compensation map// "Throttle Enhance"</description>
 	</table>
 	
+	<table type="3D" name="At Time of Acceleration, AC Cut Judgement VAPO Table" category="Electronic Throttle" storagetype="uint16" sizex="8" endian="big" userlevel="4" >
+		<scaling units="Degrees" expression="x*.11" to_byte="x/.11" format="0.00"/>
+	<table type="X Axis" name="Km/h" sizex="8">
+			<data>0</data>
+			<data>8</data>
+			<data>16</data>
+			<data>24</data>
+			<data>32</data>
+			<data>40</data>
+			<data>48</data>
+			<data>56</data>
+	</table>
+	<table type="Y Axis" name="-" sizey="1">
+			<data>Deg</data>
+	</table>
+	<description>mTAPOAC- At the time of the acceleration, A/C cut judgement VAPO table// Function: Air conditioner cut control</description>
+	</table>
+	
 	<table type="3D" name="Full Increase Judgement VAPO Table" category="Electronic Throttle" storagetype="uint8" sizey="16" endian="big" userlevel="1" >
 		<scaling units="Degrees" expression="x*.35" to_byte="x/.35" format="0"/>
 	<table type="X Axis" name="-" sizex="1">
 		<data>Deg</data>
 	</table>
-	<table type="Y Axis" name="Degrees" sizey="16">
+	<table type="Y Axis" name="RPM" sizey="16">
 			<data>0</data>
-			<data>1</data>
-			<data>2</data>
-			<data>3</data>
-			<data>4</data>
-			<data>5</data>
-			<data>6</data>
-			<data>7</data>
-			<data>8</data>
-			<data>9</data>
-			<data>10</data>
-			<data>11</data>
-			<data>12</data>
-			<data>13</data>
-			<data>14</data>
-			<data>15</data>
+			<data>400</data>
+			<data>800</data>
+			<data>1200</data>
+			<data>1600</data>
+			<data>2000</data>
+			<data>2400</data>
+			<data>2800</data>
+			<data>3200</data>
+			<data>3600</data>
+			<data>4000</data>
+			<data>4400</data>
+			<data>4800</data>
+			<data>5200</data>
+			<data>5600</data>
+			<data>6000</data>
 	</table>
 	<description>mTFVAPO- A full increase judgement VAPO table// "Throttle Peg Table"</description>
 	</table>
@@ -9840,9 +9831,12 @@
 	<description>Opening area => target throttle open-degree conversion table</description>
 	</table>
 	
-	<table type="3D" name="Throttle Ceremony Road Surface Product Table" category="Electronic Throttle" storagetype="uint16" sizex="32" endian="big" userlevel="4">
+	<table type="3D" name="Throttle Ceremony Road Surface Product Table" category="Electronic Throttle" storagetype="uint16" sizey="32" endian="big" userlevel="4">
 	<scaling units="CM*2.8125deg" expression="x*0.0008" to_byte="x/0.0.0008" format="0.000"/> 
-	<table type="X Axis" name="Degrees" sizex="32" format="0.00">
+	<table type="X Axis" name="-" sizex="1">
+			<data>CM*2.8125deg</data>
+	</table>
+	<table type="Y Axis" name="Degrees" sizey="32" format="0.00">
 			<data>0.00</data> 
 			<data>2.81</data>
 			<data>5.62</data> 
@@ -9875,9 +9869,6 @@
 			<data>81.56</data>
 			<data>84.38</data>
 			<data>87.19</data>
-	</table>
-	<table type="Y Axis" name="-" sizey="1">
-			<data>CM*2.8125deg</data>
 	</table>
 	<description>Throttle ceremony road surface product table (GKTVO 2.8125deg)</description>
 	</table>
@@ -10373,9 +10364,17 @@
 	<table type="Y Axis" name="Degrees" sizey="1">
 			<data>Above</data>
 	</table>
-	<description>APS open-degree threshold</description>
+	<description>mBRKFLSL- APS open-degree threshold// Apart of "Brake Switch Failsafe" function. </description>
 	</table>
-		
+	
+	<table type="2D" name="Failsafe Operation Vehicle Speed" category="Electronic Throttle" storagetype="uint8" sizey="1" endian="big" userlevel="1" >
+		<scaling units="Km/h" expression="x*2" to_byte="x/2" format="0.00"/>
+	<table type="Y Axis" name="Km/h" sizey="1">
+			<data>Above</data>
+	</table>
+	<description>mBRKFSVSP- Failsafe operation vehicle speed</description>
+	</table>
+				
 	<table type="2D" name="GKTVO Learning Delay" category="Electronic Throttle" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="ms" expression="x*10" to_byte="x/10" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
@@ -15767,24 +15766,6 @@
 	</table>
 	
 	\\Air Conditioning//
-
-	<table type="3D" name="At Time of Acceleration, AC Cut Judgement VAPO Table" category="Air Conditioning" storagetype="uint16" sizex="8" endian="big" userlevel="4" >
-		<scaling units="Degrees" expression="x*.11" to_byte="x/.11" format="0.00"/>
-	<table type="X Axis" name="Km/h" sizex="8">
-			<data>0</data>
-			<data>8</data>
-			<data>16</data>
-			<data>24</data>
-			<data>32</data>
-			<data>40</data>
-			<data>48</data>
-			<data>56</data>
-	</table>
-	<table type="Y Axis" name="-" sizey="1">
-			<data>Deg</data>
-	</table>
-	<description>mTAPOAC- At the time of the acceleration, A/C cut judgement VAPO table// Function: Air conditioner cut control</description>
-	</table>
 	
 	<table type="2D" name="PD Pressure Middle Value" category="Air Conditioning" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="MPa" expression="x*0.02" to_byte="x/0.02" format="0.00"/>

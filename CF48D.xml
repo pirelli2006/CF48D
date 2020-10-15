@@ -94,8 +94,25 @@ Maps
 	<table name="Ignition Adjustment Limits (Filling Up Efficiency)" storageaddress="0x7F8F"/>
 	<table name="Torque Going Down Rate Decrease Rate (DownShift)" storageaddress="0x9CD1"/> 
 	<table name="Torque Going Down Rate Choice Parameter (DownShift)" storageaddress="0x9CE1"/>
-	<table name="Catalyst Temperature (Before Activated Judgement)" storageaddress="0x98D1"/> 
-	<table name="Catalyst Temperature (After Activated Judgement)" storageaddress="0x9911"/>
+	
+	
+	
+	
+	<table name="Catalyst Temperature (Before Activated Judgement)" storageaddress="0x98D1">
+		<table type="X Axis" storageaddress="0xC060"/>
+		<table type="Y Axis" storageaddress="0xC058"/>
+	</table>
+	
+	
+	
+	<table name="Catalyst Temperature (After Activated Judgement)" storageaddress="0x9911">
+		<table type="X Axis" storageaddress="0xC060"/>
+		<table type="Y Axis" storageaddress="0xC058"/>
+	</table>
+	
+	
+	
+	
 	<table name="High IAT Retard Max" storageaddress="0x8322"/>
 	<table name="High IAT Retard Permission" storageaddress="0x8323"/> 
 	<table name="Idle Retard Side Limiter" storageaddress="0x7AF6"/>
@@ -541,7 +558,7 @@ Maps
 	<table name="Misfire Count Rise Permission Coolant Temperature Upper Limit" storageaddress="0x849B"/>
 	<table name="Coolant Temperature Condition for Misfire Cancellation Delta-TVO Setup" storageaddress="0x849C"/> 
 	<table name="Misfire Count Rise Permission, at Start, Coolant Temperature" storageaddress="0x849D"/> 
-	<table name="Full Increase Judgement VAPO Table" storageaddress="0xB854"/> 
+	<table name="Full Increase Judgement VAPO Table" storageaddress="0xB854"/> //Called "Throttle Peg Table"
 	<table name="TFBAY0 Hysteresis" storageaddress="0x8355"/>
 	<table name="TFBAY0 Hysteresis 2" storageaddress="0x8356"/> 
 	<table name="TFBYA Limiter" storageaddress="0x8357"/> 
@@ -941,7 +958,7 @@ Maps
 	<table name="Switch Over, '10,e is Changed, Vehicle Speed" storageaddress="0x8B1A"/> 
 	<table name="Recover Speed" storageaddress="0x8B18"/> 
 	<table name="Pull-Down Time Maximum Value" storageaddress="0x8B02"/>
-	<table name="T/M Excessive Torqaue Going Down Upper Limit Time" storageaddress="0x843A"/>
+	<table name="T/M Excessive Torque Going Down Upper Limit Time" storageaddress="0x843A"/>
 	<table name="At Time of Fuel Cut, Amount of Retard" storageaddress="0x8438"/> 
 	<table name="TTRADV2 Choice Vehicle Speed" storageaddress="0x843B"/> 
 	<table name="An Idle Off Delay for TTRADV22" storageaddress="0x843C"/>
@@ -1892,7 +1909,7 @@ Maps
 		<table type="X Axis" storageaddress="0xB2CD"/>
 		<table type="Y Axis" storageaddress="0xB2C5"/>
 	</table>
-	
+	<table name="Failsafe Operation Vehicle Speed" storageaddress="0x7BD8"/> 
 	\\NEW//
 	
 	<table name="Limiter Vehicle Speed 2 (Vehicle Speed Decline Judgement Value)" storageaddress="0x8A4E"/> (mSLVSP2 A2l)
@@ -2196,7 +2213,7 @@ same for 8674^
 DE10 is an axis or something
 -->
 
-	<table name="TTEPTD Torque Compensation Map" storageaddress="0xAE8C"> 
+	<table name="TTEPTD Torque Compensation Map" storageaddress="0xAE8C"> //Called "Throttle Enhance" 
 		<table type="X Axis" storageaddress="0xCCC0"/>
 		<table type="Y Axis" storageaddress="0xCCB0"/>
 	</table>
@@ -2253,7 +2270,7 @@ DE10 is an axis or something
 
 	<table name="Speed Limiter" storageaddress="0x8A4C"/>
 
-	<table name="Fuel Cut Bosch" storageaddress="0xBCA2"/> //"Speed Fuel Cut" 
+	<table name="Fuel Cut Bosch" storageaddress="0xBCA2"/> 
 
 	<table name="Fuel Cut JECS" storageaddress="0xBCD6"/>
 
@@ -2267,7 +2284,10 @@ DE10 is an axis or something
 
 	<table name="mVSPRC2 Speed Limiter (restore)" storageaddress="0x854E"/>
 
-	<table name="High Temp Fuel Compensation" storageaddress="0x8DC1"/>
+	<table name="High Temp Fuel Compensation" storageaddress="0x8DC1">
+		<table type="X Axis" storageaddress="0xB331"/>
+		<table type="Y Axis" storageaddress="0xB32D"/>
+	</table>
 
 	<table name="QH0/ Torque Conversion Map" storageaddress="0xA78C"> 
 		<table type="X Axis" storageaddress="0xC842"/>
@@ -2359,7 +2379,7 @@ DE10 is an axis or something
 	<table name="Dwell RPM table" storageaddress="0xB794"/>
 
 	<table name="Dwell battery table" storageaddress="0xB79C"/>
-
+	
 <!--	
 Axis'
 \\
