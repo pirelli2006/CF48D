@@ -1544,7 +1544,7 @@
 	<table type="3D" name="Fuel Compensation" category="AFR" storagetype="uint8" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z25">
 		<scaling units="NA" expression="(x/128)*100" to_byte="(x/100)*128" format="0.00" fineincrement=".2" coarseincrement="1" />
 		<table type="X Axis" name="TVO-N flow-quantity" storagetype="uint8" endian="big" logparam="Z24">
-			<scaling units="%" expression="x/2.56" to_byte="x*2.56" format="0" fineincrement=".2" coarseincrement="1" />
+			<scaling units="%" expression="x/2.56" to_byte="x*2.56" format="0.0" fineincrement=".2" coarseincrement="1" />
 		</table>
 		<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
 			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
@@ -8882,28 +8882,6 @@
 		</table>
 		<description>mMPTXRT- Suspension time/operation time ratio map// Function:FAST torque injection cut off</description>
 	</table>
-
-	<table type="3D" name="QH0/ Torque Conversion Map" category="Torque Management" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z26">
-		<scaling units="Nm" expression="x/10-3276.8" to_byte="x*10+32768" format="0" fineincrement="1" coarseincrement="10" />
-		<table type="X Axis" name="QH0 flow quantity ratio" storagetype="uint16" endian="big" logparam="Z24">
-			<scaling units="%" expression="x*0.00152588" to_byte="x/0.00152588" format="0.00" fineincrement="1" coarseincrement="10" />
-		</table>
-		<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
-			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
-		</table>
-		<description>mMTTE QH0/ torque 1 and 2 must match exactly if you makes changes.</description>
-	</table>
-
-	<table type="3D" name="QH0/ Torque Conversion Map 2" category="Torque Management" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z26">
-		<scaling units="Nm" expression="x/10-3276.8" to_byte="x*10+32768" format="0" fineincrement="1" coarseincrement="10" />
-		<table type="X Axis" name="QH0 flow quantity ratio" storagetype="uint16" endian="big" logparam="Z24">
-			<scaling units="%" expression="x*0.00152588" to_byte="x/0.00152588" format="0.00" fineincrement="1" coarseincrement="10" />
-		</table>
-		<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
-			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
-		</table>
-		<description>mMTTE_S QH0/ torque 1 and 2 must match exactly if you makes changes.</description>
-	</table>
 	
 	<table type="3D" name="D Range Target Drive Force Map" category="Torque Management" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z27">
 		<scaling units="Newtons" expression="x-32768" to_byte="x+32768" format="0" fineincrement="1" coarseincrement="10" />
@@ -9588,6 +9566,28 @@
 	</table>
 	
 	\\Electronic Throttle//
+
+	<table type="3D" name="QH0/ Torque Conversion Map" category="Electronic Throttle" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z26">
+		<scaling units="Nm" expression="x/10-3276.8" to_byte="x*10+32768" format="0" fineincrement="1" coarseincrement="10" />
+		<table type="X Axis" name="QH0 flow quantity ratio" storagetype="uint16" endian="big" logparam="Z24">
+			<scaling units="%" expression="x*0.00152588" to_byte="x/0.00152588" format="0.00" fineincrement="1" coarseincrement="10" />
+		</table>
+		<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
+		</table>
+		<description>mMTTE Directly influences throttle opening. QH0/ torque 1 and 2 must match exactly if you makes changes.</description>
+	</table>
+
+	<table type="3D" name="QH0/ Torque Conversion Map 2" category="Electronic Throttle" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z26">
+		<scaling units="Nm" expression="x/10-3276.8" to_byte="x*10+32768" format="0" fineincrement="1" coarseincrement="10" />
+		<table type="X Axis" name="QH0 flow quantity ratio" storagetype="uint16" endian="big" logparam="Z24">
+			<scaling units="%" expression="x*0.00152588" to_byte="x/0.00152588" format="0.00" fineincrement="1" coarseincrement="10" />
+		</table>
+		<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
+		</table>
+		<description>mMTTE_S Check map. QH0/ torque 1 and 2 must match exactly if you makes changes.</description>
+	</table>
 	
 	<table type="3D" name="TTEPTD Torque Compensation Map" category="Electronic Throttle" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="1" logparam="?">
 		<scaling units="%" expression="x*.003051758" to_byte="x/.003051758" format="0" fineincrement="1" coarseincrement="10" />
@@ -12037,7 +12037,7 @@
 		<description>mTCRADV This is the target ignition advance at startup which references Coolant Temperature</description>
 	</table>	
 
-	<table type="3D" name="Crank Fueling TP value" category="Cranking and Startup" storagetype="uint16" endian="big" sizey="8" userlevel="4">
+	<table type="3D" name="Crank Fueling TP Value" category="Cranking and Startup" storagetype="uint16" endian="big" sizey="8" userlevel="4">
 		<scaling units="ms" expression="x/2048" to_byte="x*2048" format="0.00" fineincrement=".1" coarseincrement="1" />
 		<table type="X Axis" name="-" sizex="1">
 			<data>ms</data>

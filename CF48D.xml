@@ -75,7 +75,7 @@ Maps
 	<table name="Target Basis QH0 Table" storageaddress="0xD216"/>	Axis 0xD106 //Called Throttle Flow Torque but maps don't line up like that.
 	<table name="Target Basis QH0 Table 2" storageaddress="0xD256"/>
 	<table name="QH0 Vehicle Speed Upper Limit Table" storageaddress="0xCEF8"/>	
-	<table name="APOFS Shaft Conversion" storageaddress="0xCAD0"/>
+	<table name="APOFS Shaft Conversion" storageaddress="0xCAD0"/> //verify these two
 	<table name="APOFS Shaft Conversion 2" storageaddress="0xD036"/>	
 	<table name="Target Throttle Open Degree Conversion Table" storageaddress="0xD1A6"/>
 	<table name="Target Throttle Open Degree Conversion Table 2" storageaddress="0xE06C"/>
@@ -1935,11 +1935,11 @@ Maps
 	
 	<table name="Throttle Flow" storageaddress="0xC4B0"> Unknown A2L
 		<table type="X Axis" storageaddress="0x0000"/>
-		<table type="Y Axis" storageaddress="0xD1A6"/>
+		<table type="Y Axis" storageaddress="0xD1A6"/> Throttle target open deg 1?
 	</table>
 	<table name="Throttle Flow 2" storageaddress="0xDE22"> Unknown A2L
 		<table type="X Axis" storageaddress="0x0000"/>
-		<table type="Y Axis" storageaddress="0xE06C"/>
+		<table type="Y Axis" storageaddress="0xE06C"/> Throttle target open deg 2?
 	</table>	
 	
 	<table name="Big Injector Minimum 1" storageaddress="0x551C"> Unknown A2L uint16 or int16
@@ -2364,7 +2364,7 @@ DE10 is an axis or something
 
 	<table name="MAF factor" storageaddress="0x8200" />
 
-	<table name="Crank Fueling TP value" storageaddress="0xD1F6"/>
+	<table name="Crank Fueling TP Value" storageaddress="0xD1F6"/>
 	
 	<table name="MAF idle voltage limits (USRV)" storageaddress="0x8B2E"/> 
 
