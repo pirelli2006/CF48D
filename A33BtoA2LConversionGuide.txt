@@ -1,0 +1,16 @@
+How to Convert A33B's definition files to A2L definition files.
+
+Previous Name - New Name
+Fuel Target - Target AFR
+MAF - MAF Table
+QH0/ torque conversion map - QH0/ Torque Conversion Map
+QH0/ torque conversion map 2 - QH0/ Torque Conversion Map 2
+Engine torque value map- Engine Torque Map
+MSATHA - Misfire Diagnosis Table A
+MSATHB - Misfire Diagnosis Table B
+MSATH - Misfire Diagnosis Table C
+Fuel Injection Multiplier - K-Value
+mMTFDD - D Range Target Drive Force Map
+mMTFDD_S - D Range Target Drive Force Map 2
+mMTFDDS - Ds Range Target Drive Force Map
+mMTFDDS_S - Ds Range Target Drive Force Map 2
