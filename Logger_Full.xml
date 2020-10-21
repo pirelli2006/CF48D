@@ -39189,8 +39189,24 @@ X = X_X#1 in the event that there's an X_X#2 (not confirmed)
     KnockFlagMask = 0x40,
 
 
-
-
+vRLVAPO - 0xFF3900 // In the Limiter, VAPO for the Up-Shift
+vRLRPM - 0xFF1716 // Limit Speed
+tRLIGDLY - 0xFF2568 // I-Gain Initial Gain Time
+vRLTGTRPM - 0xFF1718 // High Rotation Limiter Target Speed
+vRLFLTNE - 0xFF1714 // After filter treatment is added, engine speed
+vTTERLUPS - 0xFF19B4 // At Time of up-shift, high rotation limiter torque
+vTTERL - 0xFF19B0 // A High Rotation Limiter Torque
+vTTEP - 0xFF19A0 // After TCS/VDC Control, PTD Requested Torque
+vTTERL0 - 0xFF19B2 // High Rotation Limiter Basic Torque (R/L + I-Gain)
+vTTEPTD - 0xFF239E //PTD Target Engine Torque
+wvCURGPV - 0xFF84BF // Actual Gear Position Estimated Value
+wvCURGP - 0xFF84BE // An Actual Gear Position (CurGP) Signal
+vRLTENG2 - 0xFF2364 // In the limiter, TENG2 for the Up-shift
+wvDTVOP - 0xFF84E9
+wvTVOz15 - 0xFF8534
+wvTVOz3 - 0xFF8535
+tACANTSTD - 0xFF2506 // Anticipated AC Compressor clutching delay
+tTMHADI - 0xFF258E // Phase Control idle Condiiton timer
 Big Injector Minimum 1 Y Trace - 0xFF94B8 // unknown a2l uint16
 Big Injector Minimum 2 Y Trace - 0xFF94BA // unknown a2l uint16
 Big Injector Minimum 3 Y Trace - 0xFF9514 // unknown a2l uint16
