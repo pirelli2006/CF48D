@@ -39187,8 +39187,42 @@ X = X_X#1 in the event that there's an X_X#2 (not confirmed)
     KnockWord = 0xFFFF11A6, 
     KnockFlag = 0xFFFF23AC,
     KnockFlagMask = 0x40,
-
-
+	
+	
+	
+	
+wfCLUSW - 0xFF996F // State of Clutch Pedal (1=CLutch Pedal Pressed)
+vTADNVTE - 0xFF17B4 // PTD Normalized opening area
+vTQH0PTD - 0xFF1960 // PTD Basic Flow-quantity Ratio
+vTADNVCK - 0xFF17B0 // Normalized Opening Area
+vAQSISC - 0xFF1166 // ISC opening area
+vTDTVO - 0xFF303A // Target throttle open-degree
+vTTAAPO - 0xFF198E // A total basic opening area
+vVAPO - 0xFF261C // Throttle open-degree target value (virtual)
+vVVTVO - 0xFF1BC6 // Target torque equivalent throttle open-degree
+vAVTVO - 0xFF1182 // Target torque equivalent opening area
+vALOADCK - 0xFF1128 // Compensation Torque equivalent throttle opening area
+vAAPOCK - 0xFF10CA // Accelerator Opening Area
+vTQH0IF - 0xFF195E // After the inverse filter, Torque Qh0 Conversion value
+vTTEPTD_S - 0xFF1C66 // PTD Target Torqeu (redundant operation vice operation part)
+vTTEPD1_S - 0xFF321C // After speed compensation, target torque
+vPTDNE_S - 0xFF1C08 // Engine Speed SubCPU
+vAAPO - 0xFF10C8 // Accelerator Opening Area
+vTATE - 0xFF17C4 // PTD Torque Area Conversion Value
+vTQH0TE - 0xFF1964 // Torque Qh0 Conversion Value
+vQH0LMT - 0xFF169E // QH0 Upper Limit Value
+wvVSPX - 0xFF8452 // Hiigh precision vehicle speed
+wvHRVSP - 0xFF8506 // High precision vehicle speed for PTD
+tMMTQUPTM - 0xFF254C //M Mode rotation sychronous control operation timer
+vTQH0CKLT - 0xFF195C // A basic volume flow-quantity ratio
+vQH0QL - 0xFF2EB6 // Air Learning QH0 Basic Value
+vADNVQL - 0xFF34CE // "-" opening area/induction volume 
+vTPO1 - 0xFF992E // Throttle 1 Open-Degree
+vTVOFQLS - 0xFFAF1E // Low Speed air learning value
+vTVOFQL - 0xFF3158 // High-speed air learning value
+vTPO1QL - 0xFF3784 // TPO1 Learning compensation value
+vNE - 0xFF8622 // Engine Speed 
+vATPO1 - 0xFF98CC // TPO1 Opening Area
 vRLVAPO - 0xFF3900 // In the Limiter, VAPO for the Up-Shift
 vRLRPM - 0xFF1716 // Limit Speed
 tRLIGDLY - 0xFF2568 // I-Gain Initial Gain Time
@@ -39212,7 +39246,7 @@ Big Injector Minimum 2 Y Trace - 0xFF94BA // unknown a2l uint16
 Big Injector Minimum 3 Y Trace - 0xFF9514 // unknown a2l uint16
 Intake CAM Y Trace - 0xFF85E1 // Unknown a2l (RPM)
 Delta Ne Speed Fuel Cut Restore Table Y Trace - 0xFF84A2 // unknown a2l	
-Throttle Flow Y Trace - 0xFF261A // Unknown A2L
+vTGTVO- Throttle Flow Y Trace - 0xFF261A 
 Throttle Flow 2 Y Trace - 0xFF380C // Unknown A2L
 N~TP Compensation Bank 1 Table Y Trace - 0xFF2C9A // Unknown A2L
 N~TP Compensation Bank 2 Table Y Trace - 0xFF2ECE // Unknown A2L	
@@ -39222,8 +39256,8 @@ Target Drive Power Y Trace - 0xFF1008 // Unknown A2L
 Torque Converter Ratio Y trace - 0xFF15BE // Unknown A2L
 Torque Converter Ratio Y Trace 2 - 0xFF1C06 // Unknown A2L
 Load BFS Axis Trace - 0xFF85E7 // Unknown a2l 
-QH0 X Trace - 0xFF195A // Unknown scaling, but confirmed
-QH0 Y Trace - 0xFF166A // Unknown Scaling, but confirmed
+vTQH0AP - 0xFF195A // QH0 X Trace "APO/QH0 Conversion Value"
+vPTDNE QH0 Y Trace - 0xFF166A // Unknown Scaling, but confirmed Engine RPM
 Fuel Target X Trace Max Tst - 0x01 // Not sure
 Fuel Target X Trace Max Var - 0xFF23AE // Not sure
 Target AFR - 0xFF227A // Probably the target AFR Map value. Maybe check scalings for other target AFR and verify?

@@ -21,6 +21,8 @@ Eventually organize these in the same way A2L is organized for easy cross refere
 Figure out a better way to organize Axis' and Flags
 Add certain flags as bitswitch maps to allow enabling/disabling at will? Any practical use for this?
 
+Target Basis QH0 Table 1+2 might have check maps in Volume Quantity Ratio Table 1+2
+
 \\
 Maps
 \\	
@@ -51,22 +53,34 @@ Maps
 	<table name="QH0 Upper Limit Judgement Hysteresis" storageaddress="0x87C6"/> 
 	<table name="Ignition Retard Side Max" storageaddress="0x7AD5"/>
 	<table name="Ignition Retard Limit" storageaddress="0x7AF1"/>	
-	<table name="Standard Condition Filling Up Efficiency Table" storageaddress="0xBA18"/>
-	<table name="Atmospheric Pressure Filling Up Efficiency Table" storageaddress="0xBD76"/>
+	<table name="WOT Standard Condition Filling Up Efficiency Table" storageaddress="0xBA18"/>
+	<table name="WOT Atmospheric Pressure Filling Up Efficiency Table" storageaddress="0xBD76"/>
 	<table name="Accelerator Full Open Threshold" storageaddress="0x8720"/>
 	<table name="MAX Accelerator Open Degree" storageaddress="0x8728"/> 
 	<table name="Accelerator Full Open Judgement Hysteresis" storageaddress="0x877E"/>
-	<table name="TVO_N High Flow Quantity Table" storageaddress="0xCE98"/> 
 	<table name="TVO_N Low Flow Quantity Table" storageaddress="0xCEB8"/> 
+	<table name="TVO_N High Flow Quantity Table" storageaddress="0xCE98"/> 
 	<table name="QH0 Upper Limit Table" storageaddress="0xCED8"/>
-	<table name="Volume Low-Quantity Ratio Table" storageaddress="0xE022"/> Axis 0xDFA2 // Called Throttle Flow Torque 2
-	<table name="Volume High-Quantity Ratio Table" storageaddress="0xDFE2"/>
-	<table name="Target Basis QH0 Table" storageaddress="0xD216"/>	Axis 0xD106 //Called Throttle Flow Torque?
+	
+	<table name="Throttle Flow Torque" storageaddress="0xD216">
+		<table type="Y Axis" storageaddress="0xD106"/>
+	</table>
+	
+	<table name="Throttle Flow Torque 2" storageaddress="0xE022">
+		<table type="Y Axis" storageaddress="0xDFA2"/>
+	</table>
+	
+	<table name="Volume Quantity Ratio Table 2" storageaddress="0xDFE2">
+		<table type="Y Axis" storageaddress="0xDF62"/>
+	</table>
+	
+	<table name="Target Basis QH0 Table 2" storageaddress="0xD256">
+		<table type="Y Axis" storageaddress="0xD146"/>
+	</table>
+	
 	<table name="QH0 Vehicle Speed Upper Limit Table" storageaddress="0xCEF8"/>	
 	<table name="APOFS Shaft Conversion" storageaddress="0xCAD0"/>
 	<table name="APOFS Shaft Conversion 2" storageaddress="0xD036"/>	
-	<table name="Target Throttle Open Degree Conversion Table" storageaddress="0xD1A6"/> // CONFIRMED TABLES. NOTTTT JUST AXIS'. Throttle flow tables are actually axis' for these.
-	<table name="Target Throttle Open Degree Conversion Table 2" storageaddress="0xE06C"/>
 	<table name="Accelerator Open-Degree" storageaddress="0x872E"/> 
 	<table name="Maximum Retard Degree Reference Angle" storageaddress="0x7BB9"/>
 	<table name="Reference Angle (Left Bank)" storageaddress="0x7BBE"/> 
@@ -598,7 +612,7 @@ Maps
 	<table name="NMEMH Reference Table" storageaddress="0xBCF6"/> 
 	<table name="D Range NSET0 Maintenance Air Quantity Table" storageaddress="0xBD0E"/> 
 	<table name="N Range NSET0 Maintenance Air Quantity Table" storageaddress="0xBD2E"/> 
-	<table name="First-Ordered Filter Weight" storageaddress="0xC770"/> 
+	<table name="First-Ordered Filter Weight Map" storageaddress="0xC770"/> 
 	<table name="Throttle Map 1" storageaddress="0xCAF0"/> 
 	<table name="Throttle Map 2" storageaddress="0xCAB0"/> 
 	<table name="Throttle Map 3" storageaddress="0xCB10"/> 
@@ -1883,9 +1897,10 @@ Maps
 	<table name="D Range Stall Continuous Judgement Time" storageaddress="0x87CE"/> (mDSTLTM A2l)
 	<table name="Retard Quantity Decrease Rate" storageaddress="0x87D2"/> (mDTQD A2l)
 	<table name="Engine Speed Switching Speed Hysteresis for Low Rotation" storageaddress="0x887A"/> (mHNTPS A2l)
-	<table name="Ignition Advance Initial Value" storageaddress="0x7B35"/> (mADVINT A2l) in TONSSS Of functions but 0 value? Weird. 400E value gets added to this value in two functions. Other functions are NULL? Error or inactive?
-				
-	
+	<table name="Ignition Advance Initial Value" storageaddress="0x7B35"/> (mADVINT A2l) in TONSSS Of functions but 0 value? Weird. 400E value gets added to this value in two functions. 
+	<table name="When M Mode Rotation Synchronous Control Works, QH0 Upper Limit" storageaddress="0x89E2"/> mQHLMMTUP A2L)
+	<table name="High Speed Air Learning Permission TP Change Width" storageaddress="0x89E4"/> (mQLDTP A2L)
+	<table name="Low Speed Air Learning (usually, mode) Dead-Zone" storageaddress="0x89E6"/> (mQLOFEN A2l)
 	
 	
 	
@@ -1902,6 +1917,8 @@ Maps
 	\\NEW//
 	8A42 is something Uprev added to RAM. 1D value of unscaled 10 uint16. Tf?
 
+89E0 65535 value used in ETC logic
+
 9CA1 4x4 uint8 shifting map
 B5A7 Axis
 B5A3 Axis
@@ -1915,18 +1932,25 @@ B5A3 Axis
 B5A7 Axis
 B5A3 Axis
 
-	<table name="Vehicle Speed Conversion Final Drive" storageaddress="0x8910"/> (mKVBYN A2L)
-	<table name="Reverse Gear Ratio" storageaddress="0x8A2A"/> mRRATIO A2L 
-	<table name="Reverse Gear Ratio 2" storageaddress="0xD7C0"/> mRRATIO_S A2L 
-	
-	<table name="Throttle Flow" storageaddress="0xC4B0"> Unknown A2L
-		<table type="X Axis" storageaddress="0x0000"/>
-		<table type="Y Axis" storageaddress="0xD1A6"/> Throttle target open deg 1?
+
+
+	<table name="After the Start, Increase Table" storageaddress="0xBA50"/>
+<!-- Verify in Ghidra -->
+	<table name="After the Start, Increase Water Temperature Compensation Table" storageaddress="0xBA60"/>
+
+	<table name="Target Throttle Open Degree Conversion Table" storageaddress="0xC4B0">
+		<table type="X Axis" storageaddress="0xD1A6"/>
 	</table>
-	<table name="Throttle Flow 2" storageaddress="0xDE22"> Unknown A2L
-		<table type="X Axis" storageaddress="0x0000"/>
-		<table type="Y Axis" storageaddress="0xE06C"/> Throttle target open deg 2?
-	</table>	
+
+	<table name="Target Throttle Open Degree Conversion Table 2" storageaddress="0xDE22">
+		<table type="X Axis" storageaddress="0xE06C"/>
+	</table>
+	
+	<table name="Vehicle Speed Conversion Final Drive" storageaddress="0x8910"/> (mKVBYN A2L)
+	
+	<table name="Reverse Gear Ratio" storageaddress="0x8A2A"/> mRRATIO A2L 
+	
+	<table name="Reverse Gear Ratio 2" storageaddress="0xD7C0"/> mRRATIO_S A2L 
 	
 	<table name="Big Injector Minimum 1" storageaddress="0x551C"> Unknown A2L uint16 or int16
 			<table type="X Axis" storageaddress="0x0000"/>
@@ -1982,8 +2006,6 @@ B5A3 Axis
 
 
 	<table name="OL Fueling Target Rate" storageaddress="0xbb98"/>
-
-	<table name="Minimum Injector Pulse Width" storageaddress="0x8AAE"/>
 	
 	<table name="MAF Table" storageaddress="0xC862"/>
 
@@ -2022,6 +2044,8 @@ B5A3 Axis
 	<table name="A Full Increase Stage Delay" storageaddress="0x7FDB"/>
 	
 	<table name="Fuel correction limits, % (MALPRV)" storageaddress="0x829F"/> 
+
+	<table name="Minimum Injector Pulse Width" storageaddress="0x8AAE"/>
 
 	<table name="Injector Latency at 14V" storageaddress="0x7D74"/> Very unsure of these two maps as I can't find any info about stock injectors.
 
@@ -2232,8 +2256,6 @@ B5A3 Axis
 	
 	
 \\ Convert to Tables UNKNOWN MAPS //
-BA50 uint8 16x1 table (unique)
-BA60 uint8 16x1 table (unique)
 BE2A uint8 8x1 table (All 250)
 BF28 uint8 8x1 table (All 15)
 C050 uint8 8x1 table (All 64)
@@ -2370,7 +2392,6 @@ Axis'
 	mTTGADNV 0xD106
 	mTTGADNVH 0xD146
 	mNTTE0 0xB4CA
-	mATGTVO 0xC4B0
 	mTXCLABF 0xD446  
 	mMYABFSFT 0xC7E2
 	mMXABFSFT 0xC7C2
@@ -2428,7 +2449,7 @@ Axis'
 <!--
 \\\\\ FLAGS ///// 
 
-8301 mfATMT Auto vs manual distinction flag :D 
+8301 mfATMT Auto vs manual distinction flag :D as well as multiple other maps.
 
 0x82F8 mfSTFSARI 0x0002 /mfVINV 0x0040 // APOFS Shaft Conversion treatment flag and Control excuse switching for tuning :DDD
 
