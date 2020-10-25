@@ -8,8 +8,6 @@
 
 I'm going to try leaving all 0'd out values in their proper position if it's JUST 0'd out in CF48D or appears to be useful. But if it's 0'd out in the A2L as well, then I'm going to drop it below the section.
 
-<!-- Known Issues;
-Scaling units for some reason mess up and won't show the proper scaling. Typically "ms" and such. I'm not sure how to fix this as it'll pop up randomly.-->
 
 	\\Ignition Timing//
 
@@ -71,7 +69,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 		<description>mMKPVTC- P-gain gain computed map// Function: C-VTC control (hall IC crank angle sensor (for C-VTC))</description>
 	</table>
 	
-	<table type="3D" name="Left Bank P-Gain Computed Map" category="Ignition Timing" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="4" logparam="?">
+	<table type="3D" name="P-Gain Computed Map (Left Bank)" category="Ignition Timing" storagetype="uint8" endian="big" sizex="8" sizey="8" userlevel="4" logparam="?">
 		<scaling units="%" expression="x" to_byte="x" format="0" fineincrement="1" coarseincrement="10" />
 		<table type="Static X Axis" name="Z" format="0" sizex="8">
 			<data>15</data>
@@ -1554,15 +1552,28 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 		<description>Air fuel ratio that is targeted by the ECU. If this value doesn't match when logging other paramaters need to be adjusted, like fuel compensation, and/or maf scaling.</description>
 	</table>
 	
+	<table type="3D" name="Target AFR (At WOT)" category="AFR" storagetype="uint8" endian="big" sizey="8" userlevel="1" logparam="?">
+		<scaling units="AFR(Gasoline Scale)" expression="14.7/(x/128)" to_byte="128*(14.7/x)" format="0.00" fineincrement=".02" coarseincrement=".1" />
+	<table type="X Axis" name="Target" sizex="1">
+			<data>AFR</data>
+	</table> 
+		<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
+		</table>
+		<description>Axis was taken from regular Target AFR map. A2L says axis is active so high probability that they share an axis.//mTKREGR- Target air-fuel ratio regular compensation rate (The rate of target equivalence-ratio regular compensation)</description>
+	</table>
+	
 	<table type="3D" name="Fuel Compensation" category="AFR" storagetype="uint8" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z25">
-		<scaling units="NA" expression="(x/128)*100" to_byte="(x/100)*128" format="0.00" fineincrement=".2" coarseincrement="1" />
+		<scaling name="%" units="%"	expression="(x/128)*100" to_byte="(x/100)*128" format="0.00" fineincrement=".2" coarseincrement="1" />
+		<scaling name="AFR" units="AFR(Gasoline Scale)" expression="14.7/(x/128)" to_byte="128*(14.7/x)" format="0.00" fineincrement=".2" coarseincrement="1"/>
+		<scaling name="AFR Adjustment" units="AFR Adjustment from 14.7(Gasoline Scale)" expression="(14.7/(x/128))-14.7" to_byte="(18816/(10x+147)" format="0.00" fineincrement=".2" coarseincrement="1"/>
 		<table type="X Axis" name="TVO-N flow-quantity" storagetype="uint8" endian="big" logparam="Z24">
 			<scaling units="%" expression="x/2.56" to_byte="x*2.56" format="0.0" fineincrement=".2" coarseincrement="1" />
 		</table>
 		<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
 			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
 		</table>
-		<description>This is an enrichment table for the ECU. Values above 100 are adding fuel, and values below 100 remove fuel.</description>
+		<description>This is an enrichment table for the ECU. Values above 100 are adding fuel, and values below 100 remove fuel. I've added scaling options to represent the data in AFR. This is still the exact same as the % function. 14.7(0) is no correction, anything over 14.7(0) is taking fuel out and anything under 14.7(0) is adding fuel. (0)= AFR Adjustment Scaling.</description>
 	</table>
 	
 	<table type="3D" name="Steady State Judgement Smoothing Coefficient Map" category="AFR" storagetype="uint8" endian="big" sizex="4" sizey="4" userlevel="4" logparam="?">
@@ -1578,17 +1589,11 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	
 	<table type="3D" name="Stability Rotation Load Compensation Table" category="AFR" storagetype="uint8" endian="big" sizex="4" sizey="4" userlevel="4" logparam="?">
 		<scaling units="l" expression="x*.03125" to_byte="x/.03125" format="0.00" fineincrement="1" coarseincrement="10" />
-		<table type="Static X Axis" name="l" format="0" sizey="4">
-			<data>.1992</data>
-			<data>.3984</data>
-			<data>.6016</data>
-			<data>.8008</data>      
+		<table type="X Axis" name="|" storagetype="uint8" endian="big">
+			<scaling units="|" expression="x*0.00390625" to_byte="x/0.00390625" format="0.000" fineincrement="50" coarseincrement="100" />
 		</table>
-		<table type="Static Y Axis" name="RPM" format="0" sizey="4" logparam="P8">
-			<data>800</data>
-			<data>1200</data>
-			<data>2400</data>
-			<data>3200</data>
+		<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
+			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
 		</table>
 		<description>mMSTBIN- Stability rotation load compensation map// Function: Other target equivalence ratio (for MPI)</description>
 	</table>
@@ -1624,16 +1629,9 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<table type="X Axis" name="-" sizex="1">
 		<data>-</data>
 	</table>
-	<table type="Y Axis" name="-" sizey="8">
-			<data>0</data>
-			<data>60</data>
-			<data>100</data>
-			<data>160</data>
-			<data>220</data>
-			<data>300</data>
-			<data>480</data>
-			<data>700</data>
-	</table>
+		<table type="Y Axis" name="-" storagetype="uint16" endian="big">
+			<scaling units="-" expression="x" to_byte="x" format="0" fineincrement="50" coarseincrement="250" />
+		</table>
 	<description>mTTGTGIN- Target A/F P-gain table</description>
 	</table>
 
@@ -1672,15 +1670,15 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<table type="X Axis" name="-" sizex="1">
 			<data>%</data>
 	</table>
-	<table type="Y Axis" name="-" sizey="8">
-			<data>0.50</data>
-			<data>0.62</data>
-			<data>0.75</data>
-			<data>0.88</data>
-			<data>1.00</data>
-			<data>1.12</data>
-			<data>1.25</data>
-			<data>1.38</data>
+	<table type="Y Axis" name="AFR (Potential Axis)" sizey="8">
+			<data>12.08</data>
+			<data>12.35</data>
+			<data>12.63</data>
+			<data>12.90</data>
+			<data>13.17</data>
+			<data>13.48</data>
+			<data>13.87</data>
+			<data>14.35</data>
 	</table>
 	<description>mTFLFA- Air-fuel ratio compensation table // Either Lambda or wideband V</description>
 	</table>
@@ -1690,35 +1688,28 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<table type="X Axis" name="-" sizex="1">
 			<data>%</data>
 	</table>
-	<table type="Y Axis" name="-" sizey="8">
-			<data>0.50</data>
-			<data>0.62</data>
-			<data>0.75</data>
-			<data>0.88</data>
-			<data>1.00</data>
-			<data>1.12</data>
-			<data>1.25</data>
-			<data>1.38</data>
+	<table type="Y Axis" name="AFR (Potential Axis)" sizey="8">
+			<data>12.08</data>
+			<data>12.35</data>
+			<data>12.63</data>
+			<data>12.90</data>
+			<data>13.17</data>
+			<data>13.48</data>
+			<data>13.87</data>
+			<data>14.35</data>
 	</table>
 	<description>mTRMDHOS- Air-fuel ratio compensation table // Either Lambda or wideband V</description>
 	</table>
 	
 	<table type="3D" name="Target AFR For LSOSQ Release" category="AFR" storagetype="uint16" sizey="8" endian="big" userlevel="4">
-	<scaling units="AFR" expression="x*.002" to_byte="x/.002" format="0.00"/> 
+	<scaling units="AFR" expression="x*0.002" to_byte="x/0.002" format="0.00"/> 
 	<table type="X Axis" name="-" sizex="1">
 			<data>AFR</data>
 	</table>
-	<table type="Y Axis" name="Mg" sizey="8">
-			<data>0.00</data> 
-			<data>99.84</data>
-			<data>196.68</data> 
-			<data>299.52</data>
-			<data>399.36</data> 
-			<data>499.20</data>
-			<data>599.04</data>	
-			<data>1400.32</data>					
-	</table>
-	<description>A target A/F setup table for a LSOSQ release// Figure out what LSOSQ means and find axis specific for CF48D.</description>
+		<table type="Y Axis" name="Mg" storagetype="uint16" endian="big">
+			<scaling units="Mg" expression="(x*2.56)-83886.08" to_byte="(x+83886.08)/2.56" format="0.00" fineincrement="50" coarseincrement="100" />
+		</table>
+	<description>mTLABFLL- A target A/F setup table for a LSOSQ release// Figure out what LSOSQ means and find axis specific for CF48D.</description>
 	</table>
 
 	<table type="2D" name="KMR Delay Control Limits" category="AFR" storagetype="uint8" sizey="2" endian="big" userlevel="4" >
@@ -1999,13 +1990,13 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mAFPC- A/F sensor voltage central value</description>
 	</table>
 		
-	<table type="2D" name="AF Sensor Non-Compensation Atomospheric Pressure Limits" category="AFR" storagetype="uint16" sizey="2" endian="big" userlevel="4" >
+	<table type="2D" name="AF Sensor Non-Compensation Atmospheric Pressure Limits" category="AFR" storagetype="uint16" sizey="2" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*0.078125" to_byte="x/0.078125" format="0.00"/>
 	<table type="Y Axis" name="Limits" sizey="2">
 			<data>Upper</data>
 			<data>Lower</data>
 	</table>
-	<description>mPAMBAFH- A/F sensor non-compensation atomospheric pressure upper limit</description>
+	<description>mPAMBAFH- A/F sensor non-compensation Atmospheric pressure upper limit</description>
 	</table>
 	
 	<table type="2D" name="N*TP Change Judgement Criteria 1" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
@@ -2033,11 +2024,19 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	</table>
 	
 	<table type="2D" name="Target AFR Lean Set" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="1" >
-		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>-</data>
+		<scaling units="AFR (Gasoline Scale)" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
+	<table type="Y Axis" name="Rich Set" sizey="1">
+			<data>AFR</data>
 	</table>
 	<description>mLTGABF- TARGET A/F LEAN SET//Potentially limit for target AFR on the lean side</description>
+	</table>
+	
+	<table type="2D" name="Target AFR Rich Set" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="1" >
+		<scaling units="AFR (Gasoline Scale)" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
+	<table type="Y Axis" name="Rich Set" sizey="1">
+			<data>AFR</data>
+	</table>
+	<description>mRTGABF- TARGET A/F RICH SET</description>
 	</table>
 	
 	<table type="2D" name="At Time for Rotation Synchronous Control, TFBYA0 Upper Limit Value" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
@@ -2496,13 +2495,13 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mAFSDLY- AFS response deterioration diagnosis judgement start delay</description>
 	</table>
 	
-	<table type="2D" name="AFS Response Deterioration Diagnosis Atomospheric Pressure Limits" category="AFR" storagetype="uint8" sizey="2" endian="big" userlevel="4" >
+	<table type="2D" name="AFS Response Deterioration Diagnosis Atmospheric Pressure Limits" category="AFR" storagetype="uint8" sizey="2" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*20" to_byte="x/20" format="0.00"/>
 	<table type="Y Axis" name="Limits" sizey="2">
 			<data>Upper</data>
 			<data>Lower</data>
 	</table>
-	<description>mPAMBHZH- AFS response deterioration diagnosis atomospheric pressure upper and lower limit values</description>
+	<description>mPAMBHZH- AFS response deterioration diagnosis Atmospheric pressure upper and lower limit values</description>
 	</table>
 	
 	<table type="2D" name="At Time of Target AFR Start, Basic Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
@@ -2746,7 +2745,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	</table>
 	
 	<table type="2D" name="Delta AFR Monotone Increasing Judgement Value" category="AFR" storagetype="int16" sizey="1" endian="big" userlevel="4" >
-		<scaling units="AFR?" expression="x*.004" to_byte="x/.004" format="0.00"/>
+		<scaling units="-" expression="x*.004" to_byte="x/.004" format="0.00"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
@@ -3187,14 +3186,6 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mTDABF- Delta-A/F value computed delay time</description>
 	</table>
 
-	<table type="2D" name="Target AFR Rich Set" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
-		<scaling units="-" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>-</data>
-	</table>
-	<description>mRTGABF- TARGET A/F RICH SET</description>
-	</table>
-
 	<table type="2D" name="Lambda Control Clamp Time Upper Limit Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="Rev" expression="x" to_byte="x" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
@@ -3205,16 +3196,16 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	
 	<table type="2D" name="Second Learning Requirement Maximum AFR Change Target Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="%" expression="x*0.1" to_byte="x/0.1" format="0.00"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>-</data>
+	<table type="Y Axis" name="-" sizey="1">
+			<data>Maximum</data>
 	</table>
 	<description>mMXDLALP2- The second learning requirement maximum air-fuel ratio change target value</description>
 	</table>
 
 	<table type="2D" name="Maximum AFR Change Target Value" category="AFR" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="%" expression="x*0.1" to_byte="x/0.1" format="0.00"/>
-	<table type="Y Axis" name="Above" sizey="1">
-			<data>-</data>
+	<table type="Y Axis" name="-" sizey="1">
+			<data>Maximum</data>
 	</table>
 	<description>mMXDLTALP- Maximum air-fuel ratio change target value</description>
 	</table>
@@ -4131,6 +4122,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	
 	<table type="3D" name="Atmospheric Pressure Compensation Coefficient Table" category="Fuel Delivery" storagetype="uint8" sizex="16" endian="big" userlevel="1" >
 		<scaling units="l" expression="x*.0078125" to_byte="x/.0078125" format="0.000"/>
+		<scaling name="AFR???" units="AFR(Gasoline Scale)" expression="14.7/(x/128)" to_byte="128*(14.7/x)" format="0.00" fineincrement=".2" coarseincrement="1"/>
 	<table type="X Axis" name="mV" sizex="16">
 			<data>0</data>
 			<data>320</data>
@@ -4152,7 +4144,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<table type="Y Axis" name="-" sizey="1">
 			<data>l</data>
 	</table>
-	<description>mTBLATM2- Atomospheric pressure compensation coefficient table// "Atmospheric Pressure Injector Compensation"</description>
+	<description>mTBLATM2- Atmospheric pressure compensation coefficient table// "Atmospheric Pressure Injector Compensation"</description>
 	</table>
 	
 	<table type="3D" name="Individual Cylinder Fuel Trims" category="Fuel Delivery" storagetype="uint8" endian="big" sizex="1" sizey="6" userlevel="1">
@@ -4191,24 +4183,6 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 			<scaling units="RPM" expression="x*12.5" to_byte="x/12.5" format="0"/>
 		</table>
 		<description>mMABFSFT2- N*TP Shift Map Bank 2</description>
-	</table>
-	
-	<table type="3D" name="OL Fueling Target Rate" category="Fuel Delivery" storagetype="uint8" endian="big" sizey="8" userlevel="1" logparam="?">
-		<scaling units="None" expression="x/128" to_byte="x*128" format="0.00" fineincrement=".02" coarseincrement=".1" />
-	<table type="X Axis" name="-" sizex="1">
-			<data>-</data>
-	</table>
-		<table type="Static Y Axis" name="RPM" sizey="8" logparam="P8">
-			<data>0</data>
-			<data>800</data> 
-			<data>1600</data>
-			<data>2400</data> 
-			<data>3200</data>
-			<data>4000</data> 
-			<data>4800</data>
-			<data>5600</data>
-		</table>
-		<description>mTKREGR- Target air-fuel ratio regular compensation rate (The rate of target equivalence-ratio regular compensation)</description>
 	</table>
 	
 	<table type="3D" name="High Temp Enrichment" category="Fuel Delivery" storagetype="uint16" endian="big" sizey="8" userlevel="5">
@@ -5099,12 +5073,12 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mCORTANMX-Intake air temperature ratio maximum value</description>
 	</table>
 	
-	<table type="2D" name="Atomospheric Pressure Ratio Minimum Value" category="Fuel Delivery" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+	<table type="2D" name="Atmospheric Pressure Ratio Minimum Value" category="Fuel Delivery" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="-" expression="x*.00390625" to_byte="x/.00390625" format="0.0"/>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mCORAMBMN-Atomospheric pressure ratio minimum value// Function: Fuel injection pulse width characteristics formula (for MPI - deltaTP interruption injection control type)</description>
+	<description>mCORAMBMN-Atmospheric pressure ratio minimum value// Function: Fuel injection pulse width characteristics formula (for MPI - deltaTP interruption injection control type)</description>
 	</table>
 
 	<table type="2D" name="Fuel correction limits, % (MALPRV)" category="Fuel Delivery" storagetype="uint8" endian="big" sizey="2" userlevel="1">
@@ -6758,7 +6732,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	</table>
 	
 	<table type="3D" name="AFM Function Upper Limit Diagnosis Criteria Gain table" category="Airflow" storagetype="uint8" sizex="4" endian="big" userlevel="4" >
-		<scaling units="-" expression="x*.03125" to_byte="x/.03125" format="0"/>
+		<scaling units="-" expression="x*.03125" to_byte="x/.03125" format="0.000"/>
 	<table type="X Axis" name="Degrees" sizex="4">
 			<data>0.55</data>
 			<data>1.98</data>
@@ -6768,7 +6742,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
-	<description>AFM function upper limit diagnosis diagnosis criteria gain table</description>
+	<description>mTAFMRCGH- AFM function upper limit diagnosis diagnosis criteria gain table</description>
 	</table>
 	
 	<table type="3D" name="AFM Backup TP" category="Airflow" storagetype="uint8" sizey="12" endian="big" userlevel="1" >
@@ -6790,21 +6764,14 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 			<data>10</data>
 			<data>11</data>
 	</table>
-	<description>AFM backup TP</description>
+	<description>mAFBTP- AFM backup TP</description>
 	</table>
 	
 	<table type="3D" name="VB Compensation Table US Time" category="Airflow" storagetype="uint8" sizex="8" endian="big" userlevel="4" >
 		<scaling units="%" expression="x*.390625" to_byte="x/.390625" format="0.00"/>
-	<table type="X Axis" name="mV^2" sizex="8">
-			<data>896</data>
-			<data>3968</data>
-			<data>4992</data>
-			<data>5888</data>
-			<data>6912</data>
-			<data>7936</data>
-			<data>8960</data>
-			<data>25600</data>
-	</table>
+		<table type="X Axis" name="mV^2" storagetype="uint8" endian="big">
+			<scaling units="mV^2" expression="x*1280000" to_byte="x/1280000" format="0" fineincrement="50" coarseincrement="250" />
+		</table>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>%</data>
 	</table>
@@ -6875,7 +6842,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mTQCK0- (CK) Load change compensation air flow-quantity basic table</description>
 	</table>
 	
-	<table type="3D" name="Atomospheric Pressure Compensation Coefficient VIP Greater Than 0 Table" category="Airflow" storagetype="uint8" sizex="4" endian="big" userlevel="4" >
+	<table type="3D" name="Atmospheric Pressure Compensation Coefficient VIP Greater Than 0 Table" category="Airflow" storagetype="uint8" sizex="4" endian="big" userlevel="4" >
 		<scaling units="V" expression="x" to_byte="x" format="0"/>
 	<table type="X Axis" name="%" sizex="4">
 			<data>2.08</data>
@@ -6886,10 +6853,10 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<table type="Y Axis" name="-" sizey="1">
 			<data>V</data>
 	</table>
-	<description>mTKPIPL- Atomospheric pressure compensation coefficient VIP>=0 table</description>
+	<description>mTKPIPL- Atmospheric pressure compensation coefficient VIP>=0 table</description>
 	</table>
 
-	<table type="3D" name="Atomospheric Pressure Compensation Coefficient VIP Less Than 0 Table" category="Airflow" storagetype="uint8" sizex="4" endian="big" userlevel="4" >
+	<table type="3D" name="Atmospheric Pressure Compensation Coefficient VIP Less Than 0 Table" category="Airflow" storagetype="uint8" sizex="4" endian="big" userlevel="4" >
 		<scaling units="V" expression="x" to_byte="x" format="0"/>
 	<table type="X Axis" name="%" sizex="4">
 			<data>2.08</data>
@@ -6900,25 +6867,18 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<table type="Y Axis" name="-" sizey="1">
 			<data>V</data>
 	</table>
-	<description>mTKPIPR- Atomospheric pressure compensation coefficient VIP less than=0 table</description>
+	<description>mTKPIPR- Atmospheric pressure compensation coefficient VIP less than=0 table</description>
 	</table>
 	
-	<table type="3D" name="Atomospheric Pressure Compensation Table" category="Airflow" storagetype="uint8" sizex="8" endian="big" userlevel="4" >
+	<table type="3D" name="Atmospheric Pressure Compensation Table" category="Airflow" storagetype="uint8" sizex="8" endian="big" userlevel="4" > 
 		<scaling units="%" expression="x*.78125" to_byte="x/.78125" format="0"/>
-	<table type="X Axis" name="mV" sizex="8">
-			<data>1920</data>
-			<data>2240</data>
-			<data>2560</data>
-			<data>2880</data>
-			<data>3200</data>
-			<data>3520</data>
-			<data>3840</data>
-			<data>4160</data>
+	<table type="X Axis" name="MAF???" storagetype="uint8" endian="big">
+			<scaling units="mV" expression="x*20" to_byte="x/20" format="0" fineincrement=".5" coarseincrement="4" />
 	</table>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>%</data>
 	</table>
-	<description>mTISCPAMB- Atomospheric pressure compensation table</description>
+	<description>mTISCPAMB- Atmospheric pressure compensation table</description>
 	</table>
 
 	<table type="3D" name="IAT Compensation Table" category="Airflow" storagetype="uint8" sizey="8" endian="big" userlevel="4" >
@@ -6941,12 +6901,9 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	
 	<table type="3D" name="Slowdown Load Compensation Quantity Table" category="Airflow" storagetype="uint16" sizex="4" endian="big" userlevel="4" >
 		<scaling units="L/min" expression="x*.0078125" to_byte="x/.0078125" format="0"/>
-	<table type="X Axis" name="RPM" sizex="4">
-			<data>75</data>
-			<data>100</data>
-			<data>150</data>
-			<data>200</data>
-	</table>
+		<table type="X Axis" name="Engine Speed" storagetype="uint8" endian="big">
+			<scaling units="RPM" expression="x*12.5" to_byte="x/12.5" format="0" fineincrement="50" coarseincrement="250" />
+		</table>
 	<table type="Y Axis" name="-" sizey="1">
 			<data>L/min</data>
 	</table>
@@ -7116,20 +7073,20 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mTASOF2- Offset value for rapid TAS highlands//Function: Air flow rate learning control at off-line idle (rapid mode)</description>
 	</table>
 	
-	<table type="2D" name="Atomospheric Pressure Sensor Assistant Compensation Value" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+	<table type="2D" name="Atmospheric Pressure Sensor Assistant Compensation Value" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*0.078125" to_byte="x/0.078125" format="0.000"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mPAMBI- Atomospheric pressure sensor assistant compensation value</description>
+	<description>mPAMBI- Atmospheric pressure sensor assistant compensation value</description>
 	</table>
 
-	<table type="2D" name="Atomospheric Pressure Change Cancellation Value" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
+	<table type="2D" name="Atmospheric Pressure Change Cancellation Value" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*0.078125" to_byte="x/0.078125" format="0.000"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mPAMCAN- Atomospheric pressure change cancellation value</description>
+	<description>mPAMCAN- Atmospheric pressure change cancellation value</description>
 	</table>
 
 	<table type="2D" name="Power Steering SW OFFON Zz Transient State Compensation Start Engine Speed" category="Airflow" storagetype="uint16" sizey="1" endian="big" userlevel="4" >
@@ -7487,20 +7444,20 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mAFNGT- Trouble judgement delay time// Function: Air flow meter diagnosis</description>
 	</table>
 	
-	<table type="2D" name="An Atomospheric Pressure is returned, rate" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+	<table type="2D" name="An Atmospheric Pressure is returned, rate" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="mV" expression="x*20" to_byte="x/20" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mPAMBRT- An atomospheric pressure is returned, rate</description>
+	<description>mPAMBRT- An Atmospheric pressure is returned, rate</description>
 	</table>
 
-	<table type="2D" name="At Time of Trouble, Atomospheric Presure Compensation Value" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
+	<table type="2D" name="At Time of Trouble, Atmospheric Presure Compensation Value" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
 		<scaling units="%" expression="x*0.78125" to_byte="x/0.78125" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mPBNGHO- At the time of the trouble, atomospheric pressure compensation value// Function: Air flow rate command value QAACV</description>
+	<description>mPBNGHO- At the time of the trouble, Atmospheric pressure compensation value// Function: Air flow rate command value QAACV</description>
 	</table>
 	
 	<table type="2D" name="AFM Time Constant Coefficient (For Low Frequency)" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="4" >
@@ -7719,20 +7676,20 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mKLQAC- The amount of A/C load small time assistant air// Function: Air flow rate command value QAACV</description>
 	</table>
 	
-	<table type="2D" name="Atomospheric Pressure Compensation Coefficient" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Atmospheric Pressure Compensation Coefficient" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="%" expression="x*0.78125" to_byte="x/0.78125" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mPAMCAL- Atomospheric pressure compensation coefficient</description>
+	<description>mPAMCAL- Atmospheric pressure compensation coefficient</description>
 	</table>
 
-	<table type="2D" name="Atomospheric Pressure Compensation Coefficient 2" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Atmospheric Pressure Compensation Coefficient 2" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="%" expression="x*0.78125" to_byte="x/0.78125" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mPAMCL2- Atomospheric pressure compensation coefficient 2</description>
+	<description>mPAMCL2- Atmospheric pressure compensation coefficient 2</description>
 	</table>
 	
 	<table type="2D" name="Amount of AC Load Small Time Reference Air" category="Airflow" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
@@ -8590,47 +8547,17 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	
 	\\Shifting Performance// 
 
-	<table type="3D" name="Engine Torque Map" category="Shifting Performance" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1" logparam="?">
-		<scaling units="Nm" expression="x/10-3276.8" to_byte="x*10+32768" format="0" fineincrement="1" coarseincrement="10" />
-		<table type="Static X Axis" name="Cylinder filling efficiency %" format="0" sizey="16">
-			<data>0</data>
-			<data>10</data>
-			<data>20</data>
-			<data>30</data>
-			<data>40</data>
-			<data>50</data>
-			<data>60</data>
-			<data>70</data>
-			<data>80</data>
-			<data>90</data>
-			<data>100</data>
-			<data>110</data>
-			<data>120</data>
-			<data>130</data>
-			<data>140</data>
-			<data>150</data>        
+	<table type="3D" name="Engine Torque Map" category="Shifting Performance" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1">
+		<scaling units="Nm" expression="x/10-3276.8" to_byte="x*10+32768" format="0" fineincrement=".5" coarseincrement="2" />
+		<table type="X Axis" name="Cylinder intake filling up efficiency (DO NOT ALTER)" storagetype="uint8" sizex="16" endian="big" logparam="Z4">
+			<scaling units="%" expression="x*0.78125" to_byte="x/0.78125" format="0.0" fineincrement=".5" coarseincrement="4" />
 		</table>
-		<table type="Static Y Axis" name="RPM" format="0" sizey="16" logparam="P8">
-			<data>400</data>
-			<data>800</data>
-			<data>1200</data>
-			<data>1600</data>
-			<data>2000</data>
-			<data>2400</data>
-			<data>2800</data>
-			<data>3200</data>
-			<data>3600</data>
-			<data>4000</data>
-			<data>4400</data>
-			<data>4800</data>
-			<data>5200</data>
-			<data>5600</data>
-			<data>6000</data>
-			<data>6400</data>
-		</table>
-		<description>mTENGMAP Engine torque value map</description>
+		<table type="Y Axis" name="Engine Speed (DO NOT ALTER)" storagetype="uint8" sizey="16" endian="big" logparam="P8">
+			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
+		</table>      
+		<description>mTENGMAP- Engine torque value map. Axis' have been brought in from Intake Cam Timing for visualization purposes ONLY. Raising these values will NOT alter this map.</description>
 	</table>
-
+	
 	<table type="3D" name="Up-Shift Limiter (TENG2)" category="Shifting Performance" storagetype="uint16" sizex="1" sizey="5" endian="big" userlevel="2">
 	<scaling units="Nm" expression="x/10-3276.8" to_byte="x*10+32768" format="0.00"/> 
 	<table type="X Axis" name="-" sizex="1">
@@ -8894,27 +8821,13 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	
 	<table type="3D" name="Torque Atmospheric Pressure Compensation Coefficient Map" category="Torque Management" storagetype="uint16" endian="big" sizex="8" sizey="8" userlevel="4" logparam="?">
 		<scaling units="%" expression="x*.024414063" to_byte="x/.024414063" format="0" fineincrement="1" coarseincrement="10" />
-		<table type="Static X Axis" name="mV" format="0" sizey="8" logparam="-">
-			<data>1920</data>
-			<data>2240</data>
-			<data>2560</data>
-			<data>2880</data>
-			<data>3200</data>
-			<data>3520</data>
-			<data>3840</data>
-			<data>4160</data>  
-		</table>		
-		<table type="Static Y Axis" name="RPM" format="0" sizey="8">
-			<data>800</data>
-			<data>1600</data>
-			<data>2400</data>
-			<data>3200</data>
-			<data>4000</data>
-			<data>4800</data>
-			<data>5600</data>
-			<data>6400</data>  			
+		<table type="X Axis" name="mV" storagetype="uint16" endian="big">
+			<scaling units="mV" expression="x*0.078125" to_byte="x/0.078125" format="0" fineincrement="50" coarseincrement="250" />
+		</table>	
+		<table type="Y Axis" name="Engine Speed" storagetype="uint16" endian="big">
+			<scaling units="RPM" expression="x*3.125" to_byte="x/3.125" format="0" fineincrement="50" coarseincrement="250" />
 		</table>
-		<description>mMPAMBFAC- The torque atomospheric pressure compensation coefficient map that engine output is possible</description>
+		<description>mMPAMBFAC- The torque Atmospheric pressure compensation coefficient map that engine output is possible // Axis data should be right for CF48D. I think this map is only used for MAP equipped vehicles?</description>
 	</table>
 	
 	<table type="3D" name="Extreme Short Rest Time Map" category="Torque Management" storagetype="uint8" endian="big" sizex="4" sizey="4" userlevel="4" logparam="?">
@@ -8951,7 +8864,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 		<description>mMPTXRT- Suspension time/operation time ratio map// Function:FAST torque injection cut off</description>
 	</table>
 	
-	<table type="3D" name="D Range Target Drive Force Map" category="Torque Management" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z27">
+	<table type="3D" name="D Range Target Drive Force Map" category="Torque Management" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="4" logparam="Z27">
 		<scaling units="Newtons" expression="x-32768" to_byte="x+32768" format="0" fineincrement="1" coarseincrement="10" />
 		<table type="X Axis" name="Vehicle Speed" storagetype="uint16" endian="big" logparam="P4354">
 			<scaling units="km/h" expression="x*.1" to_byte="x/.1" format="0" fineincrement="1" coarseincrement="10" />
@@ -8962,7 +8875,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 		<description>mMTFDD D range target drive power map</description>
 	</table>
 
-	<table type="3D" name="D Range Target Drive Force Map 2" category="Torque Management" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z30">
+	<table type="3D" name="D Range Target Drive Force Map 2" category="Torque Management" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="4" logparam="Z30">
 		<scaling units="Newtons" expression="x-32768" to_byte="x+32768" format="0" fineincrement="1" coarseincrement="10" />
 		<table type="X Axis" name="Vehicle Speed" storagetype="uint16" endian="big" logparam="P4354">
 			<scaling units="km/h" expression="x*.1" to_byte="x/.1" format="0" fineincrement="1" coarseincrement="10" />
@@ -8973,7 +8886,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 		<description>mMTFDD_S D range target drive power map (redundant operation vice-operation part)</description>
 	</table>
 	
-	<table type="3D" name="Ds Range Target Drive Force Map" category="Torque Management" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z28">
+	<table type="3D" name="Ds Range Target Drive Force Map" category="Torque Management" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="4" logparam="Z28">
 		<scaling units="Newtons" expression="x-32768" to_byte="x+32768" format="0" fineincrement="1" coarseincrement="10" />
 		<table type="X Axis" name="Vehicle Speed" storagetype="uint16" endian="big" logparam="P4354">
 			<scaling units="km/h" expression="x*.1" to_byte="x/.1" format="0" fineincrement="1" coarseincrement="10" />
@@ -8984,7 +8897,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 		<description>mMTFDDS Ds range target drive power map</description>
 	</table>
 
-	<table type="3D" name="Ds Range Target Drive Force Map 2" category="Torque Management" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z29">
+	<table type="3D" name="Ds Range Target Drive Force Map 2" category="Torque Management" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="4" logparam="Z29">
 		<scaling units="Newtons" expression="x-32768" to_byte="x+32768" format="0" fineincrement="1" coarseincrement="10" />
 		<table type="X Axis" name="Vehicle Speed" storagetype="uint16" endian="big" logparam="P4354">
 			<scaling units="km/h" expression="x*.1" to_byte="x/.1" format="0" fineincrement="1" coarseincrement="10" />
@@ -9799,7 +9712,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<table type="Y Axis" name="-" sizey="1">
 			<data>CM^2</data>
 	</table>
-	<description>mTTGTVO- Opening area => target throttle open-degree conversion table</description>
+	<description>mTTGTVO- Opening area => target throttle open-degree conversion table // "throttle Flow"</description>
 	</table>
 
 	<table type="3D" name="Target Throttle Open Degree Conversion Table 2" category="Electronic Throttle" storagetype="uint16" sizex="32" endian="big" userlevel="1">
@@ -9810,7 +9723,69 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<table type="Y Axis" name="-" sizey="1">
 			<data>CM^2</data>
 	</table>
-	<description>mTTGTVO_S- Opening area => target throttle open-degree conversion table</description>
+	<description>mTTGTVO_S- Opening area => target throttle open-degree conversion table // "Throttle Flow 2"</description>
+	</table>
+	
+	<table type="3D" name="Throttle Flow Torque" category="Electronic Throttle" storagetype="uint16" sizex="1" sizey="32" endian="big" userlevel="1">
+	<scaling units="%" expression="x*0.001525879" to_byte="x/0.001525879" format="0.00"/> 
+	<table type="X Axis" name="-" sizex="1">
+			<data>%</data>
+	</table>
+	<table type="Y Axis" name="cm^2/rp" storagetype="uint16" endian="big"> 
+		<scaling units="-" expression="x*0.0008" to_byte="x/0.0008" format="0.0000"/>
+	</table>
+	<description> mTTQH0ST- Target Basis QH0 // Axis cannot be made accurate based on A2L scaling.</description>
+	</table>
+
+	<table type="3D" name="Throttle Flow Torque 2" category="Electronic Throttle" storagetype="uint16" sizex="1" sizey="32" endian="big" userlevel="1">
+	<scaling units="%" expression="x*0.001525879" to_byte="x/0.001525879" format="0.00"/> 
+	<table type="X Axis" name="-" sizex="1">
+			<data>%</data>
+	</table>
+	<table type="Y Axis" name="cm^2/rp" storagetype="uint16" endian="big"> 
+		<scaling units="-" expression="x*0.0008" to_byte="x/0.0008" format="0.0000"/>
+	</table>
+	<description>mTQH0ST_S- Volume flow-quantity ratio table 1</description>
+	</table>
+	
+	<table type="3D" name="Target Basis QH0 Table 2" category="Electronic Throttle" storagetype="uint16" sizex="1" sizey="32" endian="big" userlevel="1">
+	<scaling units="%" expression="x*0.001525879" to_byte="x/0.001525879" format="0.00"/> 
+	<table type="X Axis" name="-" sizex="1">
+			<data>%</data>
+	</table>
+	<table type="Y Axis" name="cm^2/rp" storagetype="uint16" endian="big"> 
+		<scaling units="-" expression="x*0.000625" to_byte="x/0.000625" format="0.0000"/>
+	</table>
+	<description>mTTQH0STH- Target Basis QH0</description>
+	</table>
+
+	<table type="3D" name="Volume Quantity Ratio Table 2" category="Electronic Throttle" storagetype="uint16" sizex="1" sizey="32" endian="big" userlevel="1">
+	<scaling units="%" expression="x*0.001525879" to_byte="x/0.001525879" format="0.00"/> 
+	<table type="X Axis" name="-" sizex="1">
+			<data>%</data>
+	</table>
+	<table type="Y Axis" name="cm^2/rp" storagetype="uint16" endian="big"> 
+		<scaling units="-" expression="x*0.000625" to_byte="x/0.000625" format="0.0000"/>
+	</table>
+	<description>mTQH0SH_S- Volume flow-quantity ratio table 2 (high flow-quantity proportion)</description>
+	</table>
+
+	<table type="3D" name="WOT Filling Up Efficiency IAT Compensation Coefficient Table" category="Electronic Throttle" storagetype="uint8" sizex="8" endian="big" userlevel="4" >
+		<scaling units="-" expression="x*.0078125" to_byte="x/.0078125" format="0.00"/>
+	<table type="X Axis" name="Z" sizex="8">
+			<data>-40</data>
+			<data>-20</data>
+			<data>0</data>
+			<data>20</data>
+			<data>40</data>
+			<data>60</data>
+			<data>80</data>
+			<data>100</data>
+	</table>
+	<table type="Y Axis" name="-" sizey="1">
+			<data>-</data>
+	</table>
+	<description>At the time of WOT, filling up efficiency intake air temperature compensation coefficient table value</description>
 	</table>
 	
 	<table type="3D" name="Throttle Ceremony Road Surface Product Table" category="Electronic Throttle" storagetype="uint16" sizey="32" endian="big" userlevel="4">
@@ -10892,7 +10867,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	
 	\\Idle//
 	
-	<table type="3D" name="Idle Target" category="Idle" storagetype="uint8" endian="big" sizey="16" userlevel="1" logparam="P8">
+	<table type="3D" name="Target Idle RPM" category="Idle" storagetype="uint8" endian="big" sizey="16" userlevel="1" logparam="P8">
 		<scaling units="RPM" expression="x*12.5" to_byte="x/12.5" format="0" fineincrement="1" coarseincrement="100" />
 		<table type="X Axis" name="-" sizex="1">
 			<data>RPM</data>
@@ -13188,11 +13163,12 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<table type="Y Axis" name="-" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mTPAMBHK At the time of WOT, filling up efficiency atomospheric pressure compensation coefficient table value</description>
+	<description>mTPAMBHK At the time of WOT, filling up efficiency Atmospheric pressure compensation coefficient table value</description>
 	</table>
 	
 	<table type="3D" name="TVO_N Low Flow Quantity Table" category="Axis Data" storagetype="uint16" sizex="1" sizey="16" endian="big" userlevel="4">
 	<scaling units="-" expression="x*0.000015259" to_byte="x/0.0.000015259" format="0.000"/> 
+	<scaling name="Percentage" units="%" expression="(x*0.000015259)*100" to_byte="(10000000*x)/15259" format="0.000"/> 
 	<table type="X Axis" name="-" sizex="1">
 			<data>-</data>
 	</table>
@@ -13219,6 +13195,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	
 	<table type="3D" name="TVO_N High Flow Quantity Table" category="Axis Data" storagetype="uint16" sizex="1" sizey="16" endian="big" userlevel="4">
 	<scaling units="-" expression="x*0.000015259" to_byte="x/0.000015259" format="0.000"/> 
+	<scaling name="Percentage" units="%" expression="(x*0.000015259)*100" to_byte="(10000000*x)/15259" format="0.000"/> 
 	<table type="X Axis" name="-" sizex="1">
 			<data>-</data>
 	</table>
@@ -13241,68 +13218,6 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 			<data>55.79</data>
 	</table>
 	<description>mTQH0H TVO_N flow quantity table high flow quantity</description>
-	</table>
-
-	<table type="3D" name="Throttle Flow Torque" category="Axis Data" storagetype="uint16" sizex="1" sizey="32" endian="big" userlevel="1">
-	<scaling units="%" expression="x*0.001525879" to_byte="x/0.001525879" format="0.00"/> 
-	<table type="X Axis" name="APO" sizex="1">
-			<data>%</data>
-	</table>
-	<table type="Y Axis" name="cm^2/rp" storagetype="uint16" endian="big"> 
-		<scaling units="-" expression="x*0.0008" to_byte="x/0.0008" format="0.0000"/>
-	</table>
-	<description> mTTQH0ST- Target Basis QH0 // Axis cannot be made accurate based on A2L scaling.</description>
-	</table>
-
-	<table type="3D" name="Throttle Flow Torque 2" category="Axis Data" storagetype="uint16" sizex="1" sizey="32" endian="big" userlevel="1">
-	<scaling units="%" expression="x*0.001525879" to_byte="x/0.001525879" format="0.00"/> 
-	<table type="X Axis" name="APO" sizex="1">
-			<data>%</data>
-	</table>
-	<table type="Y Axis" name="cm^2/rp" storagetype="uint16" endian="big"> 
-		<scaling units="-" expression="x*0.0008" to_byte="x/0.0008" format="0.0000"/>
-	</table>
-	<description>mTQH0ST_S- Volume flow-quantity ratio table 1</description>
-	</table>
-	
-	<table type="3D" name="Target Basis QH0 Table 2" category="Axis Data" storagetype="uint16" sizex="1" sizey="32" endian="big" userlevel="1">
-	<scaling units="%" expression="x*0.001525879" to_byte="x/0.001525879" format="0.00"/> 
-	<table type="X Axis" name="APO" sizex="1">
-			<data>%</data>
-	</table>
-	<table type="Y Axis" name="cm^2/rp" storagetype="uint16" endian="big"> 
-		<scaling units="-" expression="x*0.000625" to_byte="x/0.000625" format="0.0000"/>
-	</table>
-	<description>mTTQH0STH- Target Basis QH0</description>
-	</table>
-
-	<table type="3D" name="Volume Quantity Ratio Table 2" category="Axis Data" storagetype="uint16" sizex="1" sizey="32" endian="big" userlevel="1">
-	<scaling units="%" expression="x*0.001525879" to_byte="x/0.001525879" format="0.00"/> 
-	<table type="X Axis" name="APO" sizex="1">
-			<data>%</data>
-	</table>
-	<table type="Y Axis" name="cm^2/rp" storagetype="uint16" endian="big"> 
-		<scaling units="-" expression="x*0.000625" to_byte="x/0.000625" format="0.0000"/>
-	</table>
-	<description>mTQH0SH_S- Volume flow-quantity ratio table 2 (high flow-quantity proportion)</description>
-	</table>
-
-	<table type="3D" name="WOT Filling Up Efficiency IAT Compensation Coefficient Table" category="Axis Data" storagetype="uint8" sizex="8" endian="big" userlevel="4" >
-		<scaling units="-" expression="x*.0078125" to_byte="x/.0078125" format="0.00"/>
-	<table type="X Axis" name="Z" sizex="8">
-			<data>-40</data>
-			<data>-20</data>
-			<data>0</data>
-			<data>20</data>
-			<data>40</data>
-			<data>60</data>
-			<data>80</data>
-			<data>100</data>
-	</table>
-	<table type="Y Axis" name="-" sizey="1">
-			<data>-</data>
-	</table>
-	<description>At the time of WOT, filling up efficiency intake air temperature compensation coefficient table value</description>
 	</table>
 	
 	<table type="3D" name="Learning map TP shaft lattice point table" category="Axis Data" storagetype="uint8" endian="big" sizex="8" logparam="?" userlevel="4">
@@ -13497,8 +13412,130 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>Effect radius/final gear ratio with the tire 2</description>
 	</table>
 	
-	\\Misc//
+	\\FLAGS//
+	
+	
+	<table type="BitwiseSwitch" name="C/S Backup Excuse Flag" category="Flags" userlevel="5">
+0x01		<bit position ="0" name="mfCSBU- C/S Backup Excuse Flag"/>  
+		<description>Toggle On/Off</description>
+	</table>  
+	
+	<table type="BitwiseSwitch" name="Template" category="Flags" userlevel="5">
+0x80		<bit position ="7" name="-"/>  
+0x40		<bit position ="6" name="-"/>
+0x20		<bit position ="5" name="-"/>  
+0x10		<bit position ="4" name="-"/>
+0x08		<bit position ="3" name="-"/>
+0x04		<bit position ="2" name="-"/>
+0x02		<bit position ="1" name="-"/>
+0x01		<bit position ="0" name="-"/>  
+		<description>Toggle On/Off</description>
+	</table>  
 
+	<table type="BitwiseSwitch" name="Flags 1" category="Flags" userlevel="5">
+0x80		<bit position ="7" name="mfATMT- Automatic (Off)/Manual (On) Transmission Distinction Flag"/>   
+0x10		<bit position ="4" name="mfFATTRQ- Torque Control Switching Flag"/>
+0x08		<bit position ="3" name="mfATTNS- AT Turbine Sensor Excuse Judgement"/>
+0x04		<bit position ="2" name="mfRATIOFB- Ratio F/B Control Choice Flag"/>
+0x02		<bit position ="1" name="mfREGHOS- There is No TENG Regular Compensation"/>
+0x01		<bit position ="0" name="mfCOADJ- CO Adjustment Control Excuse by Consult Communication"/>  
+		<description>Toggle On/Off</description>
+	</table>  
+	
+	<table type="BitwiseSwitch" name="Flags 2" category="Flags" userlevel="5"> 
+0x40		<bit position ="6" name="mfVINV- Control Excuse Switching for Tuning"/>
+0x02		<bit position ="1" name="mfSTFSARI- APOFS Shaft Conversion Treatment Flag"/> 
+		<description>Toggle On/Off</description>
+	</table>  
+	
+	<table type="BitwiseSwitch" name="Flags 3" category="Flags" userlevel="5"> 
+0x40		<bit position ="6" name="mfTTE_ON- Torque TTE Control Choice Flag"/>
+0x20		<bit position ="5" name="mfTFD_ON- Drive Power TFD Control Choice Flag"/>  
+0x01		<bit position ="0" name="mfPTD_ON- Drive Power Demand Control On/Off Flag"/>  
+		<description>Toggle On/Off</description>
+	</table>  	
+
+	<table type="BitwiseSwitch" name="Flags 4" category="Flags" userlevel="5">
+0x80		<bit position ="7" name="mfAPOTD- Torque Going Down Control Executive Flag"/>  
+0x40		<bit position ="6" name="mfFTASEEP- ISCLRC EEPROM Writing Choice Flag"/>
+0x10		<bit position ="4" name="mfFVTCS- TCS Fuel Cut Variable Control Flag"/>
+		<description>Toggle On/Off</description>
+	</table>  
+	
+	<table type="BitwiseSwitch" name="Flags 5" category="Flags" userlevel="5">
+0x80		<bit position ="7" name="mfFFTASW- There's ISC AC Compensation TASW, Flag"/>  
+0x20		<bit position ="5" name="mfFAFICD- Flag with PWST Interlock FICD Compensation"/>  
+0x04		<bit position ="2" name="mfFTCS- TCS Control Switching Flag"/>
+		<description>Toggle On/Off</description>
+	</table>  	
+
+	<table type="BitwiseSwitch" name="Flags 6" category="Flags" userlevel="5">
+0x40		<bit position ="6" name="mfACPDCUT- Meter CAN #PDCUT Output Excuse Flag"/>
+0x08		<bit position ="3" name="mfMETCAN3- Meter CAN VSP"/>
+0x02		<bit position ="1" name="mfMETCAN1- Related to the meter CAN A/C (others)"/>
+0x01		<bit position ="0" name="mfMETCAN- (HTASW is removed) Related to the Meter CAN A/C"/>  
+		<description>Toggle On/Off</description>
+	</table>  
+	
+	<table type="BitwiseSwitch" name="Flags 7" category="Flags" userlevel="5">
+0x08		<bit position ="3" name="mfNG1RLYON- Motor Relay Diagnosis 2TRIP Flag"/>
+0x04		<bit position ="2" name="mfNG1DEFLT- Default Mechanism Diagnosis 2TRIP Flag"/>
+0x02		<bit position ="1" name="mfNG1SPRG2- IGNOFF Return Spring Diagnosis 2TRIP Flag"/>
+0x01		<bit position ="0" name="mfNG1SPRG1- IGNON Return Spring Diagnosis 2TRIP Flag"/>  
+		<description>Toggle On/Off</description>
+	</table>  	
+	
+	<table type="BitwiseSwitch" name="Flags 8" category="Flags" userlevel="5">
+0x80		<bit position ="7" name="mfAPSSLH- APS At the Time of the Single Trouble, LH Executive Flag"/>  
+0x40		<bit position ="6" name="mfTPSSLH- TPS At the Time of the Single Trouble, LH Executive Flag"/> 
+		<description>Toggle On/Off</description>
+	</table>  	
+
+	<table type="BitwiseSwitch" name="Flags 9" category="Flags" userlevel="5">
+0x08		<bit position ="3" name="mfFTASAC- At Time of A/C Panel SW On, Learning Switch Flag"/>
+0x04		<bit position ="2" name="mfFFRQTAS- Friction Learning Control Switch Flag"/>
+		<description>Toggle On/Off</description>
+	</table>  
+
+	<table type="BitwiseSwitch" name="Flags 10" category="Flags" userlevel="5">
+0x80		<bit position ="7" name="mfDTYFLG- Wind Up Countermeasure Control Excuse Switching Flag"/>  
+0x40		<bit position ="6" name="mfROGFLG- Dizzer Control/PID Control Switching Flag"/>
+0x01		<bit position ="0" name="mfFFULVTC- At Time of Full Increase, a Flag for VTC"/>  
+		<description>Toggle On/Off</description>
+	</table>  
+
+	<table type="BitwiseSwitch" name="Flags 11" category="Flags" userlevel="5">
+0x20		<bit position ="5" name="mfFCOVR- Existence of the CO Adjustment Volume"/>  
+0x02		<bit position ="1" name="mfFINCA- Choice Flag for INCA"/> 
+		<description>Toggle On/Off</description>
+	</table>  
+
+	<table type="BitwiseSwitch" name="Flags 12" category="Flags" userlevel="5">
+0x40		<bit position ="6" name="mfMILGSTIM- At Time of KeyON, MIL Specifications Choice Flag"/>
+0x20		<bit position ="5" name="mfAFMDGSEL- MAF Function Diagnosis for the Choice Flag"/>  
+0x10		<bit position ="4" name="mfWOTTP- WOT Adoption/Non-Adoption Choice"/> 
+		<description>Toggle On/Off</description>
+	</table>
+
+	<table type="BitwiseSwitch" name="Flags 13" category="Flags" userlevel="5">
+0x80		<bit position ="7" name="mfCATCNG- Catalyst Diagnosis Slice Setup Region Switching Flag"/>  
+0x40		<bit position ="6" name="mfPREDAF- The Existence of the SMC Prediction A/F Flag"/>
+0x20		<bit position ="5" name="mfOSCBANK- A Control Choice Flag for the Bank"/>  
+0x10		<bit position ="4" name="mfAFIDLESW- IDLE SW Enable, Disable Switching Flag"/>
+0x08		<bit position ="3" name="mfAFVSEL- A/F Voltage Sampling Periodic Choice Flag"/>
+0x04		<bit position ="2" name="mfAFDCHG- Time Switching, Slice Switching Choice Flag"/>
+0x02		<bit position ="1" name="mfAFDTGCLP- Target AFR It's Fixed on mABFCMV"/>
+0x01		<bit position ="0" name="mfAFDSEL- Alpha Form, Target Form Choice Flag"/>  
+		<description>Toggle On/Off</description>
+	</table> 
+
+	
+	
+	
+	
+	
+	\\Misc//
+	
 	<table type="2D" name="Wheel Radius" category="Misc" storagetype="uint8" sizey="1" endian="big" userlevel="1" >
 		<scaling units="m" expression="x*0.001" to_byte="x/0.001" format="0.0000"/>
 	<table type="Y Axis" name="Above" sizey="1">
@@ -13983,7 +14020,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 			<data>14</data>
 			<data>15</data>
 	</table>
-	<description>Intake manifold pressure/atomospheric pressure basic table</description>
+	<description>Intake manifold pressure/Atmospheric pressure basic table</description>
 	</table>
 
 	<table type="2D" name="MAP Pressure Rotation Compensation" category="Misc" storagetype="uint8" sizey="16" endian="big" userlevel="5" >
@@ -14006,7 +14043,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 			<data>14</data>
 			<data>15</data>
 	</table>
-	<description>Intake manifold pressure/atomospheric pressure rotation compensation table</description>
+	<description>Intake manifold pressure/Atmospheric pressure rotation compensation table</description>
 	</table>
 		
 	<table type="2D" name="Speed Sensor Diagnosis Lower Limit" category="Misc" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
@@ -14589,12 +14626,12 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mDMPRGMX- Requirement purge treatment quantity maximum value</description>
 	</table>
 
-  	<table type="2D" name="A Change in Vapor Monitor Switchover Atomospheric Pressure" category="EVAP" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="A Change in Vapor Monitor Switchover Atmospheric Pressure" category="EVAP" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
 		<scaling units="mV" expression="x*0.078125" to_byte="x/0.078125" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mDPAMBC- A change in a vapor monitor switchover atomospheric pressure</description>
+	<description>mDPAMBC- A change in a vapor monitor switchover Atmospheric pressure</description>
 	</table>
 
   	<table type="2D" name="Slosh Judgement Value for 0.04in Judgement" category="EVAP" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
@@ -14602,15 +14639,15 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mDPAMBC- A change in a vapor monitor switchover atomospheric pressure</description>
+	<description>mDPAMBC- A change in a vapor monitor switchover Atmospheric pressure</description>
 	</table>
 
-  	<table type="2D" name="Leak Down Cancellation Atomospheric Pressure Change Rate" category="EVAP" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+  	<table type="2D" name="Leak Down Cancellation Atmospheric Pressure Change Rate" category="EVAP" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
 		<scaling units="N/s" expression="x*0.078125" to_byte="x/0.078125" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mCDPAMB- Leak-down cancellation atomospheric pressure change rate</description>
+	<description>mCDPAMB- Leak-down cancellation Atmospheric pressure change rate</description>
 	</table>
 	
   	<table type="2D" name="Base Error Judgement Purge Prohibition Clear Time" category="EVAP" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
@@ -14981,20 +15018,20 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mEVPKJU- vEVPR average coefficient</description>
 	</table>
 
-	<table type="2D" name="Diagnosis Permission Atomospheric Pressure Lower Limit" category="EVAP" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Diagnosis Permission Atmospheric Pressure Lower Limit" category="EVAP" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="mV" expression="x*20" to_byte="x/20" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mEVPAL3- Diagnosis permission atomospheric pressure lower limit</description>
+	<description>mEVPAL3- Diagnosis permission Atmospheric pressure lower limit</description>
 	</table>
 
-	<table type="2D" name="Diagnosis Permission Atomospheric Pressure Upper Limit" category="EVAP" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Diagnosis Permission Atmospheric Pressure Upper Limit" category="EVAP" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="mV" expression="x*20" to_byte="x/20" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mEVPAH3- Diagnosis permission atomospheric pressure Upper limit</description>
+	<description>mEVPAH3- Diagnosis permission Atmospheric pressure Upper limit</description>
 	</table>
 	
 	<table type="2D" name="Pull-Down Start Vehicle Speed Lower Limit" category="EVAP" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
@@ -15117,12 +15154,12 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mDIRE17- Pull-down switchover cancellation time</description>
 	</table>
 
-	<table type="2D" name="Atomospheric Pressure Re-measuring Delay" category="EVAP" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Atmospheric Pressure Re-measuring Delay" category="EVAP" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="ms" expression="x*100" to_byte="x/100" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mDIRE18- Atomospheric pressure re-measuring delay</description>
+	<description>mDIRE18- Atmospheric pressure re-measuring delay</description>
 	</table>
 
 	<table type="2D" name="Drain-Cut Valve Close Delay" category="EVAP" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
@@ -16191,6 +16228,21 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 			<data>4960</data>
 	</table>
 	<description>mTTWN- Coolant temperature normalized table// "Coolant Temperature Calibration"</description>
+	</table>
+	
+	<table type="2D" name="Temperature Non-Balance Time Quantity Rate Compensation Rate" category="Cooling" storagetype="uint8" sizex="8" endian="big" userlevel="1" >
+		<scaling units="|" expression="x*0.015625" to_byte="x/0.015625" format="0.00"/>
+	<table type="X Axis" name="Z" sizex="8">
+			<data>-40</data>
+			<data>-20</data>
+			<data>0</data>
+			<data>20</data>
+			<data>40</data>
+			<data>60</data>
+			<data>80</data>
+			<data>100</data>
+	</table>
+	<description>mTKMFAS- Temperature non-balance time quantity rate compensation rate</description>
 	</table>
 	
 	<table type="2D" name="Radiator Fan Pd Pressure Upper Limit" category="Cooling" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
@@ -18089,7 +18141,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mTGHFQC- Slowdown loss in weight compensation rate load clause// Function: Transient Correction</description>
 	</table>
 
-	<table type="2D" name="Atomospheric Pressure Compensation Coefficient Table 2" category="Unknown" storagetype="uint8" sizey="16" endian="big" userlevel="5" >
+	<table type="2D" name="Atmospheric Pressure Compensation Coefficient Table 2" category="Unknown" storagetype="uint8" sizey="16" endian="big" userlevel="5" >
 		<scaling units="-" expression="x*.0078125" to_byte="x/.0078125" format="0.000"/>
 	<table type="Y Axis" name="mV" sizey="16">
 			<data>400</data>
@@ -18109,7 +18161,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 			<data>4120</data>
 			<data>4120</data>
 	</table>
-	<description>mTHPAMB- Atomospheric pressure compensation coefficient</description>
+	<description>mTHPAMB- Atmospheric pressure compensation coefficient</description>
 	</table>
 
 	<table type="2D" name="TWF Initial Value Table" category="Unknown" storagetype="uint8" sizey="8" endian="big" userlevel="5" >
@@ -19061,12 +19113,12 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mPSEVCN- Accumulation purge lower limit value</description>
 	</table>
 
-	<table type="2D" name="Atomospheric Pressure Sensor Characteristic Coefficient" category="Unknown" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Atmospheric Pressure Sensor Characteristic Coefficient" category="Unknown" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="-" expression="x*0.03125" to_byte="x/0.03125" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mPSNSPC- Atomospheric pressure sensor characteristic coefficient</description>
+	<description>mPSNSPC- Atmospheric pressure sensor characteristic coefficient</description>
 	</table>
 
 	<table type="2D" name="Pressure-Voltage Conversion Coefficient" category="Unknown" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
@@ -19101,12 +19153,12 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mSLNTHP2- Switching function inclination (bank 2)</description>
 	</table>
 
-	<table type="2D" name="Reference Atomospheric Pressure" category="Unknown" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Reference Atmospheric Pressure" category="Unknown" storagetype="uint16" sizey="1" endian="big" userlevel="5" >
 		<scaling units="mV" expression="x*0.078125" to_byte="x/0.078125" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mPAMB0- Reference atomospheric pressure</description>
+	<description>mPAMB0- Reference Atmospheric pressure</description>
 	</table>
 	
 	<table type="2D" name="A Degree of a Reference IAT" category="Unknown" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
@@ -19253,12 +19305,12 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 	<description>mMFLOAD- A TINT compensation coefficient learning weighted average coefficient by the cylinder</description>
 	</table>
 
-	<table type="2D" name="Atomospheric Pressure Renewal Permission Dead-Zone" category="Unknown" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
+	<table type="2D" name="Atmospheric Pressure Renewal Permission Dead-Zone" category="Unknown" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
 		<scaling units="mV" expression="x*20" to_byte="x/20" format="0.00"/>
 	<table type="Y Axis" name="Above" sizey="1">
 			<data>-</data>
 	</table>
-	<description>mPAMBIS- Atomospheric pressure renewal permission dead-zone// Function: Absolute pressure sensor voltage</description>
+	<description>mPAMBIS- Atmospheric pressure renewal permission dead-zone// Function: Absolute pressure sensor voltage</description>
 	</table>
 	
 	<table type="2D" name="Vehicle Speed Condition Delay" category="Unknown" storagetype="uint8" sizey="1" endian="big" userlevel="5" >
@@ -19946,7 +19998,7 @@ Scaling units for some reason mess up and won't show the proper scaling. Typical
 		<bit position ="26" name="26 Learned Fuel Trim B2"/>
 		<bit position ="25" name="27 Int V B1"/>
 		<bit position ="24" name="28 Int V B2"/>
-		<bit position ="23" name="29 Atomospheric Sensor"/>
+		<bit position ="23" name="29 Atmospheric Sensor"/>
 		<bit position ="22" name="2A MAP Voltage "/>
 		<bit position ="21" name="2B Evapo leak diagnosis monitor 1"/>
 		<bit position ="20" name="2C undefined "/>

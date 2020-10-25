@@ -39080,13 +39080,13 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
 						<conversion units="Lambda" expr="x/64" format="0.00" />
 					</conversions>
 				</ecuparam>								
-<!--Fuel Compensation X Trace-->
-				<ecuparam id="Z24" name="vQH0" desc="Z24- TVO-N Flow Quantity" target="1"> //might need adjusted in terms of scaling.
+<!--Fuel Compensation X Trace. Had x/2.56 as scaling last time for whatever reason-->
+				<ecuparam id="Z24" name="vQH0" desc="Z24- TVO-N Flow Quantity" target="1">
 					<ecu id="CF48D">
 						<address>0xFF85A2</address>
 					</ecu>
 					<conversions>
-						<conversion units="%" expr="x/2.56" format="0.00" />
+						<conversion units="%" expr="x*0.00390625" format="0.00" />
 					</conversions>
 				</ecuparam>		
 
@@ -39095,7 +39095,7 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
 						<address>0xFF137B</address>
 					</ecu>
 					<conversions>
-						<conversion units="%" expr="x/.78125" format="0.00" />
+						<conversion units="%" expr="x/0.78125" format="0.00" />
 					</conversions>
 				</ecuparam>		
 
@@ -39104,7 +39104,7 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
 						<address length="2">0xFF137B</address>
 					</ecu>
 					<conversions>
-						<conversion units="Nm" storagetype="uint16" expr="x/.1" format="0.00" />
+						<conversion units="Nm" storagetype="uint16" expr="(x/10)-3276.8" format="0.00" />
 					</conversions>
 				</ecuparam>		
 
@@ -39179,7 +39179,67 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
 						<conversion units="Nm" storagetype="int16" expr="(x/10)-3276.8" format="0.00" />
 					</conversions>
 				</ecuparam>								
-												
+					
+					<ecuparam id="Z35" name="vNE" desc="Z35- Engine Speed" target="1">
+					<ecu id="CF48D">
+						<address length="2">0xFF8622</address>
+					</ecu>
+					<conversions>
+						<conversion units="RPM" storagetype="uint16" expr="x*3.125" format="0" />
+					</conversions>
+				</ecuparam>								
+					
+					<ecuparam id="Z36" name="vTQH0AP" desc="Z36- APO/QH0 Conversion Value" target="1">
+					<ecu id="CF48D">
+						<address length="2">0xFF195A</address>
+					</ecu>
+					<conversions>
+						<conversion units="%" storagetype="uint16" expr="x*0.001525879" format="0.00" />
+					</conversions>
+				</ecuparam>		
+
+					<ecuparam id="Z37" name="vTDTVO" desc="Z37- Target Throttle Open-Degree" target="1">
+					<ecu id="CF48D">
+						<address length="2">0xFF303A</address>
+					</ecu>
+					<conversions>
+						<conversion units="Degrees" storagetype="uint16" expr="x*0.0275" format="0.00" />
+					</conversions>
+				</ecuparam>		
+
+					<ecuparam id="Z38" name="Torque QH0 Conversion Value" desc="Z38- vTQH0TE" target="1">
+					<ecu id="CF48D">
+						<address length="2">0xFF1964</address>
+					</ecu>
+					<conversions>
+						<conversion units="%" storagetype="uint16" expr="x*0.001525879" format="0.00" />
+					</conversions>
+				</ecuparam>		
+<!-- Scaling could be wrong-->				
+					<ecuparam id="Z39" name="PTD Target Engine Torque" desc="Z39- vTTEPTD" target="1">
+					<ecu id="CF48D">
+						<address length="2">0xFF239E</address>
+					</ecu>
+					<conversions>
+						<conversion units="Nm" storagetype="int16" expr="(x/10)-3276.8" format="0.00" />
+					</conversions>
+				</ecuparam>	
+Main;
+		
+
+
+vAAPO - 0xFF10C8 // Accelerator Opening Area
+vTPO1 - 0xFF992E // Throttle 1 Open-Degree
+
+
+
+
+vVVTVO - 0xFF1BC6 // Target torque equivalent throttle open-degree
+vAVTVO - 0xFF1182 // Target torque equivalent opening area
+vTATE - 0xFF17C4 // PTD Torque Area Conversion Value
+
+
+	
 LOGGER ADD FOR CF48D;;;
 
 X = X_X#1 in the event that there's an X_X#2 (not confirmed)
@@ -39190,26 +39250,26 @@ X = X_X#1 in the event that there's an X_X#2 (not confirmed)
 	
 	
 	
-	
+
+Fuel Target X Trace Max Tst - 0x01 // Not sure
+Fuel Target X Trace Max Var - 0xFF23AE // Not sure
 wfCLUSW - 0xFF996F // State of Clutch Pedal (1=CLutch Pedal Pressed)
 vTADNVTE - 0xFF17B4 // PTD Normalized opening area
 vTQH0PTD - 0xFF1960 // PTD Basic Flow-quantity Ratio
 vTADNVCK - 0xFF17B0 // Normalized Opening Area
 vAQSISC - 0xFF1166 // ISC opening area
-vTDTVO - 0xFF303A // Target throttle open-degree
+wvNE 0xFF85EA // Engine Speed
 vTTAAPO - 0xFF198E // A total basic opening area
 vVAPO - 0xFF261C // Throttle open-degree target value (virtual)
-vVVTVO - 0xFF1BC6 // Target torque equivalent throttle open-degree
-vAVTVO - 0xFF1182 // Target torque equivalent opening area
+
 vALOADCK - 0xFF1128 // Compensation Torque equivalent throttle opening area
 vAAPOCK - 0xFF10CA // Accelerator Opening Area
 vTQH0IF - 0xFF195E // After the inverse filter, Torque Qh0 Conversion value
-vTTEPTD_S - 0xFF1C66 // PTD Target Torqeu (redundant operation vice operation part)
+vTTEPTD_S - 0xFF1C66 // PTD Target Torque (redundant operation vice operation part)
 vTTEPD1_S - 0xFF321C // After speed compensation, target torque
 vPTDNE_S - 0xFF1C08 // Engine Speed SubCPU
-vAAPO - 0xFF10C8 // Accelerator Opening Area
-vTATE - 0xFF17C4 // PTD Torque Area Conversion Value
-vTQH0TE - 0xFF1964 // Torque Qh0 Conversion Value
+
+
 vQH0LMT - 0xFF169E // QH0 Upper Limit Value
 wvVSPX - 0xFF8452 // Hiigh precision vehicle speed
 wvHRVSP - 0xFF8506 // High precision vehicle speed for PTD
@@ -39217,11 +39277,10 @@ tMMTQUPTM - 0xFF254C //M Mode rotation sychronous control operation timer
 vTQH0CKLT - 0xFF195C // A basic volume flow-quantity ratio
 vQH0QL - 0xFF2EB6 // Air Learning QH0 Basic Value
 vADNVQL - 0xFF34CE // "-" opening area/induction volume 
-vTPO1 - 0xFF992E // Throttle 1 Open-Degree
+
 vTVOFQLS - 0xFFAF1E // Low Speed air learning value
 vTVOFQL - 0xFF3158 // High-speed air learning value
 vTPO1QL - 0xFF3784 // TPO1 Learning compensation value
-vNE - 0xFF8622 // Engine Speed 
 vATPO1 - 0xFF98CC // TPO1 Opening Area
 vRLVAPO - 0xFF3900 // In the Limiter, VAPO for the Up-Shift
 vRLRPM - 0xFF1716 // Limit Speed
@@ -39232,7 +39291,6 @@ vTTERLUPS - 0xFF19B4 // At Time of up-shift, high rotation limiter torque
 vTTERL - 0xFF19B0 // A High Rotation Limiter Torque
 vTTEP - 0xFF19A0 // After TCS/VDC Control, PTD Requested Torque
 vTTERL0 - 0xFF19B2 // High Rotation Limiter Basic Torque (R/L + I-Gain)
-vTTEPTD - 0xFF239E //PTD Target Engine Torque
 wvCURGPV - 0xFF84BF // Actual Gear Position Estimated Value
 wvCURGP - 0xFF84BE // An Actual Gear Position (CurGP) Signal
 vRLTENG2 - 0xFF2364 // In the limiter, TENG2 for the Up-shift
@@ -39256,10 +39314,7 @@ Target Drive Power Y Trace - 0xFF1008 // Unknown A2L
 Torque Converter Ratio Y trace - 0xFF15BE // Unknown A2L
 Torque Converter Ratio Y Trace 2 - 0xFF1C06 // Unknown A2L
 Load BFS Axis Trace - 0xFF85E7 // Unknown a2l 
-vTQH0AP - 0xFF195A // QH0 X Trace "APO/QH0 Conversion Value"
 vPTDNE QH0 Y Trace - 0xFF166A // Unknown Scaling, but confirmed Engine RPM
-Fuel Target X Trace Max Tst - 0x01 // Not sure
-Fuel Target X Trace Max Var - 0xFF23AE // Not sure
 Target AFR - 0xFF227A // Probably the target AFR Map value. Maybe check scalings for other target AFR and verify?
 FUEL TARGET Y TRACE (RPM) - 0xFF85F0 (Not sure what it actually is scaling wise or function wise. Maybe uint8 x*25? 
 vCATSLSFT - 0xFF2840
@@ -39275,7 +39330,7 @@ wvAPOFS - 0xFF980E // Accelerator Open Degree for TVO Operation
 vAPOSTFS - 0xFF1162 // After it deals wiht APOFS Shaft Conversion, Accelerator Open Degree				
 vATAPOST - 0xFF2335 // APOST For the ATCU Transmission		
 
-wvNE 0xFF85EA // Engine Speed			
+	
 vITACTE 0xFF1492 // ITAC for torque operation
 Atmospheric Pressure Compensation Coefficient Table Y Axis Trace - 0xFF8520 // Unknown A2L	
 				
