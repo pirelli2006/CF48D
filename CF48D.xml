@@ -1860,8 +1860,10 @@ Maps
 	<table name="Auto Transmission Gear Position Delay" storageaddress="0x7BA6"/> 
 	<table name="Gear Ratio Torque Fuel Cut" storageaddress="0x89F0"/> 
 	<table name="Torque Going Down Control Prohibition Accelerator Open Degree" storageaddress="0x87D0"/>
+	<table name="Gear Ratio Offset Value" storageaddress="0x862E"/> 
 	
-	<table name="Gear Ratio Offset Value" storageaddress="0x862E"/> (mIVGROF A2L)
+	
+	
 	<table name="Injection Timing Change Permission Coolant Temperature" storageaddress="0x7F93"/> (mITRTW A2l)
 	<table name="After An Injection Timing Change Starts, Delay" storageaddress="0x7F92"/> (mITRTM A2L)
 	<table name="After Injection Timing Changes Are Increased, Delay" storageaddress="0x7F91"/> (mITRTFL A2L)
@@ -1906,17 +1908,14 @@ Maps
 	<table name="Reverse Gear Ratio 2" storageaddress="0xD7C0"/> mRRATIO_S A2L 
 	
 	<table name="Big Injector Minimum 1" storageaddress="0x551C"> Unknown A2L uint16 or int16
-			<table type="X Axis" storageaddress="0x0000"/>
 			<table type="Y Axis" storageaddress="0x550C"/>
 	</table>
 
 	<table name="Big Injector Minimum 2" storageaddress="0x553C"> Unknown A2L uint16 or int16
-			<table type="X Axis" storageaddress="0x0000"/>
 			<table type="Y Axis" storageaddress="0x552C"/>
 	</table>
 
 	<table name="Big Injector Minimum 3" storageaddress="0x555C"> Unknown A2L uint16 or int16
-			<table type="X Axis" storageaddress="0x0000"/>
 			<table type="Y Axis" storageaddress="0x554C"/>
 	</table>
 
@@ -1940,9 +1939,6 @@ Maps
 	<table name="Radiator Fan Transient State Compensation Decrease Rate" storageaddress="0x7CE1"/> (mDISCRU A2L)
 	<table name="Offset Learning Initial Value" storageaddress="0x7F54"/> (mINOFST A2L)
 	
-	<table name="AC Cut Speed 3" storageaddress="0x808A"/> (mNACCUT A2L)
-	<table name="AC Cut Speed 2" storageaddress="0x8089"/> (make sure it's proper map)
-	
 	<table name="Fuel1" storageaddress="0x91B1">
 		<table type="X Axis" storageaddress="0xB2C5"/>
 		<table type="Y Axis" storageaddress="0xB2CD"/>
@@ -1957,11 +1953,8 @@ Maps
 	<table name="Fuel Diagnosis Lean CPC NG Judgement Delay" storageaddress="0x83F2"/> (mTMRND2 A2L)
 	<table name="At Time of ND Select, Timer for Accelerator Judgement" storageaddress="0x83F1"/> (mTMRND A2L)
 	<table name="High Pressure Cut Pressure" storageaddress="0x8524"/> (mVPDACH1 A2L)
-	
-	
-	
-	
-	
+	<table name="AC Cut Speed 3" storageaddress="0x808A"/> (mNACCUT A2L)
+	<table name="AC Cut Speed 2" storageaddress="0x8089"/> (make sure it's proper map)
 	
 	//////////////////	
 
@@ -1988,7 +1981,6 @@ B5A7 Axis
 B5A3 Axis
 
 ----------------------
-
 	<table name="After the Start, Increase Table" storageaddress="0xBA50"/>
 <!-- Verify in Ghidra -->
 	<table name="After the Start, Increase Water Temperature Compensation Table" storageaddress="0xBA60"/>
@@ -2200,7 +2192,6 @@ B5A3 Axis
 	</table>
 	
 	<table name="AFR Conversion Table" storageaddress="0xCB40">
-		<table type="X Axis" storageaddress="0x0000"/>
 		<table type="Y Axis" storageaddress="0xD446"/> 
 	</table>
 	
@@ -2230,12 +2221,10 @@ B5A3 Axis
 	</table>
 	
 	<table name="N~TP Compensation Table Bank 1" storageaddress="0xB950">
-		<table type="X Axis" storageaddress="0x0000"/>
 		<table type="Y Axis" storageaddress="0xC656"/>
 	</table>
 	
 	<table name="N~TP Compensation Table Bank 2" storageaddress="0xB960"> 
-		<table type="X Axis" storageaddress="0x0000"/>
 		<table type="Y Axis" storageaddress="0xC676"/>
 	</table>
 	
@@ -2343,6 +2332,7 @@ DE10 is an axis or something
 0xDDCA DTC Supmask
 0xE12C DTC Descriptor
 0xED68 DTC Options
+
 	All DTC stuff begins at 0xD4F4 
 	Uint16 These values are appart of DTC coding. Unsure if these get disabled through the catalyst DTCs or if they're manually disabled. 
 	D58C  and D58E are values!!! Probably cat related. Europe Tuned CF48D has these set to 0
@@ -2484,13 +2474,26 @@ Flags;
 	<table name="Flags 11" storageaddress="0x7F2D"/>
 	<table name="Flags 12" storageaddress="0x851F"/>
 	<table name="Flags 13" storageaddress="0x815E"/>
+	<table name="Flags 14" storageaddress="0x7F40"/>
+	<table name="DOMON Distinction Flag" storageaddress="0xB27F"/> ( FINISH ADDING )
 
+    /begin CHARACTERISTIC    mDOID
+      "DOMON distinction flag"
+      CURVE 0x0000C92E REC_UBYTE_C 0 COMP_0004 0 255
+      /begin AXIS_DESCR    FIX_AXIS
+        NO_INPUT_QUANTITY COMP_0205_S 8 0 7
+        FIX_AXIS_PAR_DIST 0 1 8
+      /end AXIS_DESCR
+	/begin FUNCTION_LIST KF7-580.1[8]
+	/end FUNCTION_LIST
+    /end CHARACTERISTIC
+B27F mDOID
 
 <!--
 \\\\\ FLAGS ///// 
 
-7F40 mfFDUET
-B27F mDOID
+
+
 7F41 mfFACPDS
 DDL Data Monitor Permission Flag 0xB22C
 7F42 mfFISCV (At time of ECM internal organs, ISCVvol use, un-use, switching flag
@@ -2537,72 +2540,72 @@ DDCF mFMF6NG
 
 <!-- Useless/Repetitive maps 
 
-	<table name="Non-Straight Line Region Compensation Clause A1" storageaddress="0x887C"/> (mHOSA1 A2l)
-	<table name="Non-Straight Line Region Compensation Clause A2" storageaddress="0x887E"/> (mHOSA2 A2l)
-	<table name="Non-Straight Line Region Compensation Clause B1" storageaddress="0x8880"/> (mHOSB1 A2l)
-	<table name="Non-Straight Line Region Compensation Clause B2" storageaddress="0x8882"/> (mHOSB2 A2l)
+Non-Straight Line Region Compensation Clause A1 0x887C (mHOSA1 A2l)
+Non-Straight Line Region Compensation Clause A2 0x887E (mHOSA2 A2l)
+Non-Straight Line Region Compensation Clause B1 0x8880 (mHOSB1 A2l)
+Non-Straight Line Region Compensation Clause B2 0x8882 (mHOSB2 A2l)
 	
-	<table name="MATH1 Compensation Coefficient" storageaddress="0x7FC9"/> 
-	<table name="MATH2 Compensation Coefficient" storageaddress="0x7FCA"/> 
-	<table name="MATH3 Compensation Coefficient" storageaddress="0x7FCB"/> 
-	<table name="MATH5 Compensation Coefficient" storageaddress="0x7FCC"/> 
-	<table name="MATH6 Compensation Coefficient" storageaddress="0x7FCD"/>
-	<table name="MATGK Compensation Coefficient" storageaddress="0x7FCE"/> 	
-	<table name="MCTH1 Compensation Coefficient" storageaddress="0x7FCF"/> 
-	<table name="MCTH2 Compensation Coefficient" storageaddress="0x7FD0"/> 	
-	<table name="MCTH3 Compensation Coefficient" storageaddress="0x7FD1"/> 	
-	<table name="MCTH5 Compensation Coefficient" storageaddress="0x7FD2"/> 	
-	<table name="MCTH6 Compensation Coefficient" storageaddress="0x7FD3"/> 	
-	<table name="MCTH7 Compensation Coefficient" storageaddress="0x7FD4"/> 	
-	<table name="MCTH8 Compensation Coefficient" storageaddress="0x7FD5"/>	
-	<table name="MGTH3 Compensation Coefficient" storageaddress="0x7FD6"/> 
-	<table name="MGTGK Compensation Coefficient" storageaddress="0x7FD7"/>
+MATH1 Compensation Coefficient 0x7FC9 
+MATH2 Compensation Coefficient 0x7FCA 
+MATH3 Compensation Coefficient 0x7FCB 
+MATH5 Compensation Coefficient 0x7FCC 
+MATH6 Compensation Coefficient 0x7FCD
+MATGK Compensation Coefficient 0x7FCE 	
+MCTH1 Compensation Coefficient 0x7FCF 
+MCTH2 Compensation Coefficient 0x7FD0 	
+MCTH3 Compensation Coefficient 0x7FD1 	
+MCTH5 Compensation Coefficient 0x7FD2 	
+MCTH6 Compensation Coefficient 0x7FD3 	
+MCTH7 Compensation Coefficient 0x7FD4 	
+MCTH8 Compensation Coefficient 0x7FD5	
+MGTH3 Compensation Coefficient 0x7FD6
+MGTGK Compensation Coefficient 0x7FD7
 	
-	<table name="Coefficient A0 (QA Region #1)" storageaddress="0x85D6"/> 
-	<table name="Coefficient A0 (QA Region #1 Bank 2)" storageaddress="0x85D8"/> 
-	<table name="Coefficient A0 (QA Region #2)" storageaddress="0x85DA"/> 
-	<table name="Coefficient A0 (QA Region #3)" storageaddress="0x85DE"/> 
-	<table name="Coefficient A0 (QA Region #3 Bank 2)" storageaddress="0x85E0"/> 
-	<table name="Coefficient A1 (QA Region #1)" storageaddress="0x85E2"/> 
-	<table name="Coefficient A1 (QA Region #1 Bank 2)" storageaddress="0x85E4"/> 
-	<table name="Coefficient A1 (QA Region #2)" storageaddress="0x85E6"/> 
-	<table name="Coefficient A1 (QA Region #2 Bank 2)" storageaddress="0x85E8"/> 
-	<table name="Coefficient A1 (QA Region #3)" storageaddress="0x85EA"/> 
-	<table name="Coefficient A1 (QA Region #3 Bank 2)" storageaddress="0x85EC"/> 
+Coefficient A0 (QA Region #1) 0x85D6
+Coefficient A0 (QA Region #1 Bank 2) 0x85D8 
+Coefficient A0 (QA Region #2) 0x85DA 
+Coefficient A0 (QA Region #3) 0x85DE
+Coefficient A0 (QA Region #3 Bank 2) 0x85E0 
+Coefficient A1 (QA Region #1) 0x85E2
+Coefficient A1 (QA Region #1 Bank 2) 0x85E4
+Coefficient A1 (QA Region #2) 0x85E6
+Coefficient A1 (QA Region #2 Bank 2) 0x85E8 
+Coefficient A1 (QA Region #3) 0x85EA
+Coefficient A1 (QA Region #3 Bank 2) 0x85EC
 
 	Confirmed;
-	Compensation Vessel H/G Filter Constant 4 (HI Gain)" storageaddress="0x8836"/> (mGD1_H)
-	Compensation Vessel H/G Filter Constant 4 (LO Gain)" storageaddress="0x8838"/> (mGD1_L)
-	Compensation Vessel H/G Filter Constant 3 (HI Gain)" storageaddress="0x884A"/> (mGN0_H)
-	Compensation Vessel H/G Filter Constant 3 (LO Gain)" storageaddress="0x884C"/> (mGN0_L)	
-	Compensation Vessel H/G Filter Constant 2 (HI Gain)" storageaddress="0x884E"/> (mGN1_H)
-	Compensation Vessel H/G Filter Constant 2 (LO Gain)" storageaddress="0x8850"/> (mGN1_L)	
-	Compensation Vessel H/G Filter Constant 1 (HI Gain)" storageaddress="0x8852"/> (mGN2_H)
-	Compensation Vessel H/G Filter Constant 1 (LO Gain)" storageaddress="0x8854"/> (mGN2_L)
-	Compensation Vessel H Filter Constant 3 (HI Gain)" storageaddress="0x885A"/> (mHD1_H)
-	Compensation Vessel H Filter Constant 3 (LO Gain)" storageaddress="0x885C"/> (mHD1_L)
-	Compensation Vessel H Filter Constant 2 (HI Gain)" storageaddress="0x8872"/> (mHN0_H)
-	Compensation Vessel H Filter Constant 2 (LO Gain)" storageaddress="0x8874"/> (mHN0_L)	
-	Compensation Vessel H Filter Constant 1 (HI Gain)" storageaddress="0x8876"/> (mHN1_H)
-	Compensation Vessel H Filter Constant 1 (LO Gain)" storageaddress="0x8878"/> (mHN1_L)
+	Compensation Vessel H/G Filter Constant 4 (HI Gain) 0x8836 (mGD1_H)
+	Compensation Vessel H/G Filter Constant 4 (LO Gain) 0x8838 (mGD1_L)
+	Compensation Vessel H/G Filter Constant 3 (HI Gain) 0x884A (mGN0_H)
+	Compensation Vessel H/G Filter Constant 3 (LO Gain) 0x884C (mGN0_L)	
+	Compensation Vessel H/G Filter Constant 2 (HI Gain) 0x884E (mGN1_H)
+	Compensation Vessel H/G Filter Constant 2 (LO Gain) 0x8850 (mGN1_L)	
+	Compensation Vessel H/G Filter Constant 1 (HI Gain) 0x8852 (mGN2_H)
+	Compensation Vessel H/G Filter Constant 1 (LO Gain) 0x8854 (mGN2_L)
+	Compensation Vessel H Filter Constant 3 (HI Gain) 0x885A (mHD1_H)
+	Compensation Vessel H Filter Constant 3 (LO Gain) 0x885C (mHD1_L)
+	Compensation Vessel H Filter Constant 2 (HI Gain) 0x8872 (mHN0_H)
+	Compensation Vessel H Filter Constant 2 (LO Gain) 0x8874 (mHN0_L)	
+	Compensation Vessel H Filter Constant 1 (HI Gain) 0x8876 (mHN1_H)
+	Compensation Vessel H Filter Constant 1 (LO Gain) 0x8878 (mHN1_L)
 	
 	//// 
-	Compensation Vessel H/G Constant 4 (LO Gain)" storageaddress="0x7AE1"/> (mN_GdD1_H)
-	Compensation Vessel H/G Constant 3 (HI Gain)" storageaddress="0x7AE2"/> (mN_GdD1_H)		
-	Compensation Vessel H/G Constant 3 (LO Gain)" storageaddress="0x7AE3"/> (mN_GdD1_H)	
-	Compensation Vessel H/G Constant 2 (HI Gain)" storageaddress="0x7AE4"/> (mN_GdD1_H)	
-	Compensation Vessel H/G Constant 2 (LO Gain)" storageaddress="0x7AE5"/> (mN_GdD1_H)	
-	Compensation Vessel H/G Constant 1 (HI Gain)" storageaddress="0x7AE6"/> (mN_GdD1_H)	
-	Compensation Vessel H/G Constant 1 (LO Gain)" storageaddress="0x7AE7"/> (mN_GdD1_H)		
-	Compensation Vessel H Constant 3 (HI Gain)" storageaddress="0x7AE8"/> (mN_GdD1_H)	
-	Compensation Vessel H Constant 3 (LO Gain)" storageaddress="0x7AE9"/> (mN_GdD1_H)	
-	Compensation Vessel H Constant 2 (HI Gain)" storageaddress="0x7AEA"/> (mN_GdD1_H)	
-	Compensation Vessel H Constant 2 (LO Gain)" storageaddress="0x7AEB"/> (mN_GdD1_H)		
-	Compensation Vessel H Constant 1 (HI Gain)" storageaddress="0x7AEC"/> (mN_GdD1_H)	
-	Compensation Vessel L Constant 2" storageaddress="0x7AED"/> (mN_GdD1_H)		
-	Compensation Vessel L Constant 1" storageaddress="0x7AEE"/> (mN_GdD1_H)	
-	Compensation Vessel 1/R Constant 1" storageaddress="0x7AEF"/> (mN_GdD1_H)		
-	Compensation Vessel 1/R Constant 1" storageaddress="0x7AF0"/> (mN_RD0 A2L VERIFY BETWEEN THESE TWO. CHECK ALL)
+	Compensation Vessel H/G Constant 4 (LO Gain) storageaddress="0x7AE1 (mN_GdD1_H)
+	Compensation Vessel H/G Constant 3 (HI Gain) storageaddress="0x7AE2 (mN_GdD1_H)		
+	Compensation Vessel H/G Constant 3 (LO Gain) storageaddress="0x7AE3 (mN_GdD1_H)	
+	Compensation Vessel H/G Constant 2 (HI Gain) storageaddress="0x7AE4 (mN_GdD1_H)	
+	Compensation Vessel H/G Constant 2 (LO Gain) storageaddress="0x7AE5 (mN_GdD1_H)	
+	Compensation Vessel H/G Constant 1 (HI Gain) storageaddress="0x7AE6 (mN_GdD1_H)	
+	Compensation Vessel H/G Constant 1 (LO Gain) storageaddress="0x7AE7 (mN_GdD1_H)		
+	Compensation Vessel H Constant 3 (HI Gain) storageaddress="0x7AE8 (mN_GdD1_H)	
+	Compensation Vessel H Constant 3 (LO Gain) storageaddress="0x7AE9 (mN_GdD1_H)	
+	Compensation Vessel H Constant 2 (HI Gain) storageaddress="0x7AEA (mN_GdD1_H)	
+	Compensation Vessel H Constant 2 (LO Gain) storageaddress="0x7AEB (mN_GdD1_H)		
+	Compensation Vessel H Constant 1 (HI Gain) storageaddress="0x7AEC (mN_GdD1_H)	
+	Compensation Vessel L Constant 2 storageaddress="0x7AED (mN_GdD1_H)		
+	Compensation Vessel L Constant 1 storageaddress="0x7AEE (mN_GdD1_H)	
+	Compensation Vessel 1/R Constant 1 storageaddress="0x7AEF (mN_GdD1_H)		
+	Compensation Vessel 1/R Constant 1 storageaddress="0x7AF0 (mN_RD0 A2L VERIFY BETWEEN THESE TWO. CHECK ALL)
 	
 	-->
 

@@ -4,6 +4,10 @@
 		<make>Nissan</make>
 		<flashmethod>nisprog</flashmethod>
 	</romid>
+	
+
+	
+	
 	\\X// is for Map Placement in RR
 
 I'm going to try leaving all 0'd out values in their proper position if it's JUST 0'd out in CF48D or appears to be useful. But if it's 0'd out in the A2L as well, then I'm going to drop it below the section.
@@ -1565,10 +1569,10 @@ I'm going to try leaving all 0'd out values in their proper position if it's JUS
 	
 	<table type="3D" name="Fuel Compensation" category="AFR" storagetype="uint8" endian="big" sizex="16" sizey="16" userlevel="1" logparam="Z25">
 		<scaling name="%" units="%"	expression="(x/128)*100" to_byte="(x/100)*128" format="0.00" fineincrement=".2" coarseincrement="1" />
-		<scaling name="AFR" units="AFR(Gasoline Scale)" expression="14.7/(x/128)" to_byte="128*(14.7/x)" format="0.00" fineincrement=".2" coarseincrement="1"/>
-		<scaling name="AFR Adjustment" units="AFR Adjustment from 14.7(Gasoline Scale)" expression="(14.7/(x/128))-14.7" to_byte="(18816/(10x+147)" format="0.00" fineincrement=".2" coarseincrement="1"/>
+		<scaling name="AFR" units="AFR(Gasoline Scale)" expression="14.7/(x/128)" to_byte="128*(14.7/x)" format="0.00" fineincrement=".2" coarseincrement="0.5"/>
+		<scaling name="AFR Adjustment" units="AFR Adjustment from 14.7(Gasoline Scale)" expression="-1*((14.7/(x/128))-14.7)" to_byte="-1*(18816/(10x-147))" format="0.00" fineincrement=".2" coarseincrement="0.5"/>
 		<table type="X Axis" name="TVO-N flow-quantity" storagetype="uint8" endian="big" logparam="Z24">
-			<scaling units="%" expression="x/2.56" to_byte="x*2.56" format="0.0" fineincrement=".2" coarseincrement="1" />
+			<scaling units="%" expression="x/2.56" to_byte="x*2.56" format="0" fineincrement=".2" coarseincrement="1" />
 		</table>
 		<table type="Y Axis" name="Engine Speed" storagetype="uint8" endian="big" logparam="P8">
 			<scaling units="RPM" expression="x*50" to_byte="x/50" format="0" fineincrement="50" coarseincrement="250" />
@@ -2025,7 +2029,7 @@ I'm going to try leaving all 0'd out values in their proper position if it's JUS
 	
 	<table type="2D" name="Target AFR Lean Set" category="AFR" storagetype="uint16" sizey="1" endian="big" userlevel="1" >
 		<scaling units="AFR (Gasoline Scale)" expression="x*0.002" to_byte="x/0.002" format="0.00"/>
-	<table type="Y Axis" name="Rich Set" sizey="1">
+	<table type="Y Axis" name="Lean Set" sizey="1">
 			<data>AFR</data>
 	</table>
 	<description>mLTGABF- TARGET A/F LEAN SET//Potentially limit for target AFR on the lean side</description>
@@ -8545,6 +8549,14 @@ I'm going to try leaving all 0'd out values in their proper position if it's JUS
 	<description>mTWNDL- N- At the time of the >D select, target idle rotation decline control start coolant temperature lower limit</description>
 	</table>
 	
+	<table type="2D" name="Gear Ratio Offset Value" category="Transmission" storagetype="int16" sizey="1" endian="big" userlevel="5" >
+		<scaling units="-" expression="x*0.00390625" to_byte="x/0.00390625" format="0.00"/>
+	<table type="Y Axis" name="Above" sizey="1">
+			<data>-</data>
+	</table>
+	<description>mIVGROF- offset value</description>
+	</table>
+	
 	\\Shifting Performance// 
 
 	<table type="3D" name="Engine Torque Map" category="Shifting Performance" storagetype="uint16" endian="big" sizex="16" sizey="16" userlevel="1">
@@ -13414,6 +13426,14 @@ I'm going to try leaving all 0'd out values in their proper position if it's JUS
 	
 	\\FLAGS//
 	
+	<table type="2D" name="DOMON Distinction Flag" category="Flags" storagetype="uint8" sizey="1" endian="big" userlevel="1" >
+		<scaling units="m" expression="x*.000006104" to_byte="x/.000006104" format="0.000000"/>
+	<table type="Y Axis" name="m" sizey="1">
+			<data>Above</data>
+	</table>
+	<description>Effect radius/final gear ratio with the tire 2</description>
+	</table>
+	
 	
 	<table type="BitwiseSwitch" name="C/S Backup Excuse Flag" category="Flags" userlevel="5">
 0x01		<bit position ="0" name="mfCSBU- C/S Backup Excuse Flag"/>  
@@ -13466,6 +13486,7 @@ I'm going to try leaving all 0'd out values in their proper position if it's JUS
 0x80		<bit position ="7" name="mfFFTASW- There's ISC AC Compensation TASW, Flag"/>  
 0x20		<bit position ="5" name="mfFAFICD- Flag with PWST Interlock FICD Compensation"/>  
 0x04		<bit position ="2" name="mfFTCS- TCS Control Switching Flag"/>
+0x01		<bit position ="0" name="mfFLNBRN- Control Switching Flag"/> 
 		<description>Toggle On/Off</description>
 	</table>  	
 
@@ -13529,7 +13550,11 @@ I'm going to try leaving all 0'd out values in their proper position if it's JUS
 		<description>Toggle On/Off</description>
 	</table> 
 
-	
+	<table type="BitwiseSwitch" name="Flags 14" category="Flags" userlevel="5">
+0x80		<bit position ="7" name="mfECVT- CVT Car Choice Flag"/>  
+0x40		<bit position ="6" name="mfFDUET- DUETTE Control Switching Flag"/> 
+		<description>Toggle On/Off</description>
+	</table>  
 	
 	
 	
