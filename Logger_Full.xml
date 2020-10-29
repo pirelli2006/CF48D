@@ -37708,6 +37708,8 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
                 </ecuparam>
             </ecuparams>
         </protocol>
+		
+		\\begin Nissan//
         <protocol id="NCS" baud="10400" databits="8" stopbits="1" parity="0" connect_timeout="2000" send_timeout="5" p1_max="0" p3_min="5" p4_min="0">
             <transports>
                 <transport id="iso14230" name="K-Line" desc="NCS is only supported using a J2534 compatible cable.">
@@ -37777,7 +37779,7 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
                 <parameter id="P10" name="Ignition Timing" desc="P10-A final ignition timing mCRSET=110 vFADV" ecubyteindex="41" ecubit="6" target="1">
                     <address>0x22110A</address>
                     <conversions>
-                        <conversion units="°" expr="60-x" format="0" gauge_min="60" gauge_max="-10" gauge_step="5" />
+                        <conversion units="°°" expr="60-x" format="0" gauge_min="60" gauge_max="-10" gauge_step="5" />
                     </conversions>
                 </parameter>
                 <parameter id="P4363" name="IACV-AAC" desc="P4363-IACV-AAC" ecubyteindex="41" ecubit="5" target="1">
@@ -39086,7 +39088,7 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
 						<address>0xFF85A2</address>
 					</ecu>
 					<conversions>
-						<conversion units="%" expr="x*0.00390625" format="0.00" />
+						<conversion units="%" expr="x/2.56" format="0.00" />
 					</conversions>
 				</ecuparam>		
 
@@ -39225,6 +39227,19 @@ any damage or injury incurred as a result of these definitions. USE AT YOUR OWN 
 					</conversions>
 				</ecuparam>	
 
+
+FIX;
+MBT Operation Value (Degree error?)
+Ignition Timing (degree error?)
+vAPOST (degree error potentially.)
+vFLFA (163.84 constant)
+Learned FueL Trim B1
+Learned Fuel Trim B2
+Short Term Fuel Trim B1 and 2 (0.40 for all)
+vKP
+vMTTE (cosntnat 3276.80)
+vQH0 (0.xx readings. Should be percentage) 
+
 KNOWN ISSUES;
 Ignition Timing shows negative value???
 Nm scaling is inaccurate 
@@ -39251,10 +39266,45 @@ X = X_X#1 in the event that there's an X_X#2 (not confirmed)
     KnockWord = 0xFFFF11A6, 
     KnockFlag = 0xFFFF23AC,
     KnockFlagMask = 0x40,
-	
-	
-	
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vRLRPM - 0xFF1716 // Limit Speed
+fRFTWHI - 0xFF23EB // MULTIPLE BITMASK
+wvTWN - 0xFF84A9 // Coolant Temperature
+vRLFLTNE - 0xFF1714 // After filter treatment is added, engine speed
+fFKUPIMM - 0xFF23D2 // MULTIPLE RAM ADDRESS' BITMASK DEPENDENDENT 
+vTTERL - 0xFF19B0 // A high rotation limiter torque
+vTTESL0 - 0xFF19B8 // A basic limiter torque (R/L + I-Gain)
+vTTESL - 0xFF19B6 // A high precision vehicle speed limiter torque
+wvLRVSP - 0xFF8512 // A low precision vehicle speed
+vTFDPTDR - 0xFF189C // The PTD target drive power
+vTFD0 - 0xFF188C // The target drive power (before the first ordered filter)
+wvAPO - 0xFF97D8 // Accelerator Open-degree
+vLIMZOKFD - 0xFF14F4 // After the area attribute control limiter, teh addition drive power
+vZADDFD - 0xFF1BE0 // The control addition drive power for the area attribute	
+vLIMADDFD - 0xFF14F2 // After the running resistance control limiter, the addition drive power
+vTTEPTD1 - 0xFF19AA // After speed compensation, target torque
+vTTEPTD0 - 0xFF19A8 // PTD Target engine torque basic value
+vTTEHOS1 - 0xFF1998 // Target torque speed compensation value
+vRATIOLMT - 0xFF16DE // After the limiter, actual gear ratio
 Fuel Target X Trace Max Tst - 0x01 // Not sure
 Fuel Target X Trace Max Var - 0xFF23AE // Not sure
 wfCLUSW - 0xFF996F // State of Clutch Pedal (1=CLutch Pedal Pressed)
